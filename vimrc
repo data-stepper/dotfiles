@@ -17,6 +17,7 @@ Plug 'mattn/emmet-vim'
 Plug 'tmhedberg/SimpylFold'
 Plug 'jnurmine/Zenburn'
 Plug 'Lokaltog/powerline'
+Plug 'tomasr/molokai'
 
 call plug#end()
 
@@ -63,8 +64,13 @@ noremap <leader>s <C-W>s
 tnoremap <C-X> clear<CR>
 tnoremap <C-Q> exit<CR>
 noremap <C-Q> <C-W>c
+noremap <leader>r :registers<CR>
 
 noremap <Down> <C-W>-
 noremap <Up> <C-W>+
 noremap <Left> <C-W>>
 noremap <Right> <C-W><
+
+" set guifont=Hack:h22
+" set guifont=Source\ Code\ Pro:h21
+set guifont=Fira\ Code:h21
