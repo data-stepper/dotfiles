@@ -7,21 +7,23 @@ call plug#begin()
 Plug 'tpope/vim-surround'
 " Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdtree'
-Plug 'scrooloose/syntastic'
+" Plug 'scrooloose/syntastic'
 Plug 'altercation/vim-colors-solarized'
 Plug 'kien/ctrlp.vim'
-" Plug 'valloric/youcompleteme'
-Plug 'mattn/emmet-vim'
-Plug 'tmhedberg/SimpylFold'
+" Plug 'mattn/emmet-vim' " Only needed for html editing
+
+" Only use for python editing
+Plug 'tmhedberg/SimpylFold' 
 Plug 'jnurmine/Zenburn'
 Plug 'Lokaltog/powerline'
 Plug 'tomasr/molokai'
+Plug 'klen/python-mode'
+Plug 'valloric/youcompleteme'
 
 call plug#end()
 
-set splitbelow
+" set splitbelow
 set splitright
 
 " Enable folding
@@ -70,6 +72,8 @@ noremap <Down> <C-W>-
 noremap <Up> <C-W>+
 noremap <Left> <C-W>>
 noremap <Right> <C-W><
+
+cnoreabbrev H vert h
 
 " set guifont=Hack:h22
 " set guifont=Source\ Code\ Pro:h21
