@@ -15,7 +15,7 @@ unset __conda_setup
 # <<< conda initialize <<<
 
 alias tmux="tmux -f ~/dotfiles/tmux.conf"
-alias vim="vim -u ~/dotfiles/vimrc"
+alias vim="/usr/local/Cellar/macvim/8.2-166/bin/mvim"
 alias ls="ls -Gla"
 alias rm="rm -rf"
 alias python="python"
