@@ -45,13 +45,26 @@ set encoding=utf-8
 
 filetype plugin indent on
 
-noremap <C-h> <C-\><C-n><C-w>h
-noremap <C-j> <C-\><C-n><C-w>j
-noremap <C-k> <C-\><C-n><C-w>k
-noremap <C-l> <C-\><C-n><C-w>l
+noremap <C-h> <C-w>h
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-l> <C-w>l
 
 tnoremap <Esc> <C-\><C-n>
-tnoremap <C-h> <C-\><C-n><C-w>h
-tnoremap <C-j> <C-\><C-n><C-w>j
-tnoremap <C-k> <C-\><C-n><C-w>k
-tnoremap <C-l> <C-\><C-n><C-w>l
+tnoremap <C-h> <C-w>h
+tnoremap <C-j> <C-w>j
+tnoremap <C-k> <C-w>k
+tnoremap <C-l> <C-w>l
+
+noremap <leader>t :ter<CR>
+noremap <leader>v <C-W>v
+noremap <leader>s <C-W>s
+
+tnoremap <C-X> clear<CR>
+tnoremap <C-Q> exit<CR>
+noremap <C-Q> <C-W>c
+
+noremap <Down> <C-W>-
+noremap <Up> <C-W>+
+noremap <Left> <C-W>>
+noremap <Right> <C-W><
