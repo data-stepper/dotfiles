@@ -18,19 +18,19 @@ Plug 'kien/ctrlp.vim'
 Plug 'majutsushi/tagbar'
 Plug 'universal-ctags/ctags'
 Plug 'psf/black'
-Plug 'tmhedberg/SimpylFold' 
+" Plug 'tmhedberg/SimpylFold' 
 Plug 'jnurmine/Zenburn'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'bling/vim-bufferline'
 Plug 'mkitt/tabline.vim'
 Plug 'tomasr/molokai'
-Plug 'klen/python-mode'
-Plug 'valloric/youcompleteme'
+" Plug 'klen/python-mode'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 
-" set splitbelow
+set splitbelow
 set splitright
 
 " Enable folding
@@ -48,8 +48,6 @@ nmap <C-N> :NERDTreeToggle<CR>
 
 " Enable folding with the spacebar
 nnoremap <space> za
-
-let g:SimpylFold_docstring_preview=1
 
 set encoding=utf-8
 
@@ -84,28 +82,122 @@ noremap <leader>s <C-W>s
 tnoremap <C-X> clear<CR>
 tnoremap <C-Q> exit<CR>
 noremap <C-Q> <C-W>c
-noremap <C-R> :registers<CR>
+
+nnoremap <leader>1 :registers<CR>
+nnoremap <leader>2 :TagbarToggle<CR>
+
+" Git commands
+nnoremap <leader>gs :Gstatus<CR>
+nnoremap <leader>gl :Glog<CR>
+nnoremap <leader>ga :G add *<CR>
+nnoremap <leader>gc :Gcommit<CR>
+nnoremap <leader>gp :Git push<CR>
+nnoremap <leader>gf :Git fetch<CR>
 
 noremap <Down> <C-W>-
 noremap <Up> <C-W>+
 noremap <Left> <C-W>>
 noremap <Right> <C-W><
 
-noremap <leader>1 :1buffer<CR>
-noremap <leader>2 :2buffer<CR>
-noremap <leader>3 :3buffer<CR>
-noremap <leader>4 :4buffer<CR>
-
 nnoremap <leader>n :tabnew<CR>
-nnoremap <leader>N :bNext<CR>
+nnoremap <leader>m :bnext<CR>
+nnoremap <leader>M :bNext<CR>
 
-noremap <F8> :TagbarToggle<CR>
+nnoremap <leader>q <C-W>c
+nnoremap <leader>c :bw<CR>
 
-nnoremap <leader>b :buffers<CR>
-noremap <leader>c <C-W>c
-noremap <leader>q :q!<CR>
+nnoremap <leader>e :e 
+nnoremap <leader>E :tabe 
 
 cnoreabbrev H vert h
+cnoreabbrev E vert e
+
+nnoremap J 5j
+nnoremap K 5k
+
+set cul
+
+" Coc settings
+set hidden
+
+set nobackup
+set nowritebackup
+
+set cmdheight=2
+
+set updatetime=300
+
+set shortmess+=c
+
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+if has("patch-8.1.1564")
+  " Recently vim can merge signcolumn and number column into one
+  set signcolumn=number
+else
+  set signcolumn=yes
+endif
+
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
+
+" Use `[g` and `]g` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
+
+" Formatting selected code.
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+" Apply AutoFix to problem on the current line.
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+" Add `:Format` command to format current buffer.
+command! -nargs=0 Format :call CocAction('format')
+
+" Add `:Fold` command to fold current buffer.
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " set guifont=Hack:h22
 " set guifont=Source\ Code\ Pro:h21
