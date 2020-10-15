@@ -221,6 +221,7 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " set guifont=Hack:h22
 " set guifont=Source\ Code\ Pro:h21
-set guifont=Fira\ Code:h21
+set guifont=Fira\ Code:h15
 " set guifont=Consolas:h18
+set guioptions=
 let g:airline_powerline_fonts = 1
