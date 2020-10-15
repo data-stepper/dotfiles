@@ -4,15 +4,15 @@ filetype off
 
 call plug#begin()
 
-Plug 'tpope/vim-surround'
 " Plug 'christoomey/vim-tmux-navigator'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-fugitive'
+" Plug 'mattn/emmet-vim' " Only needed for html editing
+Plug 'tpope/vim-commentary'
 " Plug 'scrooloose/syntastic'
 Plug 'altercation/vim-colors-solarized'
 Plug 'kien/ctrlp.vim'
-" Plug 'mattn/emmet-vim' " Only needed for html editing
 
 " Only use for python editing
 Plug 'majutsushi/tagbar'
@@ -22,11 +22,11 @@ Plug 'psf/black'
 Plug 'jnurmine/Zenburn'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+" Plug 'klen/python-mode'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'bling/vim-bufferline'
 Plug 'mkitt/tabline.vim'
 Plug 'tomasr/molokai'
-" Plug 'klen/python-mode'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 
@@ -114,6 +114,18 @@ cnoreabbrev E vert e
 
 nnoremap J 5j
 nnoremap K 5k
+
+" Visual mode movement commands
+nnoremap º :m .+1<CR>==
+nnoremap ∆ :m .-2<CR>==
+nnoremap @ >>
+nnoremap ª <<
+vnoremap º :m '>+1<CR>gv=gv
+vnoremap ∆ :m '<-2<CR>gv=gv
+vnoremap @ >gv
+vnoremap ª <gv
+
+nmap U <C-R>
 
 set cul
 
