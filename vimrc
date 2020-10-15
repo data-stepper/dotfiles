@@ -12,7 +12,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
 " Plug 'scrooloose/syntastic'
 Plug 'altercation/vim-colors-solarized'
-Plug 'kien/ctrlp.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 
 " Only use for python editing
 Plug 'majutsushi/tagbar'
@@ -60,7 +60,6 @@ let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline#extensions#tabline#tab_nr_type = 1
 let g:airline#extensions#tabline#show_tabs = 1
 let g:airline#extensions#tabline#show_buffers = 1
-let g:airline_powerline_fonts = 1
 
 filetype plugin indent on
 
@@ -114,6 +113,13 @@ cnoreabbrev E vert e
 
 nnoremap J 5j
 nnoremap K 5k
+nnoremap H 3h
+nnoremap L 3l
+
+vnoremap J 5j
+vnoremap K 5k
+vnoremap H 3h
+vnoremap L 3l
 
 " Visual mode movement commands
 nnoremap º :m .+1<CR>==
@@ -128,6 +134,8 @@ vnoremap ª <gv
 nmap U <C-R>
 
 set cul
+
+map <C-P> :FZF<CR>
 
 " Coc settings
 set hidden
@@ -214,3 +222,5 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 " set guifont=Hack:h22
 " set guifont=Source\ Code\ Pro:h21
 set guifont=Fira\ Code:h21
+" set guifont=Consolas:h18
+let g:airline_powerline_fonts = 1
