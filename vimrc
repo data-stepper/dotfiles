@@ -34,8 +34,12 @@ set splitbelow
 set splitright
 
 " Enable folding
-set foldmethod=indent
-set foldlevel=99
+" set foldmethod=indent
+" set foldlevel=99
+set foldmethod=marker
+set foldmarker=#####,# ENDFOLD
+inoremap #fold #####<CR><CR># ENDFOLD
+set foldlevel=0
 syntax on
 
 colorscheme solarized
@@ -113,23 +117,23 @@ cnoreabbrev E vert e
 
 nnoremap J 5j
 nnoremap K 5k
-nnoremap H 3h
-nnoremap L 3l
+nnoremap H 4h
+nnoremap L 4l
 
 vnoremap J 5j
 vnoremap K 5k
-vnoremap H 3h
-vnoremap L 3l
+vnoremap H 4h
+vnoremap L 4l
 
 " Visual mode movement commands
 nnoremap º :m .+1<CR>==
 nnoremap ∆ :m .-2<CR>==
-nnoremap @ >>
-nnoremap ª <<
+nnoremap <Tab> >>
+nnoremap <S-Tab> <<
 vnoremap º :m '>+1<CR>gv=gv
 vnoremap ∆ :m '<-2<CR>gv=gv
-vnoremap @ >gv
-vnoremap ª <gv
+vnoremap <Tab> >gv
+vnoremap <S-Tab> <gv
 
 nmap U <C-R>
 
@@ -225,3 +229,12 @@ set guifont=Fira\ Code:h15
 " set guifont=Consolas:h18
 set guioptions=
 let g:airline_powerline_fonts = 1
+
+" When in python mode
+echo "using python mode"
+" Executes selection in python3 interpreter
+vnoremap <leader>r :'<,'>write ! python3<CR>
+
+" In python mode, format on save
+" noremap <leader>w :Format<CR> :w<CR> :mkview<CR>
+
