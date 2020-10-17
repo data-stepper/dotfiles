@@ -36,11 +36,29 @@ set splitright
 " Enable folding
 " set foldmethod=indent
 " set foldlevel=99
+
 set foldmethod=marker
-set foldmarker=#####,# ENDFOLD
-inoremap #fold #####<CR><CR># ENDFOLD
+set foldmarker=STARTFOLD,ENDFOLD
 set foldlevel=0
 syntax on
+
+" Set fold abbreviation for different languages:
+
+function! FoldPython()
+  inoremap <buffer> fold # STARTFOLD #####<CR><CR># ENDFOLD
+endfunction
+
+function! FoldJavascript()
+  inoremap <buffer> fold // STARTFOLD #####<CR><CR>ENDFOLD
+endfunction
+
+function! FoldHTML()
+  inoremap <buffer> fold <!-- STARTFOLD ##### SECTION --><CR><CR><!-- ENDFOLD -->
+endfunction
+
+au BufNewFile,BufRead *.py :call FoldPython()
+au BufNewFile,BufRead *.js :call FoldJavascript()
+au BufNewFile,BufRead *.html :call FoldHTML()
 
 colorscheme solarized
 set background=dark
@@ -231,10 +249,6 @@ set guioptions=
 let g:airline_powerline_fonts = 1
 
 " When in python mode
-echo "using python mode"
 " Executes selection in python3 interpreter
 vnoremap <leader>r :'<,'>write ! python3<CR>
-
-" In python mode, format on save
-" noremap <leader>w :Format<CR> :w<CR> :mkview<CR>
 
