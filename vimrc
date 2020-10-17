@@ -8,25 +8,23 @@ call plug#begin()
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-fugitive'
-" Plug 'mattn/emmet-vim' " Only needed for html editing
 Plug 'tpope/vim-commentary'
-" Plug 'scrooloose/syntastic'
 Plug 'altercation/vim-colors-solarized'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'yegappan/mru'
 
 " Only use for python editing
 Plug 'majutsushi/tagbar'
 Plug 'universal-ctags/ctags'
 Plug 'psf/black'
-" Plug 'tmhedberg/SimpylFold' 
 Plug 'jnurmine/Zenburn'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-" Plug 'klen/python-mode'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'bling/vim-bufferline'
 Plug 'mkitt/tabline.vim'
 Plug 'tomasr/molokai'
+" Plug 'turbio/bracey.vim' " connection refused error on macos
 
 call plug#end()
 
@@ -66,7 +64,8 @@ set number
 
 let mapleader=","
 nmap <leader>w :w<CR>
-nmap <C-N> :NERDTreeToggle<CR>
+nmap <silent> <C-N> :NERDTreeToggle<CR>
+nmap <silent> <C-M> :MRU<CR>
 
 " Enable folding with the spacebar
 nnoremap <space> za
@@ -96,7 +95,7 @@ tnoremap <C-j> <C-w>j
 tnoremap <C-k> <C-w>k
 tnoremap <C-l> <C-w>l
 
-noremap <leader>t :vert ter<CR>
+noremap <silent> <leader>t :vert ter<CR>
 noremap <leader>v <C-W>v
 noremap <leader>s <C-W>s
 
@@ -104,28 +103,28 @@ tnoremap <C-X> clear<CR>
 tnoremap <C-Q> exit<CR>
 noremap <C-Q> <C-W>c
 
-nnoremap <leader>1 :registers<CR>
-nnoremap <leader>2 :TagbarToggle<CR>
+nnoremap <silent> <leader>1 :registers<CR>
+nnoremap <silent> <leader>2 :TagbarToggle<CR>
 
 " Git commands
-nnoremap <leader>gs :Gstatus<CR>
-nnoremap <leader>gl :Glog<CR>
-nnoremap <leader>ga :G add *<CR>
-nnoremap <leader>gc :Gcommit<CR>
-nnoremap <leader>gp :Git push<CR>
-nnoremap <leader>gf :Git fetch<CR>
+nnoremap <silent> <leader>gs :Gstatus<CR>
+nnoremap <silent> <leader>gl :Glog<CR>
+nnoremap <silent> <leader>ga :G add *<CR>
+nnoremap <silent> <leader>gc :Gcommit<CR>
+nnoremap <silent> <leader>gp :Git push<CR>
+nnoremap <silent> <leader>gf :Git fetch<CR>
 
 noremap <Down> <C-W>-
 noremap <Up> <C-W>+
 noremap <Left> <C-W>>
 noremap <Right> <C-W><
 
-nnoremap <leader>n :tabnew<CR>
-nnoremap <leader>m :bnext<CR>
-nnoremap <leader>M :bNext<CR>
+nnoremap <silent> <leader>n :tabnew<CR>
+nnoremap <silent> <leader>m :bnext<CR>
+nnoremap <silent> <leader>M :bNext<CR>
 
 nnoremap <leader>q <C-W>c
-nnoremap <leader>c :bw<CR>
+nnoremap <silent> <leader>c :bw<CR>
 
 nnoremap <leader>e :e 
 nnoremap <leader>E :tabe 
@@ -144,12 +143,12 @@ vnoremap H 4h
 vnoremap L 4l
 
 " Visual mode movement commands
-nnoremap º :m .+1<CR>==
-nnoremap ∆ :m .-2<CR>==
+nnoremap <silent> º :m .+1<CR>==
+nnoremap <silent> ∆ :m .-2<CR>==
 nnoremap <Tab> >>
 nnoremap <S-Tab> <<
-vnoremap º :m '>+1<CR>gv=gv
-vnoremap ∆ :m '<-2<CR>gv=gv
+vnoremap <silent> º :m '>+1<CR>gv=gv
+vnoremap <silent> ∆ :m '<-2<CR>gv=gv
 vnoremap <Tab> >gv
 vnoremap <S-Tab> <gv
 
@@ -180,7 +179,6 @@ else
   set signcolumn=yes
 endif
 
-
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
@@ -192,12 +190,7 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-
-if has('nvim')
-  inoremap <silent><expr> <c-space> coc#refresh()
-else
-  inoremap <silent><expr> <c-@> coc#refresh()
-endif
+inoremap <silent><expr> <C-space> coc#refresh()
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
