@@ -35,15 +35,19 @@ set splitright
 " set foldmethod=indent
 " set foldlevel=99
 
+set noswapfile
 set foldmethod=marker
 set foldmarker=STARTFOLD,ENDFOLD
 set foldlevel=0
 syntax on
 
 " Set fold abbreviation for different languages:
+" Also add custom surround with fold Shift-s + f
+" in visual mode
 
 function! FoldPython()
   inoremap <buffer> fold # STARTFOLD #####<CR><CR># ENDFOLD
+  let b:surround_98 = "# STARTFOLD #####\r# ENDFOLD"
 endfunction
 
 function! FoldJavascript()
@@ -52,6 +56,13 @@ endfunction
 
 function! FoldHTML()
   inoremap <buffer> fold <!-- STARTFOLD ##### SECTION --><CR><CR><!-- ENDFOLD -->
+  let b:surround_98 = "<!-- STARTFOLD ##### SECTION -->\r<!-- ENDFOLD -->"
+
+  " stuff for django devlopment
+  inoremap <buffer> block {% block BLOCKNAME %}<CR><CR>{% endblock %}
+  inoremap <buffer> {<Space> { }<left>
+  inoremap <buffer> {{<Space> {{ }}<left><left>
+  inoremap <buffer> {%<Space> {% %}<left><left>
 endfunction
 
 au BufNewFile,BufRead *.py :call FoldPython()
@@ -142,6 +153,9 @@ vnoremap K 5k
 vnoremap H 4h
 vnoremap L 4l
 
+" Comment stuff out
+noremap <silent> ç :Commentary<CR>
+
 " Visual mode movement commands
 nnoremap <silent> º :m .+1<CR>==
 nnoremap <silent> ∆ :m .-2<CR>==
@@ -151,6 +165,11 @@ vnoremap <silent> º :m '>+1<CR>gv=gv
 vnoremap <silent> ∆ :m '<-2<CR>gv=gv
 vnoremap <Tab> >gv
 vnoremap <S-Tab> <gv
+
+" Tabs should be 4 spaces always.
+set tabstop=4
+set shiftwidth=4
+set showmatch
 
 nmap U <C-R>
 
@@ -190,7 +209,9 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-inoremap <silent><expr> <C-space> coc#refresh()
+" have control space confirm a suggestion
+inoremap <C-space> <C-y>
+" inoremap <silent><expr> <C-space> coc#refresh()
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
