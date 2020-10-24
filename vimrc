@@ -14,6 +14,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'yegappan/mru'
 
 Plug 'rafi/awesome-vim-colorschemes'
+Plug 'sonph/onehalf', { 'rtp': 'vim' }
 
 " Only use for python editing
 Plug 'majutsushi/tagbar'
@@ -71,8 +72,11 @@ au BufNewFile,BufRead *.py :call FoldPython()
 au BufNewFile,BufRead *.js :call FoldJavascript()
 au BufNewFile,BufRead *.html :call FoldHTML()
 
-colorscheme onedark
+colorscheme nord
 set background=dark
+
+" When using nord, I want folded to not differ from background color
+hi Folded guibg=#2f343f
 set number
 
 let mapleader=","
