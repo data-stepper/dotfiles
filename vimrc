@@ -9,9 +9,11 @@ Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
-Plug 'altercation/vim-colors-solarized'
+" Plug 'altercation/vim-colors-solarized'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'yegappan/mru'
+
+Plug 'rafi/awesome-vim-colorschemes'
 
 " Only use for python editing
 Plug 'majutsushi/tagbar'
@@ -23,7 +25,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'bling/vim-bufferline'
 Plug 'mkitt/tabline.vim'
-Plug 'tomasr/molokai'
+" Plug 'tomasr/molokai'
 " Plug 'turbio/bracey.vim' " connection refused error on macos
 
 call plug#end()
@@ -47,7 +49,7 @@ syntax on
 
 function! FoldPython()
   inoremap <buffer> fold # STARTFOLD #####<CR><CR># ENDFOLD
-  let b:surround_98 = "# STARTFOLD #####\r# ENDFOLD"
+  let b:surround_98 = "# STARTFOLD ##### \r # ENDFOLD"
 endfunction
 
 function! FoldJavascript()
@@ -69,7 +71,7 @@ au BufNewFile,BufRead *.py :call FoldPython()
 au BufNewFile,BufRead *.js :call FoldJavascript()
 au BufNewFile,BufRead *.html :call FoldHTML()
 
-colorscheme solarized
+colorscheme onedark
 set background=dark
 set number
 
@@ -133,6 +135,7 @@ noremap <Right> <C-W><
 nnoremap <silent> <leader>n :tabnew<CR>
 nnoremap <silent> <leader>m :bnext<CR>
 nnoremap <silent> <leader>M :bNext<CR>
+nnoremap <Esc> gt
 
 nnoremap <leader>q <C-W>c
 nnoremap <silent> <leader>c :bw<CR>
