@@ -112,9 +112,45 @@ tnoremap <C-j> <C-w>j
 tnoremap <C-k> <C-w>k
 tnoremap <C-l> <C-w>l
 
-noremap <silent> <leader>t :vert ter<CR>
-noremap <leader>v <C-W>v
-noremap <leader>s <C-W>s
+" Old splitting behaviour, deprecated
+" noremap <silent> <leader>t :vert ter<CR>
+" noremap <leader>v <C-W>v
+" noremap <leader>s <C-W>s
+
+" Split with content of current buffer
+noremap <silent> <leader>vs :vs<CR>
+noremap <silent> <leader>ss :split<CR>
+
+" Split a new shell
+noremap <silent> <leader>vt :vert ter<CR>
+noremap <silent> <leader>st :ter<CR>
+
+" Split a new buffer
+nnoremap <silent> <leader>vn :vnew<CR>
+nnoremap <silent> <leader>sn :new<CR>
+
+" The following adds notepad-like behavior:
+
+" In visual mode split new buffer and put selection inside
+vnoremap <silent> <leader>vn :yank<CR>:vnew<CR>:put<CR><C-w>h
+vnoremap <silent> <leader>sn :yank<CR>:new<CR>:put<CR><C-w>k
+
+" Put selection directly after cursor in corresponding buffer
+vnoremap <silent> <leader>h :yank<CR><C-W>h:put<CR><C-w>l
+vnoremap <silent> <leader>j :yank<CR><C-W>j:put<CR><C-w>k
+vnoremap <silent> <leader>k :yank<CR><C-W>k:put<CR><C-w>j
+vnoremap <silent> <leader>l :yank<CR><C-W>l:put<CR><C-w>h
+
+" Just put in previous buffer
+vnoremap <silent> <leader>p :yank<CR><C-W>w:put<CR><C-w>w
+
+" Split for help
+noremap <leader>vh :vert h 
+noremap <leader>sh :h 
+
+" Split and edit directly
+noremap <leader>ve :vsplit 
+noremap <leader>se :split 
 
 tnoremap <C-X> clear<CR>
 tnoremap <C-Q> exit<CR>
