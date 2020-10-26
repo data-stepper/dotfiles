@@ -82,6 +82,7 @@ colorscheme nord
 set background=dark
 
 " When using nord, I want folded to not differ from background color
+" This function reloads colors because Goyo changes that unwillingly.
 function! ReloadColors()
   hi Folded guibg=#2f343f
 endfunction
