@@ -12,6 +12,7 @@ Plug 'tpope/vim-commentary'
 " Plug 'altercation/vim-colors-solarized'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'yegappan/mru'
+Plug 'justinmk/vim-sneak'
 
 Plug 'rafi/awesome-vim-colorschemes'
 Plug 'sonph/onehalf', { 'rtp': 'vim' }
@@ -83,6 +84,12 @@ let mapleader=","
 nmap <leader>w :w<CR>
 nmap <silent> <C-N> :NERDTreeToggle<CR>
 nmap <silent> <C-M> :MRU<CR>
+
+" Using sneak plugin
+map f <Plug>Sneak_f
+map F <Plug>Sneak_F
+map t <Plug>Sneak_t
+map T <Plug>Sneak_T
 
 " Enable folding with the spacebar
 nnoremap <space> za
