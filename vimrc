@@ -1,4 +1,3 @@
-
 set nocompatible
 filetype off
 
@@ -13,6 +12,7 @@ Plug 'tpope/vim-commentary'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'yegappan/mru'
 Plug 'justinmk/vim-sneak'
+Plug 'junegunn/goyo.vim'
 
 Plug 'rafi/awesome-vim-colorschemes'
 Plug 'sonph/onehalf', { 'rtp': 'vim' }
@@ -52,6 +52,11 @@ syntax on
 function! FoldPython()
   inoremap <buffer> fold # STARTFOLD #####<CR><CR># ENDFOLD
   let b:surround_98 = "# STARTFOLD ##### \r # ENDFOLD"
+
+  " When in python mode
+  " Executes selection in python3 interpreter
+  vnoremap <buffer> <leader>r :'<,'>write ! python3<CR>
+
 endfunction
 
 function! FoldJavascript()
@@ -77,13 +82,21 @@ colorscheme nord
 set background=dark
 
 " When using nord, I want folded to not differ from background color
-hi Folded guibg=#2f343f
+function! ReloadColors()
+  hi Folded guibg=#2f343f
+endfunction
+
+call ReloadColors()
+command Redraw call ReloadColors()
 set number
 
 let mapleader=","
 nmap <leader>w :w<CR>
 nmap <silent> <C-N> :NERDTreeToggle<CR>
 nmap <silent> <C-M> :MRU<CR>
+
+" Map Goyo toggle
+map <silent> <leader>g :Goyo<CR>:Redraw<CR>
 
 " Using sneak plugin
 map f <Plug>Sneak_f
@@ -305,14 +318,11 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
-" set guifont=Hack:h22
-" set guifont=Source\ Code\ Pro:h21
-set guifont=Fira\ Code:h15
+set guifont=Hack:h18
+" set guifont=Source\ Code\ Pro:h16
+" set guifont=Fira\ Code:h15
+" set guifont=IBM\ Plex\ Mono:h15
 " set guifont=Consolas:h18
 set guioptions=
 let g:airline_powerline_fonts = 1
-
-" When in python mode
-" Executes selection in python3 interpreter
-vnoremap <leader>r :'<,'>write ! python3<CR>
 
