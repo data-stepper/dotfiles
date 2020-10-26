@@ -19,3 +19,5 @@ alias vim="/usr/local/Cellar/macvim/8.2-166/bin/mvim"
 alias ls="ls -Gla"
 alias rm="rm -rf"
 alias python="python"
+
+export PATH=$PATH:/Library/Frameworks/Python.framework/Versions/3.8/bin
