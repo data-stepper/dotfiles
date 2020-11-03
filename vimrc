@@ -13,6 +13,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'yegappan/mru'
 Plug 'justinmk/vim-sneak'
 Plug 'junegunn/goyo.vim'
+" Plug 'ryanoasis/vim-devicons'
 
 Plug 'rafi/awesome-vim-colorschemes'
 Plug 'sonph/onehalf', { 'rtp': 'vim' }
@@ -90,6 +91,7 @@ endfunction
 call ReloadColors()
 command Redraw call ReloadColors()
 set number
+set relativenumber
 
 let mapleader=","
 nmap <leader>w :w<CR>
@@ -319,9 +321,10 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
-set guifont=Hack:h18
+set macligatures
+" set guifont=Hack:h16
 " set guifont=Source\ Code\ Pro:h16
-" set guifont=Fira\ Code:h15
+set guifont=Fira\ Code:h15
 " set guifont=IBM\ Plex\ Mono:h15
 " set guifont=Consolas:h18
 set guioptions=
