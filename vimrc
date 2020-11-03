@@ -93,6 +93,10 @@ command Redraw call ReloadColors()
 set number
 set relativenumber
 
+autocmd!
+autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+
 let mapleader=","
 nmap <leader>w :w<CR>
 nmap <silent> <C-N> :NERDTreeToggle<CR>
