@@ -62,6 +62,10 @@ function! FoldJavascript()
   inoremap <buffer> fold // STARTFOLD #####<CR><CR>ENDFOLD
 endfunction
 
+function! Texmode()
+  nmap <buffer> <leader>w :w<CR>:silent "!pdflatex *.tex > /dev/null &"<CR>
+endfunction
+
 function! FoldHTML()
   inoremap <buffer> fold <!-- STARTFOLD ##### SECTION --><CR><CR><!-- ENDFOLD -->
   let b:surround_98 = "<!-- STARTFOLD ##### SECTION -->\r<!-- ENDFOLD -->"
@@ -74,10 +78,14 @@ au BufNewFile,BufRead *.html :call FoldHTML()
 colorscheme nord
 set background=dark
 
+" Make folds transparent as well
+hi Folded ctermbg=None
+
 " When using nord, I want folded to not differ from background color
 " This function reloads colors because Goyo changes that unwillingly.
 function! ReloadColors()
   hi Folded guibg=#2f343f
+  hi Folded ctermbg=None
 endfunction
 
 call ReloadColors()
