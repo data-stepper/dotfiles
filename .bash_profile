@@ -1,23 +1,3 @@
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/opt/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/opt/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/opt/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/opt/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
-alias tmux="tmux -f ~/dotfiles/tmux.conf"
-alias vim="/usr/local/Cellar/macvim/8.2-166/bin/mvim"
 alias ls="ls -Gla"
 alias rm="rm -rf"
-alias python="python"
 
-export PATH=$PATH:/Library/Frameworks/Python.framework/Versions/3.8/bin
