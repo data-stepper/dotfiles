@@ -5,7 +5,6 @@ call plug#begin()
 
 " Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-surround'
-Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
 " Plug 'altercation/vim-colors-solarized'
@@ -21,7 +20,6 @@ Plug 'sonph/onehalf', { 'rtp': 'vim' }
 " Only use for python editing
 Plug 'majutsushi/tagbar'
 Plug 'universal-ctags/ctags'
-Plug 'psf/black'
 Plug 'jnurmine/Zenburn'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -67,12 +65,6 @@ endfunction
 function! FoldHTML()
   inoremap <buffer> fold <!-- STARTFOLD ##### SECTION --><CR><CR><!-- ENDFOLD -->
   let b:surround_98 = "<!-- STARTFOLD ##### SECTION -->\r<!-- ENDFOLD -->"
-
-  " stuff for django devlopment
-  inoremap <buffer> block {% block BLOCKNAME %}<CR><CR>{% endblock %}
-  inoremap <buffer> {<Space> { }<left>
-  inoremap <buffer> {{<Space> {{ }}<left><left>
-  inoremap <buffer> {%<Space> {% %}<left><left>
 endfunction
 
 au BufNewFile,BufRead *.py :call FoldPython()
@@ -99,7 +91,6 @@ autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 
 let mapleader=","
 nmap <leader>w :w<CR>
-nmap <silent> <C-N> :NERDTreeToggle<CR>
 nmap <silent> <C-M> :MRU<CR>
 
 " Map Goyo toggle
@@ -194,11 +185,6 @@ nnoremap <silent> <leader>gc :Gcommit<CR>
 nnoremap <silent> <leader>gp :Git push<CR>
 nnoremap <silent> <leader>gf :Git fetch<CR>
 
-noremap <Down> <C-W>-
-noremap <Up> <C-W>+
-noremap <Left> <C-W>>
-noremap <Right> <C-W><
-
 nnoremap <silent> <leader>n :tabnew<CR>
 nnoremap <silent> <leader>m :bnext<CR>
 nnoremap <silent> <leader>M :bNext<CR>
@@ -243,7 +229,7 @@ set showmatch
 
 nmap U <C-R>
 
-set cul
+set nocul
 
 map <C-P> :FZF<CR>
 
@@ -325,12 +311,11 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
-set macligatures
 " set guifont=Hack:h16
 " set guifont=Source\ Code\ Pro:h16
 set guifont=Fira\ Code:h15
 " set guifont=IBM\ Plex\ Mono:h15
 " set guifont=Consolas:h18
-set guioptions=
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts=1
 
+set noek
