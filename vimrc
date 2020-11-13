@@ -42,7 +42,6 @@ set noswapfile
 set foldmethod=marker
 set foldmarker=STARTFOLD,ENDFOLD
 set foldlevel=0
-syntax on
 
 " Set fold abbreviation for different languages:
 " Also add custom surround with fold Shift-s + f
@@ -55,15 +54,11 @@ function! FoldPython()
   " When in python mode
   " Executes selection in python3 interpreter
   vnoremap <buffer> <leader>r :'<,'>write ! python3<CR>
-
+  syntax on
 endfunction
 
 function! FoldJavascript()
   inoremap <buffer> fold // STARTFOLD #####<CR><CR>ENDFOLD
-endfunction
-
-function! Texmode()
-  nmap <buffer> <leader>w :w<CR>:silent "!pdflatex *.tex > /dev/null &"<CR>
 endfunction
 
 function! FoldHTML()
@@ -71,12 +66,14 @@ function! FoldHTML()
   let b:surround_98 = "<!-- STARTFOLD ##### SECTION -->\r<!-- ENDFOLD -->"
 endfunction
 
+autocmd!
 au BufNewFile,BufRead *.py :call FoldPython()
 au BufNewFile,BufRead *.js :call FoldJavascript()
 au BufNewFile,BufRead *.html :call FoldHTML()
 
 colorscheme nord
 set background=dark
+syntax on
 
 " Make folds transparent as well
 hi Folded ctermbg=None
@@ -86,6 +83,8 @@ hi Folded ctermbg=None
 function! ReloadColors()
   hi Folded guibg=#2f343f
   hi Folded ctermbg=None
+  hi Folded ctermfg=15
+  hi Comment ctermfg=14
 endfunction
 
 call ReloadColors()
@@ -93,7 +92,6 @@ command Redraw call ReloadColors()
 set number
 set relativenumber
 
-autocmd!
 autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
 autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 
@@ -198,7 +196,7 @@ nnoremap <silent> <leader>m :bnext<CR>
 nnoremap <silent> <leader>M :bNext<CR>
 nnoremap <Esc> gt
 
-nnoremap <leader>q <C-W>c
+nnoremap <leader>q :qa!<CR>
 nnoremap <silent> <leader>c :bw<CR>
 
 nnoremap <leader>e :e 
@@ -218,7 +216,8 @@ vnoremap H 4h
 vnoremap L 4l
 
 " Comment stuff out
-noremap <silent> ç :Commentary<CR>
+"noremap <silent> ç :Commentary<CR>
+noremap <silent> ¢ :Commentary<CR>
 
 " Visual mode movement commands
 nnoremap <silent> º :m .+1<CR>==
@@ -308,8 +307,10 @@ nmap <leader>rn <Plug>(coc-rename)
 xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
 
+" Needed to be deactivated because it caused my
+" remapping of <leader>q to wait
 " Apply AutoFix to problem on the current line.
-nmap <leader>qf  <Plug>(coc-fix-current)
+"nmap <leader>qf  <Plug>(coc-fix-current)
 
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocAction('format')
