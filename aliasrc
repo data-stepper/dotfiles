@@ -1,0 +1,30 @@
+
+alias gce="~/dotfiles/scripts/git_commit_folder.sh"
+alias gs="git status"
+
+alias guni="cd ~/Documents/Uni"
+alias scs="cd ~/dotfiles/scripts"
+alias v="vim"
+alias code="codium" # Always use codium
+
+alias TODO="~/dotfiles/scripts/start_todo.sh"
+alias todo="~/dotfiles/scripts/start_todo.sh"
+alias td="~/dotfiles/scripts/start_todo.sh"
+alias vrc="vim ~/.vimrc"
+
+alias x="chmod +x"
+
+alias rm="rm -rf"
+alias mv="mv -iv"
+alias cp="cp -rv"
+alias mkdir="mkdir -pv"
+
+alias prompt="~/dotfiles/prompt.sh"
+alias al="vim ~/dotfiles/aliasrc"
+alias venv=". ~/dotfiles/scripts/./open_venv.sh"
+
+alias sdn="shutdown now"
+
+alias dm="cd ~/Documents/ditherMe"
+alias dms="cd ~/Documents/ditherMe/scripts/ditherMeScripts"
+alias dmr="cd ~/Documents/ditherMe/renders;clear;tree"
