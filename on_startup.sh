@@ -8,6 +8,6 @@ compton -cCGfF -b -i 0.75
 
 # Runs the script to update and format uptime for the status bar
 while /bin/true; do
-	sleep 300
+	sleep 30
 	~/dotfiles/scripts/uptime_fmt.py
 done &

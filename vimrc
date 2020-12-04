@@ -44,17 +44,18 @@ set foldmarker=STARTFOLD,ENDFOLD
 set foldlevel=0
 
 " Set fold abbreviation for different languages:
-" Also add custom surround with fold Shift-s + f
+" Also add custom surround with fold Shift-s + b
 " in visual mode
 
 function! FoldPython()
-  inoremap <buffer> fold # STARTFOLD #####<CR><CR># ENDFOLD
+  inoremap <buffer> fold # STARTFOLD #####<CR><CR><CR># ENDFOLD
   let b:surround_98 = "# STARTFOLD ##### \r # ENDFOLD"
 
   " When in python mode
   " Executes selection in python3 interpreter
   vnoremap <buffer> <leader>r :'<,'>write ! python3<CR>
   syntax on
+  Redraw
 endfunction
 
 function! FoldJavascript()
