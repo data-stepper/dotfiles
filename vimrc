@@ -5,6 +5,7 @@ call plug#begin()
 
 " Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-surround'
+Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
 " Plug 'altercation/vim-colors-solarized'
@@ -20,6 +21,7 @@ Plug 'sonph/onehalf', { 'rtp': 'vim' }
 " Only use for python editing
 Plug 'majutsushi/tagbar'
 Plug 'universal-ctags/ctags'
+Plug 'psf/black'
 Plug 'jnurmine/Zenburn'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -43,19 +45,32 @@ set foldmethod=marker
 set foldmarker=STARTFOLD,ENDFOLD
 set foldlevel=0
 
+let mapleader=","
+nmap <leader>w :w<CR>
+nmap <silent> <C-N> :NERDTreeToggle<CR>
+nmap <silent> <C-M> :MRU<CR>
+
 " Set fold abbreviation for different languages:
-" Also add custom surround with fold Shift-s + b
+" Also add custom surround with fold Shift-s + f
 " in visual mode
 
+set number
+set relativenumber
+
+autocmd!
+autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+
+
 function! FoldPython()
-  inoremap <buffer> fold # STARTFOLD #####<CR><CR><CR># ENDFOLD
+  inoremap <buffer> fold # STARTFOLD #####<CR><CR># ENDFOLD
   let b:surround_98 = "# STARTFOLD ##### \r # ENDFOLD"
 
   " When in python mode
   " Executes selection in python3 interpreter
   vnoremap <buffer> <leader>r :'<,'>write ! python3<CR>
-  syntax on
-  Redraw
+  nnoremap <silent> <buffer> <leader>r :CocCommand python.execInTerminal<CR>
+
 endfunction
 
 function! FoldJavascript()
@@ -65,41 +80,34 @@ endfunction
 function! FoldHTML()
   inoremap <buffer> fold <!-- STARTFOLD ##### SECTION --><CR><CR><!-- ENDFOLD -->
   let b:surround_98 = "<!-- STARTFOLD ##### SECTION -->\r<!-- ENDFOLD -->"
+
+  " stuff for django devlopment
+  inoremap <buffer> block {% block BLOCKNAME %}<CR><CR>{% endblock %}
+  inoremap <buffer> {<Space> { }<left>
+  inoremap <buffer> {{<Space> {{ }}<left><left>
+  inoremap <buffer> {%<Space> {% %}<left><left>
 endfunction
 
-autocmd!
+function! FoldTex()
+	nmap <silent> <buffer> <leader>w :w<CR>:!pdflatex *.tex<CR>
+endfunction
+
 au BufNewFile,BufRead *.py :call FoldPython()
 au BufNewFile,BufRead *.js :call FoldJavascript()
 au BufNewFile,BufRead *.html :call FoldHTML()
+au BufNewFile,BufRead *.tex :call FoldTex()
 
 colorscheme nord
 set background=dark
-syntax on
-
-" Make folds transparent as well
-hi Folded ctermbg=None
 
 " When using nord, I want folded to not differ from background color
 " This function reloads colors because Goyo changes that unwillingly.
 function! ReloadColors()
   hi Folded guibg=#2f343f
-  hi Folded ctermbg=None
-  hi Folded ctermfg=15
-  hi Comment ctermfg=14
 endfunction
 
 call ReloadColors()
 command Redraw call ReloadColors()
-set number
-set relativenumber
-
-autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
-
-let mapleader=","
-nmap <leader>w :w<CR>
-nmap <silent> <C-M> :MRU<CR>
-
 " Map Goyo toggle
 map <silent> <leader>g :Goyo<CR>:Redraw<CR>
 
@@ -192,12 +200,17 @@ nnoremap <silent> <leader>gc :Gcommit<CR>
 nnoremap <silent> <leader>gp :Git push<CR>
 nnoremap <silent> <leader>gf :Git fetch<CR>
 
+noremap <Down> <C-W>-
+noremap <Up> <C-W>+
+noremap <Left> <C-W>>
+noremap <Right> <C-W><
+
 nnoremap <silent> <leader>n :tabnew<CR>
 nnoremap <silent> <leader>m :bnext<CR>
 nnoremap <silent> <leader>M :bNext<CR>
 nnoremap <Esc> gt
 
-nnoremap <leader>q :qa!<CR>
+nnoremap <leader>q <C-W>c
 nnoremap <silent> <leader>c :bw<CR>
 
 nnoremap <leader>e :e 
@@ -217,8 +230,7 @@ vnoremap H 4h
 vnoremap L 4l
 
 " Comment stuff out
-"noremap <silent> ç :Commentary<CR>
-noremap <silent> ¢ :Commentary<CR>
+noremap <silent> ç :Commentary<CR>
 
 " Visual mode movement commands
 nnoremap <silent> º :m .+1<CR>==
@@ -237,7 +249,7 @@ set showmatch
 
 nmap U <C-R>
 
-set nocul
+set cul
 
 map <C-P> :FZF<CR>
 
@@ -308,10 +320,8 @@ nmap <leader>rn <Plug>(coc-rename)
 xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
 
-" Needed to be deactivated because it caused my
-" remapping of <leader>q to wait
 " Apply AutoFix to problem on the current line.
-"nmap <leader>qf  <Plug>(coc-fix-current)
+nmap <leader>qf  <Plug>(coc-fix-current)
 
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocAction('format')
@@ -321,11 +331,13 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
+syntax on
+
 " set guifont=Hack:h16
 " set guifont=Source\ Code\ Pro:h16
 set guifont=Fira\ Code:h15
 " set guifont=IBM\ Plex\ Mono:h15
 " set guifont=Consolas:h18
-let g:airline_powerline_fonts=1
+set guioptions=
+let g:airline_powerline_fonts = 1
 
-set noek
