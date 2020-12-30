@@ -8,6 +8,8 @@ Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
+Plug 'tmhedberg/SimpylFold'
+Plug 'jiangmiao/auto-pairs'
 " Plug 'altercation/vim-colors-solarized'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'yegappan/mru'
@@ -97,7 +99,7 @@ au BufNewFile,BufRead *.js :call FoldJavascript()
 au BufNewFile,BufRead *.html :call FoldHTML()
 au BufNewFile,BufRead *.tex :call FoldTex()
 
-colorscheme nord
+colorscheme one
 set background=dark
 
 " When using nord, I want folded to not differ from background color
@@ -340,4 +342,6 @@ set guifont=Fira\ Code:h15
 " set guifont=Consolas:h18
 set guioptions=
 let g:airline_powerline_fonts = 1
+
+set transparency=10
 
