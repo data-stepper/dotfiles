@@ -10,6 +10,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
 Plug 'tmhedberg/SimpylFold'
 Plug 'jiangmiao/auto-pairs'
+Plug 'alvan/vim-closetag'
 " Plug 'altercation/vim-colors-solarized'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'yegappan/mru'
@@ -23,7 +24,6 @@ Plug 'sonph/onehalf', { 'rtp': 'vim' }
 " Only use for python editing
 Plug 'majutsushi/tagbar'
 Plug 'universal-ctags/ctags'
-Plug 'psf/black'
 Plug 'jnurmine/Zenburn'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -65,7 +65,7 @@ autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 
 
 function! FoldPython()
-  inoremap <buffer> fold # STARTFOLD #####<CR><CR># ENDFOLD
+  " inoremap <buffer> fold # STARTFOLD #####<CR><CR># ENDFOLD
   let b:surround_98 = "# STARTFOLD ##### \r # ENDFOLD"
 
   " When in python mode
@@ -75,29 +75,7 @@ function! FoldPython()
 
 endfunction
 
-function! FoldJavascript()
-  inoremap <buffer> fold // STARTFOLD #####<CR><CR>ENDFOLD
-endfunction
-
-function! FoldHTML()
-  inoremap <buffer> fold <!-- STARTFOLD ##### SECTION --><CR><CR><!-- ENDFOLD -->
-  let b:surround_98 = "<!-- STARTFOLD ##### SECTION -->\r<!-- ENDFOLD -->"
-
-  " stuff for django devlopment
-  inoremap <buffer> block {% block BLOCKNAME %}<CR><CR>{% endblock %}
-  inoremap <buffer> {<Space> { }<left>
-  inoremap <buffer> {{<Space> {{ }}<left><left>
-  inoremap <buffer> {%<Space> {% %}<left><left>
-endfunction
-
-function! FoldTex()
-	nmap <silent> <buffer> <leader>w :w<CR>:!pdflatex *.tex<CR>
-endfunction
-
 au BufNewFile,BufRead *.py :call FoldPython()
-au BufNewFile,BufRead *.js :call FoldJavascript()
-au BufNewFile,BufRead *.html :call FoldHTML()
-au BufNewFile,BufRead *.tex :call FoldTex()
 
 colorscheme one
 set background=dark
@@ -344,4 +322,10 @@ set guioptions=
 let g:airline_powerline_fonts = 1
 
 set transparency=10
+
+let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.erb,*.jsx,*.js"
+let g:closetag_xhtml_filenames = '*.xhtml,*.jsx,*.erb,*.js'
+let g:closetag_emptyTags_caseSensitive = 1
+let g:closetag_shortcut = '>'
+let g:closetag_close_shortcut = '<leader>>'
 
