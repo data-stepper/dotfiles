@@ -167,7 +167,7 @@ noremap <leader>se :split
 
 tnoremap <C-X> clear<CR>
 tnoremap <C-Q> exit<CR>
-noremap <C-Q> <C-W>c
+noremap <c-q> <c-w>c
 
 nnoremap <silent> <leader>1 :registers<CR>
 nnoremap <silent> <leader>2 :TagbarToggle<CR>
@@ -185,6 +185,8 @@ noremap <Up> <C-W>+
 noremap <Left> <C-W>>
 noremap <Right> <C-W><
 
+nnoremap <c-u> :source ~/.vimrc<CR>
+
 nnoremap <silent> <leader>n :tabnew<CR>
 nnoremap <silent> <leader>m :bnext<CR>
 nnoremap <silent> <leader>M :bNext<CR>
@@ -199,8 +201,10 @@ nnoremap <leader>E :tabe
 cnoreabbrev H vert h
 cnoreabbrev E vert e
 
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
 nnoremap J 5j
-nnoremap K 5k
+" nnoremap K 5k
 nnoremap H 4h
 nnoremap L 4l
 
@@ -210,7 +214,7 @@ vnoremap H 4h
 vnoremap L 4l
 
 " Comment stuff out
-noremap <silent> ç :Commentary<CR>
+noremap <silent> <c-c> :Commentary<CR>
 
 " Visual mode movement commands
 nnoremap <silent> º :m .+1<CR>==
@@ -311,21 +315,21 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
+set scrolloff=10
+
 syntax on
 
 " set guifont=Hack:h16
 " set guifont=Source\ Code\ Pro:h16
-set guifont=Fira\ Code:h15
+" set guifont=Fira\ Code:h15
 " set guifont=IBM\ Plex\ Mono:h15
 " set guifont=Consolas:h18
+"
 set guioptions=
 let g:airline_powerline_fonts = 1
-
-set transparency=10
 
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.erb,*.jsx,*.js"
 let g:closetag_xhtml_filenames = '*.xhtml,*.jsx,*.erb,*.js'
 let g:closetag_emptyTags_caseSensitive = 1
 let g:closetag_shortcut = '>'
 let g:closetag_close_shortcut = '<leader>>'
-
