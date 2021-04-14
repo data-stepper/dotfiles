@@ -18,12 +18,6 @@ Plug 'junegunn/goyo.vim'
 " Devicons plugin somehow doesn't work
 " Plug 'ryanoasis/vim-devicons'
 
-" Ultisnips snippet plugin
-Plug 'sirver/ultisnips'
-	let g:UltiSnipsExpandTrigger = '<tab>'
-	let g:UltiSnipsJumpForwardTrigger = '<tab>'
-	let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
-
 " Vim and latex combination
 Plug 'lervag/vimtex'
 	let g:tex_flavor='latex'
@@ -90,8 +84,11 @@ autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
 autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 
 " Set default colorscheme and dark background
-colorscheme one
-set background=dark
+" colorscheme one
+" set background=dark
+
+" Better colorscheme for latex
+colorscheme flattened_light
 
 " Below is only needed when using nord colorscheme and goyo plugin
 " When using nord, I want folded to not differ from background color

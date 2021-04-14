@@ -1,0 +1,11 @@
+{
+	"python.jediEnabled": false,
+	"python.formatting.provider": "black",
+	"python.formatting.blackPath": "/home/bent/miniconda3/bin/black",
+	"coc.preferences.formatOnTypeFiletypes": ["python"],
+	"coc.preferences.formatOnType": true,
+	"coc.preferences.formatOnSaveFiletypes": ["python"],
+	"coc.source.ultisnips.enable": true,
+	"coc.source.ultisnips.priority": 100
+}
+
