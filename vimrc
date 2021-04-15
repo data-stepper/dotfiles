@@ -7,6 +7,9 @@ Plug 'luochen1990/rainbow'
 	let g:rainbow_active = 1
 
 Plug 'tpope/vim-surround'
+	" Custom surround with space for editing latex
+	let g:surround_115 = "\\; \r \\;"
+
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
@@ -55,6 +58,23 @@ call plug#end()
 set splitbelow
 set splitright
 
+" Below code is copied from coc-snippets
+
+" Use <C-l> for trigger snippet expand.
+imap <C-l> <Plug>(coc-snippets-expand)
+
+" Use <C-j> for select text for visual placeholder of snippet.
+vmap <C-j> <Plug>(coc-snippets-select)
+
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<c-j>'
+
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<c-k>'
+
+" Use <C-j> for both expand and jump (make expand higher priority.)
+imap <C-j> <Plug>(coc-snippets-expand-jump)
+
 " Enable folding
 " set foldmethod=indent
 " set foldlevel=99
@@ -62,7 +82,8 @@ set splitright
 " Old marker based folding behaviour
 set foldmethod=marker
 " set foldmarker=STARTFOLD,ENDFOLD
-set foldmarker=\begin,\end
+set foldmarker=\begin{theorem},\end{theorem}
+" set foldmarker=\begin{theorem},\end{theorem}
 set foldlevel=0
 
 set noswapfile
