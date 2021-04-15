@@ -2,6 +2,9 @@ set nocompatible
 filetype off
 
 call plug#begin()
+" Rainbow parentheses, yeah
+Plug 'luochen1990/rainbow'
+	let g:rainbow_active = 1
 
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdtree'
