@@ -60,9 +60,10 @@ set splitright
 " set foldlevel=99
 
 " Old marker based folding behaviour
-" set foldmethod=marker
+set foldmethod=marker
 " set foldmarker=STARTFOLD,ENDFOLD
-" set foldlevel=0
+set foldmarker=\begin,\end
+set foldlevel=0
 
 set noswapfile
 
