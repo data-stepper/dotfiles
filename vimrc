@@ -82,7 +82,12 @@ imap <C-j> <Plug>(coc-snippets-expand-jump)
 " Old marker based folding behaviour
 set foldmethod=marker
 " set foldmarker=STARTFOLD,ENDFOLD
-set foldmarker=\begin{theorem},\end{theorem}
+" set foldmarker=\begin{theorem},\end{theorem}
+set foldmarker=\begin,\end
+" set foldmarker+=\begin{align},\end{align}
+" set foldmarker+=\begin{itemize},\end{itemize}
+" set foldmarker+=\begin{enumerate},\end{enumerate}
+" set foldmarker+=\begin{proof},\end{proof}
 " set foldmarker=\begin{theorem},\end{theorem}
 set foldlevel=0
 
