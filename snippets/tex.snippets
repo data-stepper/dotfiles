@@ -52,6 +52,21 @@ x = y
 \end{document}
 endsnippet
 
+snippet afg "Neue Aufgabe" b
+\\begin{theorem} % Aufgabe #$1
+\\begin{Aufgabe}{${1:Aufgabe Nummer}} % #$1
+	${2:Aufgaben-Beschreibung}
+\\end{Aufgabe}
+
+\\beh ${3:Zu zeigende Behauptung}
+
+\\begin{proof}[Beweis]
+	${4:Beweis der Behauptung}
+\\end{proof}
+\\end{theorem}
+
+$0
+endsnippet
 
 snippet beg "begin{} / end{}" bA
 \\begin{$1}
@@ -68,9 +83,9 @@ snippet tht "New Theorem" bA
 endsnippet
 
 priority 100
-snippet ... "ldots" iA
-\ldots
-endsnippet
+# snippet ... "ldots" iA
+# \ldots
+# endsnippet
 
 snippet table "Table environment" b
 \begin{table}[${1:htpb}]
@@ -143,15 +158,20 @@ endsnippet
 snippet dm "Math" wA
 \[
 ${1:${VISUAL}}
-.\] $0
+\] $0
 endsnippet
 
 snippet ali "Align" bA
 \begin{align*}
 	${1:${VISUAL}}
-.\end{align*}
+\end{align*}
 endsnippet
 
+snippet eli "Numerated align" bA
+\begin{align}
+	${1:${VISUAL}}
+\end{align}
+endsnippet
 
 # context "math()"
 snippet // "Fraction" iA
@@ -251,20 +271,31 @@ snippet bmat "bmat" iA
 \begin{bmatrix} $1 \end{bmatrix} $0
 endsnippet
 
-# context "math()"
-# snippet () "left( right)" iA
-# \left( ${1:${VISUAL}} \right) $0
-# endsnippet
-
-# snippet lr "left( right)" iA
-# \left( ${1:${VISUAL}} \right) $0
-# endsnippet
-
 # New left right bracket snippet
-snippet lr "left( right)" iA
+snippet lrb "left( right)" iA
 \left(
 	$1
 \right) $0
+endsnippet
+
+snippet equiv "Equivalent" iA
+\\Leftrightarrow $0
+endsnippet
+
+snippet svar "Stichprobenvarianz" iA
+\hat{S_n ^2} $0
+endsnippet
+
+snippet exv "Erwartungswert" iA
+E \left[
+	$1
+\right] $0
+endsnippet
+
+snippet lrB "Geschwungene Klammern" iA
+\\{
+	$1
+\\} $0
 endsnippet
 
 snippet lr( "left( right)" i
@@ -291,7 +322,6 @@ snippet lra "leftangle rightangle" iA
 \left<${1:${VISUAL}} \right>$0
 endsnippet
 
-# context "math()"
 snippet conj "conjugate" iA
 \overline{$1}$0
 endsnippet
@@ -520,9 +550,9 @@ snippet compl "complement" iA
 endsnippet
 
 # context "math()"
-snippet \\\ "setminus" iA
-\setminus
-endsnippet
+# snippet \\\ "setminus" iA
+# \setminus
+# endsnippet
 
 snippet >> ">>" iA
 \gg
@@ -531,7 +561,6 @@ endsnippet
 snippet << "<<" iA
 \ll
 endsnippet
-
 
 snippet ~~ "~" iA
 \sim 
@@ -543,7 +572,7 @@ endsnippet
 # endsnippet
 
 snippet || "mid" iA
- \mid 
+\\mid 
 endsnippet
 
 # context "math()"

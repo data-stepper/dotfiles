@@ -82,8 +82,8 @@ imap <C-j> <Plug>(coc-snippets-expand-jump)
 " Old marker based folding behaviour
 set foldmethod=marker
 " set foldmarker=STARTFOLD,ENDFOLD
-" set foldmarker=\begin{theorem},\end{theorem}
-set foldmarker=\begin,\end
+set foldmarker=\begin{theorem},\end{theorem}
+" set foldmarker=\begin,\end
 " set foldmarker+=\begin{align},\end{align}
 " set foldmarker+=\begin{itemize},\end{itemize}
 " set foldmarker+=\begin{enumerate},\end{enumerate}
@@ -235,7 +235,7 @@ noremap <Left> <C-W>>
 noremap <Right> <C-W><
 
 " Reload vimrc in instance
-nnoremap <c-u> :source ~/.vimrc<CR>
+nnoremap <c-u> :source ~/.vimrc<CR> :CocRestart<CR>
 
 " Open new tabs and switch between buffers
 nnoremap <silent> <leader>n :tabnew<CR>
@@ -390,7 +390,7 @@ syntax on
 " Different options for fonts
 " set guifont=Hack:h16
 " set guifont=Source\ Code\ Pro:h16
-" set guifont=Fira\ Code:h15
+set guifont=Fira\ Code:h15
 " set guifont=IBM\ Plex\ Mono:h15
 " set guifont=Consolas:h18
 
