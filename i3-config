@@ -44,7 +44,7 @@ floating_modifier $mod
 bindsym $mod+Return exec i3-sensible-terminal
 
 # start a browser
-bindsym $mod+Shift+Return exec chromium
+bindsym $mod+Shift+Return exec google-chrome
 
 # start todo list
 bindsym $mod+t exec ~/dotfiles/scripts/start_todo.sh
