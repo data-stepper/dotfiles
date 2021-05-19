@@ -26,7 +26,3 @@ alias venv=". ~/dotfiles/scripts/./open_venv.sh"
 
 alias sdn="shutdown now"
 
-alias dm="cd ~/Documents/ditherMe"
-alias dms="cd ~/Documents/ditherMe/scripts/ditherMeScripts"
-alias dmr="cd ~/Documents/ditherMe/renders;clear;tree"
-

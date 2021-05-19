@@ -41,3 +41,34 @@ source ~/git/dotfiles/aliasrc
 
 export PS1="{ \u, \T, '\w' } >>> start typing >>>"
 
+# lfcd command
+lfcd () {
+    tmp="$(mktemp)"
+    lf -last-dir-path="$tmp" "$@"
+    if [ -f "$tmp" ]; then
+        dir="$(cat "$tmp")"
+        rm -f "$tmp"
+        [ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
+    fi
+}
+bindkey -s '^o' 'lfcd\n'
+
+# Added by Miniconda installer
+# export PATH="/home/bent/miniconda3/bin:$PATH"  # commented out by conda initialize
+
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/bent/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/bent/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/bent/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/bent/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
