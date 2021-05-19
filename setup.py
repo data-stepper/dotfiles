@@ -59,6 +59,8 @@ def setup_vim(install: bool):
 
 
 def setup_shell(install: bool):
+
+    # There's not yet too much in shell setup to be done here..
     
     if install:
 
