@@ -5,15 +5,31 @@ import sys
 import getpass
 
 USERNAME = getpass.getuser()
+CWD = os.getcwd()
+
+# bindings specifies all files that need copying
+# each item is a tuple ("dotfile_name", "path_to_copy")
+# Keep in mind that both can also be directories
+bindings = [
+    (".vimrc", f"/home/{USERNAME}/.vimrc"),  # Vim config file
+    ("snippets/", f"/home/{USERNAME}/.vim/UltiSnips/"),  # Vim snippets directory
+    ("./coc-settings.json", f"/home/{USERNAME}/.vim/coc-settings.json"),
+    ("./.zshrc", f"/home/{USERNAME}/.zshrc"),  # zsh config file
+    ("./compton.conf", f"/home/{USERNAME}/.config/compton.conf"),  # comp manager config
+    ("./i3-config", f"/home/{USERNAME}/.config/i3/config"),  # window manager config
+]
 
 # System interaction functionality
+
 
 def safe_mkdir(path_to_directory: str):
 
     rval = system(f"mkdir {path_to_directory}")
 
     if rval != 0:
-        raise IOError(f"Failed to create directory at {path_to_directory} (ERROR: {rval})")
+        raise IOError(
+            f"Failed to create directory at {path_to_directory} (ERROR: {rval})"
+        )
 
 
 def safe_copy(from_path: str, to_path: str):
@@ -23,61 +39,85 @@ def safe_copy(from_path: str, to_path: str):
     if rval != 0:
         raise IOError(f"Failed to copy from {from_path} to {to_path} (ERROR: {rval})")
 
+
 # Vim setup / dotfiles sync
 
-def setup_vim(install: bool):
-    # This function handles everything with vim
 
-    if install:
+def recursive_directory_check(path: str):
+    """Check whether all paths prepended to the path exist."""
 
-        # Copy vimrc
-        safe_copy(".vimrc", "~/.vimrc")
+    if path is None or path in ("/", ""):
+        return True
 
-        # If snippet directory doesn't exist, create it
-        if not os.path.exists(f"/home/{USERNAME}/.vim/UltiSnips/"):
-            print(f"Creating directory: '/home/{USERNAME}/.vim'")
-            safe_mkdir(f"/home/{USERNAME}/.vim")
+    head, tail = os.path.split(path)
 
-            print(f"Creating directory: '/home/{USERNAME}/.vim/UltiSnips'")
-            safe_mkdir(f"/home/{USERNAME}/.vim/UltiSnips")
-
-
-        # Copy snippet files
-        safe_copy("snippets/*", f"/home/{USERNAME}/.vim/UltiSnips/")
-
-        safe_copy("./coc-settings.json", f"/home/{USERNAME}/.vim/coc-settings.json")
-
+    if os.path.exists(path):
+        return recursive_directory_check(head)
     else:
-        # install = False means sync the dotfiles to the repo
-
-        # Copy vimrc
-        safe_copy("~/.vimrc", ".vimrc")
-
-        safe_copy(f"/home/{USERNAME}/.vim/UltiSnips/*", "snippets/")
-
-        safe_copy(f"/home/{USERNAME}/.vim/coc-settings.json", "./coc-settings.json")
+        return False
 
 
-def setup_shell(install: bool):
+def file_exists_check(path: str):
+    """Check whether a file exists either locally or in absolute path."""
 
-    # There's not yet too much in shell setup to be done here..
-    
-    if install:
+    local_path = os.path.join(CWD, path)
+    return recursive_directory_check(path) or recursive_directory_check(local_path)
 
-        safe_copy(".zshrc", "~/.zshrc")
 
-    else:
+def parse_path(path: str, target: bool = False):
+    """Parses a path so the copy commands work correctly."""
 
-        safe_copy("~/.zshrc", ".zshrc")
+    abs_path = os.path.abspath(path)
+
+    assert os.path.exists(abs_path), f"Failed to convert {path} to absolute path."
+
+    if os.path.isdir(abs_path) and not target:
+        abs_path = os.path.join(abs_path, "*")
+
+    return abs_path
+
+
+def copy_bindings(repo_path: str, target_path: str):
+    """Given the two paths find actions to take."""
+
+    # First check if all prepended directories exist
+
+    assert file_exists_check(repo_path), f"Couldn't find file at: '{repo_path}'"
+    assert file_exists_check(target_path), f"Couldn't find file at: '{target_path}'"
+
+    for source, target in bindings:
+
+        abs_source, abs_target = parse_path(source), parse_path(target, target=True)
+
+        cmd = "cp -R {} {}".format(abs_source, abs_target)
+
+        rval = system(cmd)
+
+        assert rval == 0, f"Copy command failed: '{cmd}'"
+
+
+def copy_dependencies(install: bool):
+    """Copy all dependency files (config-files) to their locations."""
+
+    # repo path is the local filename / directory name
+    # target_path is the path where to copy the files
+    for repo_path, target_path in bindings:
+
+        # If script should sync, then just swap the paths
+
+        if install:
+            copy_bindings(repo_path, target_path)
+
+        else:
+            copy_bindings(target_path, repo_path)
 
 
 def main(install: bool = True):
-    setup_vim(install=install)
-    setup_shell(install=install)
+    copy_dependencies(install=install)
 
 
 def parse_args():
-    
+
     # Default kwargs
     kwargs = {"install": True}
 
@@ -89,13 +129,14 @@ def parse_args():
 
     else:
 
-        print("ERROR: script must be called either with 'install' or 'sync' as first argument")
+        print(
+            "ERROR: script must be called either with 'install' or 'sync' as first argument"
+        )
         exit(1)
 
-
     return kwargs
+
 
 if __name__ == "__main__":
     kwargs = parse_args()
     main(**kwargs)
-
