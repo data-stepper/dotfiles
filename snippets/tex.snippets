@@ -503,6 +503,38 @@ snippet plot "Plot" w
 \end{figure}
 endsnippet
 
+snippet mkchain "Markov Chain" w
+\begin{center}
+	\begin{tikzpicture}
+		% Add the states
+		\node[state]			 (a) {${1:1}};
+		\node[state, right=of a] (b) {${2:2}};
+		\node[state, right=of b] (c) {${3:3}};
+		\node[state, right=of c] (d) {${4:4}};
+
+		% Connect the states with arrows
+		\draw[every loop]
+			% a -> b -> c -> d
+			(a) edge[bend right, auto=right] node {${5:0.5}} (b)
+			(b) edge[bend right, auto=right] node {${6:0.5}} (c)
+			(c) edge[bend right, auto=right] node {${7:0.5}} (d)
+
+			% d -> c -> b -> a
+			(d) edge[bend right, auto=right] node {${8:0.5}} (c)
+			(c) edge[bend right, auto=right] node {${9:0.5}} (b)
+			(b) edge[bend right, auto=right] node {${10:0.5}} (a)
+
+			% a -> a, b -> b, ...
+			(a) edge[loop left]			     node {${11:0.5}} (a)
+			(b) edge[loop above]			 node {${12:0.5}} (b)
+			(c) edge[loop above]			 node {${13:0.5}} (c)
+			(d) edge[loop right]			 node {${14:0.5}} (d)
+	\end{tikzpicture}
+\end{center}
+\qquad \caption{\textbf{Abbildung ${15:1.1}:} ${16: Eine Markowkette}}
+\\\\
+endsnippet
+
 snippet inn "... in Natural Numbers" iA
 \in \mathbb{N} $1
 endsnippet
