@@ -190,6 +190,10 @@ snippet tbf "Text Boldface" iA
 \\textbf{$1} $0
 endsnippet
 
+snippet itlc "Text Italic" iA
+\\textit{$1} $0
+endsnippet
+
 snippet / "Fraction" i
 \\frac{${VISUAL}}{$1}$0
 endsnippet
@@ -533,6 +537,16 @@ snippet mkchain "Markov Chain" w
 \end{center}
 \qquad \caption{\textbf{Abbildung ${15:1.1}:} ${16: Eine Markowkette}}
 \\\\
+endsnippet
+
+snippet mloop "Markov chain loop" iA
+(${1:Node a}) edge[loop ${2:left, above, right, below}] node {${3:probability}} ($1)
+$0
+endsnippet
+
+snippet medge "Markov chain edge" iA
+(${1:Node a}) edge[bend right, auto=right] node {${2:probability}} (${3:Node b})
+$0
 endsnippet
 
 snippet inn "... in Natural Numbers" iA
