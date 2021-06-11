@@ -129,8 +129,19 @@ snippet pac "Package" b
 \usepackage[${1:options}]{${2:package}}$0
 endsnippet
 
+snippet vss "Vertical Space for Latex beamer" iA
+\vspace{5mm}
+$0
+endsnippet
+
+snippet only "Latex beamer only include on -- slides" iA
+\only<$1>{
+	$2
+} $0
+endsnippet
+
 snippet => "implies" Ai
-\implies
+\Rightarrow
 endsnippet
 
 snippet =< "implied by" Ai
@@ -612,11 +623,11 @@ endsnippet
 # endsnippet
 
 
-priority 100
-# context "math()"
-snippet -> "to" iA
-\to 
-endsnippet
+# priority 100
+# # context "math()"
+# snippet -> "to" iA
+# \to 
+# endsnippet
 
 priority 200
 # context "math()"
@@ -719,9 +730,9 @@ snippet <! "normal" iA
 \triangleleft 
 endsnippet
 
-snippet <> "hokje" iA
-\diamond 
-endsnippet
+# snippet <> "hokje" iA
+# \diamond 
+# endsnippet
 
 
 # context "math()"
