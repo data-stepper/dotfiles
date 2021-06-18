@@ -17,6 +17,8 @@ snippet template "Basic template" b
 \usepackage[margin=1in]{geometry} 
 \usepackage{amsmath,amsthm,amssymb, graphicx, multicol, array}
 
+\usepackage{tikz}
+\usetikzlibrary{automata, positioning}
 
 \pdfminorversion=7
 \pdfsuppresswarningpagegroup=1
@@ -31,24 +33,22 @@ snippet template "Basic template" b
 \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
 
 \begin{document}
-
-\begin{document}
-\title{ \textbf{Höhere Analysis - Übungsblatt \#N} }
-\author{Steven Zinger, Ferdinand Cramm und Bent Müller}
-\date{14. April 2021}
+\title{ \textbf{${1:Title of the Article}} }
+\author{${2:Authors of the Articles}}
+\date{${3:Date of writing}}
 \maketitle
-\begin{Aufgabe}{1}
-Beschreibung
-\end{Aufgabe}
+	\begin{Aufgabe}{1}
+	Beschreibung
+	\end{Aufgabe}
 
-(a) \beh
-\begin{proof}[Beweis]
+	(a) \beh
+	\begin{proof}[Beweis]
 
-\begin{align*}
-x = y
-\end{align*}
+	\begin{align*}
+	x = y
+	\end{align*}
 
-\end{proof}
+	\end{proof}
 \end{document}
 endsnippet
 
