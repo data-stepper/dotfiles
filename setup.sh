@@ -1,7 +1,6 @@
 # Copy some config files
 cp ./aliasrc ~/.aliasrc
 cp .zshrc ~/.zshrc
-cp .xinitrc ~/.xinitrc
 cp .Xresources ~/.Xresources
 
 # Create i3 config directory and file
