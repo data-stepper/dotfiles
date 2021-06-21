@@ -7,6 +7,10 @@ cp .Xresources ~/.Xresources
 mkdir -p ~/.config/i3
 cp i3-config ~/.config/i3/config
 
+# Create lf file manager config dir and copy lfrc
+mkdir -p ~/.config/lf
+cp ./lfrc ~/.config/lf/lfrc
+
 # Make snippet directory and copy code snippets over
 echo "Setting up vim now..."
 cp .vimrc ~/.vimrc
