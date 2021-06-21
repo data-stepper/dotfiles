@@ -29,3 +29,6 @@ cp ./compton.conf ~/.config/compton.conf
 # Copy konsole config file
 cp ./konsolerc ~/.config/konsolerc
 
+# Copy startup script
+sudo cp ./.zprofile ~/.zprofile
+
