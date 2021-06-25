@@ -8,7 +8,8 @@ sudo apt install -y zathura vim-gtk3 i3 compton entr zsh nitrogen curl sxiv htop
 curl -fsSL https://deb.nodesource.com/setup_12.x | sudo -E bash -
 sudo apt-get install -y nodejs
 
-sudo apt install npm
+# Not sure if npm is still needed (maybe remove this?)
+# sudo apt install npm
 
 sudo apt install -y texlive texlive-latex-extra texlive-lang-german texlive-pictures
 
