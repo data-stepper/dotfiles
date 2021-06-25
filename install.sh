@@ -4,7 +4,11 @@ echo "Installing required packages now..."
 sudo apt install -y zathura vim-gtk3 i3 compton entr zsh nitrogen curl sxiv htop
 
 # Install nodejs and npm for coc language server
-sudo apt install -y nodejs npm
+# Install nodejs version 12
+curl -fsSL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+sudo apt-get install -y nodejs
+
+sudo apt install npm
 
 sudo apt install -y texlive texlive-latex-extra texlive-lang-german texlive-pictures
 
