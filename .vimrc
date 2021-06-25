@@ -10,6 +10,8 @@ Plug 'tpope/vim-surround'
 	" Custom surround with space for editing latex
 	let g:surround_115 = "\\; \r \\;"
 
+Plug 'heavenshell/vim-pydocstring', { 'do': 'make install', 'for': 'python' }
+
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
@@ -338,9 +340,10 @@ endfunction
 inoremap <C-space> <C-y>
 " inoremap <silent><expr> <C-space> coc#refresh()
 
-" Set python docstyle for linting
+" Set python docstyle for linting and docstring generation
 " Always use numpy docstyle as it is the best
 let g:ultisnips_python_style = "numpy"
+let g:pydocstring_formatter = 'numpy'
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
