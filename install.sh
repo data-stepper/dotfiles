@@ -1,7 +1,7 @@
 
 # And install all required packages
 echo "Installing required packages now..."
-sudo apt install -y zathura vim-gtk3 i3 compton entr zsh nitrogen curl sxiv
+sudo apt install -y zathura vim-gtk3 i3 compton entr zsh nitrogen curl sxiv htop
 
 # Install nodejs and npm for coc language server
 sudo apt install -y nodejs npm

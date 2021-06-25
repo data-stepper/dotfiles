@@ -338,6 +338,10 @@ endfunction
 inoremap <C-space> <C-y>
 " inoremap <silent><expr> <C-space> coc#refresh()
 
+" Set python docstyle for linting
+" Always use numpy docstyle as it is the best
+let g:ultisnips_python_style = "numpy"
+
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
