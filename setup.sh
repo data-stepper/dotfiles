@@ -1,5 +1,5 @@
 # Copy some config files
-cp ./aliasrc ~/.aliasrc
+cp -rf ./aliasrc ~/.aliasrc
 cp .zshrc ~/.zshrc
 cp .Xresources ~/.Xresources
 
