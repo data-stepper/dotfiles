@@ -11,6 +11,8 @@ Plug 'tpope/vim-surround'
 	let g:surround_115 = "\\; \r \\;"
 
 Plug 'heavenshell/vim-pydocstring', { 'do': 'make install', 'for': 'python' }
+	" Don't use default mapping for pydocstring shortcut
+	let g:pydocstring_enable_mapping = 0
 
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-fugitive'
@@ -321,6 +323,9 @@ if has("patch-8.1.1564")
 else
   set signcolumn=yes
 endif
+
+" Control-d generates docstring for python function / class
+nmap <silent> <C-d> <Plug>(pydocstring)
 
 " Cycle through completions with tab
 inoremap <silent><expr> <TAB>
