@@ -402,9 +402,9 @@ syntax on
 " Different options for fonts
 " set guifont=Hack:h16
 " set guifont=Source\ Code\ Pro:h16
-" set guifont=Fira\ Code:h15
 " set guifont=IBM\ Plex\ Mono:h15
 " set guifont=Consolas:h18
+set guifont=Fira\ Code\ 9
 
 " Powerline fonts
 set guioptions=
