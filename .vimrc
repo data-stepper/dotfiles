@@ -80,13 +80,13 @@ let g:coc_snippet_prev = '<c-k>'
 imap <C-j> <Plug>(coc-snippets-expand-jump)
 
 " Enable folding
-" set foldmethod=indent
+set foldmethod=expr
 " set foldlevel=99
 
 " Old marker based folding behaviour
-set foldmethod=marker
+" set foldmethod=marker
 " set foldmarker=STARTFOLD,ENDFOLD
-set foldmarker=\begin{theorem},\end{theorem}
+" set foldmarker=\begin{theorem},\end{theorem}
 " set foldmarker=\begin,\end
 " set foldmarker+=\begin{align},\end{align}
 " set foldmarker+=\begin{itemize},\end{itemize}
