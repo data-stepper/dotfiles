@@ -35,3 +35,6 @@ cp ./konsolerc ~/.config/konsolerc
 # Copy startup script
 sudo cp ./.zprofile ~/.zprofile
 
+# Copy autorunpy script
+sudo cp ./scripts/autorunpy /usr/bin/
+
