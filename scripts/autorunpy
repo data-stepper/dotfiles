@@ -1,0 +1,4 @@
+# Shell script to run python script automatically when python files change
+
+ls *.py */*.py|entr sh -c "clear;python $@"
+
