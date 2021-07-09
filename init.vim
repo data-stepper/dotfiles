@@ -101,6 +101,7 @@ map <C-P> :FZF<CR>
 " Line numbering
 set number
 set relativenumber
+set numberwidth=1
 
 " Switch to absolute line numbering in insert mode (and back)
 autocmd!
