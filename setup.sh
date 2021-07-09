@@ -12,8 +12,16 @@ mkdir -p ~/.config/lf
 cp ./lfrc ~/.config/lf/lfrc
 
 # Make snippet directory and copy code snippets over
+# Still setup old gvim
 echo "Setting up vim now..."
-cp .vimrc ~/.vimrc
+cp ./init.vim ~/.vimrc
+
+# Now copy all neovim config files
+mkdir -p ~/.config/nvim
+mkdir -p ~/.config/nvim-qt
+cp ./init.vim ~/.config/nvim/init.vim
+cp ./ginit.vim ~/.config/nvim/ginit.vim
+cp ./nvim-qt.conf ~/.config/nvim-qt/nvim-qt.conf
 
 # Copy vim snippets over
 mkdir -p ~/.vim/UltiSnips

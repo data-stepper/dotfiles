@@ -5,13 +5,12 @@ alias gs="git status"
 
 alias guni="cd ~/Documents/Uni"
 alias scs="cd ~/dotfiles/scripts"
-alias v="gvim"
-alias code="codium" # Always use codium
 
-alias TODO="~/dotfiles/scripts/start_todo.sh"
-alias todo="~/dotfiles/scripts/start_todo.sh"
-alias td="~/dotfiles/scripts/start_todo.sh"
-alias vrc="vim ~/.vimrc"
+# Always use neovim
+alias v="nvim-qt"
+
+# vrc opens both neovim config files
+alias vrc="nvim-qt ~/.config/nvim/*.vim"
 
 alias x="chmod +x"
 
@@ -21,10 +20,10 @@ alias cp="cp -rv"
 alias mkdir="mkdir -pv"
 
 alias prompt="~/dotfiles/prompt.sh"
-alias al="vim ~/dotfiles/aliasrc"
+alias al="nvim-qt ~/dotfiles/aliasrc"
 alias venv=". ~/dotfiles/scripts/./open_venv.sh"
 
 alias sdn="shutdown now"
 
-alias update="sudo apt update && sudo apt upgrade"
+alias update="sudo apt update && sudo apt -y upgrade"
 

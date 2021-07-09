@@ -83,16 +83,7 @@ imap <C-j> <Plug>(coc-snippets-expand-jump)
 set foldmethod=expr
 " set foldlevel=99
 
-" Old marker based folding behaviour
-" set foldmethod=marker
-" set foldmarker=STARTFOLD,ENDFOLD
-" set foldmarker=\begin{theorem},\end{theorem}
-" set foldmarker=\begin,\end
-" set foldmarker+=\begin{align},\end{align}
-" set foldmarker+=\begin{itemize},\end{itemize}
-" set foldmarker+=\begin{enumerate},\end{enumerate}
-" set foldmarker+=\begin{proof},\end{proof}
-" set foldmarker=\begin{theorem},\end{theorem}
+" Start at lowest fold level always
 set foldlevel=0
 
 set noswapfile
@@ -400,10 +391,7 @@ set scrolloff=10
 syntax on
 
 " Different options for fonts
-" set guifont=Hack:h16
-" set guifont=Source\ Code\ Pro:h16
-" set guifont=IBM\ Plex\ Mono:h15
-" set guifont=Consolas:h18
+" Old gvim font setting
 set guifont=Fira\ Code\ 9
 
 " Powerline fonts
