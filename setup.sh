@@ -23,9 +23,9 @@ cp ./init.vim ~/.config/nvim/init.vim
 cp ./ginit.vim ~/.config/nvim/ginit.vim
 cp ./nvim-qt.conf ~/.config/nvim-qt/nvim-qt.conf
 
-# Copy vim snippets over
-mkdir -p ~/.vim/UltiSnips
-cp ./snippets/* ~/.vim/UltiSnips/
+# Copy nvim snippets over
+mkdir -p ~/.config/coc/ultisnips
+cp ./snippets/* ~/.config/coc/ultisnips/
 
 # Sets up vim-plug Plugin Manager
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \

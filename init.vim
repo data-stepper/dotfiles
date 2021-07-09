@@ -81,7 +81,6 @@ imap <C-j> <Plug>(coc-snippets-expand-jump)
 
 " Enable folding
 set foldmethod=expr
-" set foldlevel=99
 
 " Start at lowest fold level always
 set foldlevel=0
@@ -110,10 +109,10 @@ autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 
 " Set default colorscheme and dark background
 " colorscheme one
-" set background=dark
+set background=dark
 
 " Better colorscheme for latex
-colorscheme flattened_light
+colorscheme flattened_dark
 
 " Below is only needed when using nord colorscheme and goyo plugin
 " When using nord, I want folded to not differ from background color
@@ -230,7 +229,7 @@ noremap <Left> <C-W>>
 noremap <Right> <C-W><
 
 " Reload vimrc in instance
-nnoremap <c-u> :source ~/.vimrc<CR> :CocRestart<CR>
+nnoremap <c-u> :source ~/.config/nvim/init.vim<CR> :CocRestart<CR>
 
 " Open new tabs and switch between buffers
 nnoremap <silent> <leader>n :tabnew<CR>
@@ -392,7 +391,7 @@ syntax on
 
 " Different options for fonts
 " Old gvim font setting
-set guifont=Fira\ Code\ 9
+" set guifont=Fira\ Code\ 9
 
 " Powerline fonts
 set guioptions=
