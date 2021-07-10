@@ -33,6 +33,7 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 
 # Coc config file
 cp ./coc-settings.json ~/.vim/coc-settings.json
+cp ./coc-settings.json ~/.config/nvim/coc-settings.json
 
 # Setup compton composition manager
 cp ./compton.conf ~/.config/compton.conf
