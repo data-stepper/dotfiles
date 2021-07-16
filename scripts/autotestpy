@@ -1,0 +1,4 @@
+# Shell script to run python tests automatically
+
+ls *.py */*.py|entr sh -c "clear;pytest"
+
