@@ -206,9 +206,9 @@ snippet =< "implied by" Ai
 endsnippet
 
 # context "math()"
-snippet iff "iff" Ai
-\iff
-endsnippet
+# snippet iff "iff" Ai
+# \iff
+# endsnippet
 
 snippet mk "Math" wA
 $${1}$`!p
@@ -362,7 +362,7 @@ snippet lrb "left( right)" iA
 \right) $0
 endsnippet
 
-snippet equiv "Equivalent" iA
+snippet eqq "Equivalent" iA
 \\Leftrightarrow $0
 endsnippet
 
@@ -657,9 +657,9 @@ snippet ** "cdot" iA
 endsnippet
 
 # context "math()"
-snippet norm "norm" iA
-\|$1\|$0
-endsnippet
+# snippet norm "norm" iA
+# \|$1\|$0
+# endsnippet
 
 # priority 100
 # # context "math()"
@@ -787,10 +787,15 @@ snippet <! "normal" iA
 \triangleleft 
 endsnippet
 
-# snippet <> "hokje" iA
-# \diamond 
-# endsnippet
+snippet SS "Subsection" iA
+\subsection{$1}
+$0
+endsnippet
 
+snippet sss "Subsubsection" iA
+\subsubsection{$1}
+$0
+endsnippet
 
 # context "math()"
 snippet '(?<!i)sts' "text subscript" irA
