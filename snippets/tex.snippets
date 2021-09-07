@@ -52,63 +52,6 @@ snippet template "Basic template" b
 \end{document}
 endsnippet
 
-snippet doctemplate "Template for big scientific document" b
-\documentclass[a4paper]{article}
-
-\usepackage[margin=1in]{geometry} 
-\usepackage{amsmath,amsthm,amssymb, graphicx, multicol, array}
-\usepackage[german]{babel}
-
-\usepackage{tikz}
-\usetikzlibrary{automata, positioning}
-
-\pdfminorversion=7
-\pdfsuppresswarningpagegroup=1
-
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\beh}{\textit{Behauptung. }}
-
-\setlength{\parindent}{0pt}
-
-\begin{document}
-
-\begin{titlepage}
-	\begin{center}
-		\vspace*{1cm}
-
-		\textbf{${1:Class name or field of topic of the document}}
-
-		\vspace{0.5cm}
-		\section*{
-			${2:Title of the Document}
-		}
-
-		\vspace{1.5cm}
-
-		\textbf{${3:Bent Müller (7302332)}}
-
-		\vfill
-
-		\vspace{0.8cm}
-
-		Fachbereich Mathematik\\
-		Universität Hamburg\\
-		Deutschland\\
-		${4:17.08.2021}
-	\end{center}
-\end{titlepage}
-
-\pagebreak
-\tableofcontents
-\pagebreak
-
-$0
-
-\end{document}
-endsnippet
-
 snippet afg "Neue Aufgabe" b
 \\begin{theorem} % Aufgabe #$1
 \\begin{Aufgabe}{${1:Aufgabe Nummer}} % #$1
@@ -206,9 +149,9 @@ snippet =< "implied by" Ai
 endsnippet
 
 # context "math()"
-# snippet iff "iff" Ai
-# \iff
-# endsnippet
+snippet iff "iff" Ai
+\iff
+endsnippet
 
 snippet mk "Math" wA
 $${1}$`!p
@@ -419,7 +362,7 @@ snippet lrb "left( right)" iA
 \right) $0
 endsnippet
 
-snippet eqq "Equivalent" iA
+snippet equiv "Equivalent" iA
 \\Leftrightarrow $0
 endsnippet
 
@@ -714,9 +657,9 @@ snippet ** "cdot" iA
 endsnippet
 
 # context "math()"
-# snippet norm "norm" iA
-# \|$1\|$0
-# endsnippet
+snippet norm "norm" iA
+\|$1\|$0
+endsnippet
 
 # priority 100
 # # context "math()"
@@ -844,15 +787,10 @@ snippet <! "normal" iA
 \triangleleft 
 endsnippet
 
-snippet SS "Subsection" iA
-\subsection{$1}
-$0
-endsnippet
+# snippet <> "hokje" iA
+# \diamond 
+# endsnippet
 
-snippet sss "Subsubsection" iA
-\subsubsection{$1}
-$0
-endsnippet
 
 # context "math()"
 snippet '(?<!i)sts' "text subscript" irA
@@ -925,10 +863,6 @@ endsnippet
 
 snippet aa "Absolute" iA
 \| $0 \|
-endsnippet
-
-snippet vv "Vertical bar" iA
-\; \vert \; $0
 endsnippet
 
 # vim:ft=snippets
