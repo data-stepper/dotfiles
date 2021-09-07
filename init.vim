@@ -113,7 +113,7 @@ autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 set background=dark
 
 " Better colorscheme for latex
-colorscheme flattened_dark
+colorscheme flattened_light
 
 " Below is only needed when using nord colorscheme and goyo plugin
 " When using nord, I want folded to not differ from background color
