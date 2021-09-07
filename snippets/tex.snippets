@@ -1,14 +1,11 @@
 global !p
 def math():
 	return vim.eval('vimtex#syntax#in_mathzone()') == '1'
-
 def comment(): 
 	return vim.eval('vimtex#syntax#in_comment()') == '1'
-
 def env(name):
 	[x,y] = vim.eval("vimtex#env#is_inside('" + name + "')") 
 	return x != '0' and y != '0'
-
 endglobal
 
 snippet template "Basic template" b
@@ -49,6 +46,63 @@ snippet template "Basic template" b
 	\end{align*}
 
 	\end{proof}
+\end{document}
+endsnippet
+
+snippet doctemplate "Template for big scientific document" b
+\documentclass[a4paper]{article}
+
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb, graphicx, multicol, array}
+\usepackage[german]{babel}
+
+\usepackage{tikz}
+\usetikzlibrary{automata, positioning}
+
+\pdfminorversion=7
+\pdfsuppresswarningpagegroup=1
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\beh}{\textit{Behauptung. }}
+
+\setlength{\parindent}{0pt}
+
+\begin{document}
+
+\begin{titlepage}
+	\begin{center}
+		\vspace*{1cm}
+
+		\textbf{${1:Class name or field of topic of the document}}
+
+		\vspace{0.5cm}
+		\section*{
+			${2:Title of the Document}
+		}
+
+		\vspace{1.5cm}
+
+		\textbf{${3:Bent Müller (7302332)}}
+
+		\vfill
+
+		\vspace{0.8cm}
+
+		Fachbereich Mathematik\\
+		Universität Hamburg\\
+		Deutschland\\
+		${4:17.08.2021}
+	\end{center}
+\end{titlepage}
+
+\pagebreak
+\tableofcontents
+\pagebreak
+
+$0
+
 \end{document}
 endsnippet
 
@@ -149,9 +203,9 @@ snippet =< "implied by" Ai
 endsnippet
 
 # context "math()"
-snippet iff "iff" Ai
-\iff
-endsnippet
+# snippet iff "iff" Ai
+# \iff
+# endsnippet
 
 snippet mk "Math" wA
 $${1}$`!p
@@ -362,7 +416,7 @@ snippet lrb "left( right)" iA
 \right) $0
 endsnippet
 
-snippet equiv "Equivalent" iA
+snippet eqq "Equivalent" iA
 \\Leftrightarrow $0
 endsnippet
 
@@ -657,9 +711,9 @@ snippet ** "cdot" iA
 endsnippet
 
 # context "math()"
-snippet norm "norm" iA
-\|$1\|$0
-endsnippet
+# snippet norm "norm" iA
+# \|$1\|$0
+# endsnippet
 
 # priority 100
 # # context "math()"
@@ -787,10 +841,15 @@ snippet <! "normal" iA
 \triangleleft 
 endsnippet
 
-# snippet <> "hokje" iA
-# \diamond 
-# endsnippet
+snippet SS "Subsection" iA
+\subsection{$1}
+$0
+endsnippet
 
+snippet sss "Subsubsection" iA
+\subsubsection{$1}
+$0
+endsnippet
 
 # context "math()"
 snippet '(?<!i)sts' "text subscript" irA
@@ -863,6 +922,10 @@ endsnippet
 
 snippet aa "Absolute" iA
 \| $0 \|
+endsnippet
+
+snippet vv "Vertical bar" iA
+\; \vert \; $0
 endsnippet
 
 # vim:ft=snippets
