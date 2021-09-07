@@ -8,6 +8,8 @@ def env(name):
 	return x != '0' and y != '0'
 endglobal
 
+###################### Template snippets ######################################
+
 snippet template "Basic template" b
 \documentclass[a4paper]{article}
 
@@ -670,6 +672,8 @@ snippet medge "Markov chain edge" iA
 (${1:Node a}) edge[bend right, auto=right] node {${2:probability}} (${3:Node b})
 $0
 endsnippet
+
+################################# Snippets for Latex beamer class ###################
 
 snippet bframe "Beamer class frame" iA
 \begin{frame}
