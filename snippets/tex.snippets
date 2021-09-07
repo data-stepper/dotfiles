@@ -298,6 +298,63 @@ snippet bmat "bmat" iA
 \begin{bmatrix} $1 \end{bmatrix} $0
 endsnippet
 
+############################ Here come the flashcards snippets ####################################
+snippet flashcards_template "Template for flashcard document" b
+\documentclass[a4paper]{article}
+
+\usepackage[paperwidth=.5\paperwidth,paperheight=.25\paperheight]{geometry}
+\usepackage{pgfpages}
+\pagestyle{empty}
+\thispagestyle{empty}
+\pgfpagesuselayout{8 on 1}[a4paper]
+\makeatletter
+\@tempcnta=1\relax
+\loop\ifnum\@tempcnta<9\relax
+\pgf@pset{\the\@tempcnta}{bordercode}{\pgfusepath{stroke}}
+\advance\@tempcnta by 1\relax
+\repeat
+\makeatother
+
+\newenvironment{flashcard}[2][]{%
+\noindent  \textsc{#1}
+
+\vfill
+\centerline{{\Large\emph{#2}}}
+\vfill
+\newpage
+}
+{\newpage}
+
+\usepackage[latin1]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+
+\begin{document}
+	$1
+\end{document}
+endsnippet
+
+snippet flf "Front side of flashcard" iA
+{
+	\noindent \textsc{${1:Definition}}
+	\vfill
+	\centerline{{\Large ${2:Center text (Keyword)}}}
+	\vfill
+}
+\newpage
+$0
+endsnippet
+
+snippet flb "Back side of flashcard" iA
+{
+	\vspace*{\stretch{1}}
+	\centerline{{\Large ${1:Text to remember}}}
+	\vspace*{\stretch{1}}
+}
+\newpage
+$0
+endsnippet
+
 # New left right bracket snippet
 snippet lrb "left( right)" iA
 \left(
