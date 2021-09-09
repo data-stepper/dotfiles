@@ -371,17 +371,7 @@ snippet flashcards_template "Template for flashcard document" b
 \repeat
 \makeatother
 
-\newenvironment{flashcard}[2][]{%
-\noindent  \textsc{#1}
-
-\vfill
-\centerline{{\Large\emph{#2}}}
-\vfill
-\newpage
-}
-{\newpage}
-
-\usepackage[latin1]{inputenc}
+\usepackage[utf8]{inputenc}
 \usepackage{amsfonts}
 \usepackage{amsmath}
 
@@ -397,18 +387,66 @@ snippet flf "Front side of flashcard" iA
 	\centerline{{\Large ${2:Center text (Keyword)}}}
 	\vfill
 }
-\newpage
 $0
 endsnippet
 
 snippet flb "Back side of flashcard" iA
 {
 	\vspace*{\stretch{1}}
-	\centerline{{\Large ${1:Text to remember}}}
+	\begin{gather*}
+		$1
+	\end{gather*}
 	\vspace*{\stretch{1}}
 }
-\newpage
 $0
+endsnippet
+
+snippet flpage "Flashcard new page" iA
+{
+	% START FLASHCARD PAGE
+
+	% START FRONTSIDES
+	{
+		% Card number 1
+		\newpage
+		% Card number 2
+		\newpage
+		% Card number 3
+		\newpage
+		% Card number 4
+		\newpage
+		% Card number 5
+		\newpage
+		% Card number 6
+		\newpage
+		% Card number 7
+		\newpage
+		% Card number 8
+		\newpage
+	}
+
+	% START BACKSIDES
+	{
+		% Card number 1
+		\newpage
+		% Card number 2
+		\newpage
+		% Card number 3
+		\newpage
+		% Card number 4
+		\newpage
+		% Card number 5
+		\newpage
+		% Card number 6
+		\newpage
+		% Card number 7
+		\newpage
+		% Card number 8
+		\newpage
+	}
+
+	% END FLASHCARD PAGE
+}
 endsnippet
 
 # New left right bracket snippet
