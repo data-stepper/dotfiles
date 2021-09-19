@@ -68,6 +68,42 @@ LF is in my opinion the best terminal file manager out there. It is fast and dis
 Because I like it to open for example pdf files with zathura (my pdf viewer), my dotfiles ship with a config
 file for lr called .lfrc.
 
+Unfortunately, it is not yet available as an ubuntu package and thus needs to be installed manually by downloading from the following link.
+
 ```
 https://github.com/gokcehan/lf/releases/download/r24/lf-linux-amd64.tar.gz
 ```
+
+After this you will need to unpack the binary and then move it with the following command:
+
+```
+sudo mv Downloads/lf /bin
+```
+
+### Zathura PDF viewer
+
+As I also work with latex, I use zathura as my primary PDF viewer. It is available as an ubuntu package and thus installed easily by the installation script.
+
+### Compton Composition Manager
+
+Compton is a tool I use to make my windows transparent, it is installed by the installation script as an ubuntu package.
+
+### Neovim - the editor of choice!
+
+I use neovim, also installed as an ubuntu package. With neovim I use mainly the following plugins to assist coding or writing latex documents:
+
+# TODO List
+
+- [ ] Installation script installs lf file manager
+- [ ] Installation script installs vim-plug
+- [ ] Finish README.MD
+- [ ] Find a way to do full disk encryption on arch linux
+
+
+
+
+
+
+
+
+
