@@ -25,6 +25,9 @@ Plug 'yegappan/mru'
 Plug 'justinmk/vim-sneak'
 Plug 'junegunn/goyo.vim'
 
+" My own ai assist plugin
+Plug 'data-stepper/ai-text-assist'
+
 " Devicons plugin somehow doesn't work
 " Plug 'ryanoasis/vim-devicons'
 
@@ -216,7 +219,7 @@ nnoremap <silent> <leader>1 :registers<CR>
 nnoremap <silent> <leader>2 :TagbarToggle<CR>
 
 " Git commands
-nnoremap <silent> <leader>gs :Gstatus<CR>
+nnoremap <silent> <leader>gs :Git<CR>
 nnoremap <silent> <leader>gl :Glog<CR>
 nnoremap <silent> <leader>ga :G add *<CR>
 nnoremap <silent> <leader>gc :Gcommit<CR>
