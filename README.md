@@ -50,7 +50,7 @@ After you have installed vim-plug, start a new nvim instance (alias v in shell) 
 which will install all vim plugins I use. Restart the vim instance and install the following CoC extensions:
 
 ```
-:CocInstall coc-python coc-json coc-tabnine coc-snippets
+:CocInstall coc-jedi coc-json coc-tabnine coc-snippets
 ```
 
 After this you should be ready to go and start using my dotfiles.
