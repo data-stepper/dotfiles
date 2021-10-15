@@ -1,7 +1,7 @@
 
 # And install all required packages
 echo "Installing required packages now..."
-sudo apt install -y zathura i3 compton entr zsh nitrogen curl sxiv htop
+sudo apt install -y zathura i3 compton entr zsh nitrogen curl sxiv htop scrot
 
 # Install all versions of vim for best compatibility
 sudo apt install -y vim-gtk3 neovim-qt neovim vim
