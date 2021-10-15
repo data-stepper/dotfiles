@@ -46,8 +46,11 @@ bindsym $mod+Return exec i3-sensible-terminal
 # start a browser
 bindsym $mod+Shift+Return exec google-chrome
 
+# Take a screenshot 
+bindsym Print exec scrot '%Y-%m-%d_$wx$h.png' -s -e 'mv $f ~/screenshots/'
+
 # start todo list
-bindsym $mod+t exec ~/dotfiles/scripts/start_todo.sh
+# bindsym $mod+t exec ~/dotfiles/scripts/start_todo.sh
 
 # kill focused window
 bindsym $mod+q kill

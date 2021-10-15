@@ -48,3 +48,6 @@ sudo cp ./.zprofile ~/.zprofile
 sudo cp ./scripts/autorunpy /usr/bin/
 sudo cp ./scripts/autotestpy /usr/bin/
 
+# Create screenshot directory
+mkdir -p ~/screenshots
+
