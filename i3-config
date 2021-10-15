@@ -47,7 +47,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+Return exec google-chrome
 
 # Take a screenshot 
-bindsym Print exec scrot '%Y-%m-%d_$wx$h.png' -s -e 'mv $f ~/screenshots/'
+bindsym Print exec scrot -s $HOME/screenshots/`date +%Y-%m-%d_%H:%M:%S`.png
 
 # start todo list
 # bindsym $mod+t exec ~/dotfiles/scripts/start_todo.sh
