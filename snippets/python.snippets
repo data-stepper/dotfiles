@@ -567,7 +567,7 @@ def main(args):
 
 def setup_logging(args):
 
-	FORMAT = "%(asctime)s %(clientip)-15s %(user)-8s %(message)s"
+	FORMAT = "%(asctime)s %(levelname)s: %(message)s"
 
 	if args.verbose:
 		level = logging.DEBUG
