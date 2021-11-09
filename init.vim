@@ -106,6 +106,9 @@ set number
 set relativenumber
 set numberwidth=1
 
+" For cleaner python programming and more readability
+set colorcolumn=81
+
 " Switch to absolute line numbering in insert mode (and back)
 autocmd!
 autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
