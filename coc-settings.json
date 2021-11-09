@@ -3,6 +3,11 @@
 	"python.jediEnabled": false,
 	"python.formatting.provider": "black",
 	"python.formatting.blackPath": "/home/bent/miniconda3/bin/black",
+	"python.formatting.blackArgs": [
+		"--line-length",
+		"79",
+		"--experimental-string-processing"
+	],
 	"coc.preferences.formatOnTypeFiletypes": ["python"],
 	"coc.preferences.formatOnType": true,
 	"coc.preferences.formatOnSaveFiletypes": ["python"],
