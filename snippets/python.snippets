@@ -537,10 +537,93 @@ snippet /(^|(?<=\W))\./ "self." r
 self.
 endsnippet
 
-snippet from "from module import name" b
+snippet from "from module import name" iA
 from ${1:module} import ${2:Stuff}
 endsnippet
 
+
+##########################
+# Python script template #
+##########################
+
+snippet pyscript "from module import name" iA
+#!/usr/bin/python3
+# Optional shebang interpreter line (if script shall be executable)
+
+
+"""
+	Short description of how this script works and what
+	it can do.
+"""
+
+import argparse
+import logging
+
+
+def main(args):
+
+	logging.info("Processing following files: {}".format(args.files))
+
+
+def setup_logging(args):
+
+	FORMAT = "%(asctime)s %(clientip)-15s %(user)-8s %(message)s"
+
+	if args.verbose:
+		level = logging.DEBUG
+	else:
+		level = logging.INFO
+
+	if args.logfile is not None:
+
+		# Log to file
+		logging.basicConfig(filename=args.logfile, level=level, format=FORMAT)
+
+	else:
+
+		logging.basicConfig(level=level, format=FORMAT)
+
+
+def parse_args():
+
+	parser = argparse.ArgumentParser(description=__doc__)
+
+	## Notice:
+	# Optional arguments start with a '-', positionals do not
+
+	# Verbose logging
+	parser.add_argument(
+		"-v",
+		"--verbose",
+		dest="verbose",
+		action="store_true",
+		help="Lowest loglevel",
+		default=False,
+	)
+
+	# Logfile argument
+	parser.add_argument(
+		"--logfile",
+		type=str,
+		dest="logfile",
+		default=None,
+		metavar="<filepath>",
+		help="Write log output to a file",
+	)
+
+	# Below is an example of a positional argument
+	# Prgogram can process many files
+	parser.add_argument("files", nargs="+", type=str, help="Files to process")
+
+	return parser.parse_args()
+
+
+if __name__ == "__main__":
+	args = parse_args()
+	setup_logging(args)
+	main(args)
+
+endsnippet
 
 ##############
 # PROPERTIES #
