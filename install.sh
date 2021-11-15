@@ -18,6 +18,20 @@ sudo apt-get install -y nodejs
 sudo apt install -y texlive texlive-latex-extra texlive-lang-german texlive-pictures
 sudo apt install -y latexmk
 
+# Install nativefier
+sudo npm install -g nativefier
+
+# Create nativefied directory
+mkdir -p ~/.nativefied
+
+# And create nativefied apps for gmail and notion
+nativefier -n "Gmail" https://mail.google.com/mail/u/0/#inbox ~/.nativefied/
+nativefier -n "Notion" https://www.notion.so/Dashboard-4e94ded4b284488d84191448ae841e2c ~/.nativefied/
+
+# Now symlink both apps so they can be launched from dmenu
+sudo ln -s ~/.nativefied/Gmail-linux-x64/Gmail /usr/bin/gmail
+sudo ln -s ~/.nativefied/Notion-linux-x64/Notion /usr/bin/notion
+
 # Copy all files
 . ./setup.sh
 
