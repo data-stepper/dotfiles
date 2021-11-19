@@ -246,7 +246,7 @@ nnoremap <Esc> gt
 
 " Quit or close buffers
 nnoremap <leader>q <C-W>c
-nnoremap <silent> <leader>c :bw<CR>
+nnoremap <silent> <leader>c :bw!<CR>
 
 " Edit a file
 nnoremap <leader>e :e 
