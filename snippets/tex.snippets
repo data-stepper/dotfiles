@@ -730,6 +730,40 @@ endsnippet
 
 ################################# Snippets for Latex beamer class ###################
 
+snippet btemplate "Beamer class template" iA
+\documentclass[compress]{beamer}
+
+% Information to be included in the title page:
+
+\title{${1: Title of the presentation}}
+\author{Bent Müller}
+\institute{Universität Hamburg}
+\date{${2: Date of the presentation}}
+
+% Standard beamer class setup, configure as needed
+
+\usepackage{tikz}
+\usetikzlibrary{automata, positioning}
+
+\setbeamertemplate{headline}[default]
+\setbeamertemplate{navigation symbols}{}
+\mode<beamer>{\setbeamertemplate{blocks}[rounded][shadow=true]}
+\setbeamercovered{transparent}
+\setbeamercolor{block body example}{fg=blue, bg=black!20}
+
+\useoutertheme[subsection=false]{miniframes}
+\usetheme{default}
+
+\begin{document}
+	\begin{frame}
+	${3:
+		\frametitle{Hello}
+		World
+	}
+	\end{frame}
+\end{document}
+endsnippet
+
 snippet bframe "Beamer class frame" iA
 \begin{frame}
 	\frametitle{${1: Title of the slide}}
