@@ -11,6 +11,9 @@ cp i3-config ~/.config/i3/config
 mkdir -p ~/.config/lf
 cp ./lfrc ~/.config/lf/lfrc
 
+# Copy zathura config file
+sudo cp -rf ./zathurarc /etc/zathurarc
+
 # Make snippet directory and copy code snippets over
 # Still setup old gvim
 echo "Setting up vim now..."
