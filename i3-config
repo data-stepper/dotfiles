@@ -49,6 +49,15 @@ bindsym $mod+Shift+Return exec google-chrome
 # Take a screenshot 
 bindsym Print exec scrot -s $HOME/screenshots/`date +%Y-%m-%d_%H:%M:%S`.png
 
+# !! The below two commands require that notion and gmail native apps
+# were created using natievfier !!
+
+# Start notion
+bindsym $mod+n exec notion
+
+# Start gmail
+bindsym $mod+g exec gmail
+
 # start todo list
 # bindsym $mod+t exec ~/dotfiles/scripts/start_todo.sh
 
