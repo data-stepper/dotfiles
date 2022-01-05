@@ -54,3 +54,6 @@ sudo cp ./scripts/autotestpy /usr/bin/
 # Create screenshot directory
 mkdir -p ~/screenshots
 
+# Copy screenshot scripts
+sudo cp ./scripts/screenshot-anki-card-trigger.py /bin
+

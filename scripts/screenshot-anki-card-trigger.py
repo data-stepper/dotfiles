@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/bin/python3
 # Shebang line so the script becomes executable
 
 """
@@ -12,15 +12,33 @@ from os import popen, system
 from os.path import normpath
 from pathlib import Path
 import sys
+import logging
+import subprocess
 
-MODE = sys.argv[1]
+logging.basicConfig(
+    filename=Path.home() / "screenshot_trigger.log", level=logging.DEBUG
+)
+
+logging.debug("argv: {}".format(sys.argv))
+
+# logging.basicConfig()
+
+if len(sys.argv) == 1:
+    MODE = "C"
+else:
+    MODE = sys.argv[1]
 
 assert MODE in ("D", "C", "I")
+
+logging.debug("mode: {}".format(MODE))
 
 screenshot_dir = Path.home() / "screenshots"
 screenshot_dir.mkdir(exist_ok=True)
 
 csv_file = screenshot_dir / "entries.csv"
+
+logging.debug("Directory: {}".format(screenshot_dir))
+logging.debug("csv file path: {}".format(csv_file))
 
 if not csv_file.exists():
     # Create the csv file
@@ -65,6 +83,8 @@ if MODE == "C":
         .replace("\r", "<br>")
         + '"'
     )
+
+    logging.debug("Captured clipboard: {}".format(description))
 else:
     description = '""'
 
@@ -77,21 +97,30 @@ while True:
     )
 
     # Take the screenshot and afterwards write the entry to the csv file
-    screenshot_command = "scrot -s $HOME/screenshots/{}".format(image_name)
+    screenshot_command = "sleep 0.1; scrot -s '{}'".format(
+        screenshot_dir / image_name
+    )
+    logging.debug(
+        "Executing screenshot command: '{}'".format(screenshot_command)
+    )
 
-    rval = system(screenshot_command)
+    # rval = system(screenshot_command)
 
-    # assert (
-    #     rval == 0
-    # ), "Error occurred taking screenshot, not saving description to csv file"
+    completed_process = subprocess.run(
+        screenshot_command, shell=True, capture_output=True
+    )
+
+    logging.debug("Return value: {}".format(completed_process))
 
     # Otherwise save description to csv file
 
-    if rval != 0:
+    if completed_process.returncode != 0:
         break
+
     else:
         # It captured an image
         image_names.append(image_name)
+        logging.debug("Captured image: {}".format(image_name))
 
 # Now write the actual csv entry
 
@@ -108,11 +137,11 @@ if len(image_names) > 0:
     with csv_file.open("a") as f:
         f.write(entry_string)
 
-    print(
-        "Captured {} images and written '{}' as entry".format(
+    logging.debug(
+        "Captured {} images and wrote '''\n{}\n''' as entry".format(
             len(image_names), entry_string
         )
     )
 
 else:
-    print("No images captured, nothing to write down")
+    logging.debug("No images captured, nothing to write down")

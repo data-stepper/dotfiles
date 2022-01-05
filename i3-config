@@ -50,9 +50,9 @@ bindsym $mod+Shift+Return exec google-chrome
 bindsym Print exec scrot -s $HOME/screenshots/`date +%Y-%m-%d_%H:%M:%S`.png
 
 # Anki cards creation routine
-bindsym $mod+I exec screenshot-anki-card-trigger.py I
-bindsym $mod+X exec screenshot-anki-card-trigger.py D
-bindsym $mod+C exec screenshot-anki-card-trigger.py C
+bindsym $mod+i exec "python3 /bin/screenshot-anki-card-trigger.py I"
+bindsym $mod+c exec "python3 /bin/screenshot-anki-card-trigger.py C"
+bindsym $mod+x exec "python3 /bin/screenshot-anki-card-trigger.py D"
 
 # !! The below two commands require that notion and gmail native apps
 # were created using natievfier !!
