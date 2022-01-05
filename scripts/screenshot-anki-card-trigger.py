@@ -15,9 +15,7 @@ import sys
 import logging
 import subprocess
 
-logging.basicConfig(
-    filename=Path.home() / "screenshot_trigger.log", level=logging.DEBUG
-)
+logging.basicConfig(filename="/tmp/screenshot_tool.log", level=logging.DEBUG)
 
 logging.debug("argv: {}".format(sys.argv))
 
