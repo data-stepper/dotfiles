@@ -90,12 +90,10 @@ image_names = []
 
 while True:
     # Also capture milliseconds
-    image_name = (
-        datetime.now().strftime("%Y-%m-%d---%H-%M-%S.%f")[:-3] + ".png"
-    )
+    image_name = datetime.now().strftime("%Y-%m-%d-%H-%M-%S.%f")[:-3] + ".png"
 
     # Take the screenshot and afterwards write the entry to the csv file
-    screenshot_command = "sleep 0.1; scrot -s '{}'".format(
+    screenshot_command = "sleep 0.2; scrot -s '{}'".format(
         screenshot_dir / image_name
     )
     logging.debug(
@@ -128,7 +126,7 @@ if len(image_names) > 0:
     entry_string = ""
 
     for img_name in image_names:
-        entry_string += "{},".format(image_name)
+        entry_string += "{},".format(img_name)
 
     entry_string += description + "\n"
 
