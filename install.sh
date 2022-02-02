@@ -32,6 +32,11 @@ nativefier -n "Notion" https://www.notion.so/Dashboard-4e94ded4b284488d84191448a
 sudo ln -s ~/.nativefied/Gmail-linux-x64/Gmail /usr/bin/gmail
 sudo ln -s ~/.nativefied/Notion-linux-x64/Notion /usr/bin/notion
 
+# Add i3-gaps as primary window manager
+sudo add-apt-repository ppa:regolith-linux/release
+sudo apt update
+sudo apt install i3-gaps
+
 # Copy all files
 . ./setup.sh
 
