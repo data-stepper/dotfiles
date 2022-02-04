@@ -34,6 +34,10 @@ cp ./snippets/* ~/.config/coc/ultisnips/
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
+# Also install for neovim
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+
 # Coc config file
 cp ./coc-settings.json ~/.vim/coc-settings.json
 cp ./coc-settings.json ~/.config/nvim/coc-settings.json
