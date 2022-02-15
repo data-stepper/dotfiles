@@ -15,6 +15,7 @@ import sys
 import logging
 import subprocess
 
+CSV_SEPERATOR = ';'
 logging.basicConfig(filename="/tmp/screenshot_tool.log", level=logging.DEBUG)
 
 logging.debug("argv: {}".format(sys.argv))
@@ -120,13 +121,15 @@ while True:
 
 # Now write the actual csv entry
 
+logging.debug("Using seperator: '{}'".format(CSV_SEPERATOR))
+
 if len(image_names) > 0:
     # Only write when any images have been captured
 
     entry_string = ""
 
     for img_name in image_names:
-        entry_string += "{},".format(img_name)
+        entry_string += "{}{}".format(img_name, CSV_SEPERATOR)
 
     entry_string += description + "\n"
 
