@@ -7,6 +7,9 @@ cp .Xresources ~/.Xresources
 mkdir -p ~/.config/i3
 cp i3-config ~/.config/i3/config
 
+# Copy i3status config file
+sudo cp ./i3status.conf /etc/i3status.conf
+
 # Create lf file manager config dir and copy lfrc
 mkdir -p ~/.config/lf
 cp ./lfrc ~/.config/lf/lfrc
