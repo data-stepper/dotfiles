@@ -9,3 +9,6 @@ nitrogen --set-zoom-fill ~/Documents/Wallpaper &
 # Start composition manager
 compton &
 
+# Clean the download folder to keep it organized always
+rm -rf ~/Downloads/*
+

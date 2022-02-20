@@ -45,6 +45,9 @@ gaps outer 5
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
+# Set a maximum floating window size
+floating_maximum_size 2000 x 1500
+
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
 
@@ -131,8 +134,10 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 
 # Hide title bars
-for_window [class="^.*"] border pixel 0
-new_window 1pixel
+# for_window [class="^.*"] border pixel 0
+# new_window 1pixel
+
+default_border none
 
 # Configure colors used
 # class                 border  backgr. text    indicator child_border
@@ -149,16 +154,16 @@ client.background       #ffffff
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 " 1: 🌎"
-set $ws2 " 2: 🖥️"
+set $ws1 " 1: 🌎 "
+set $ws2 " 2: 🖥️ "
 set $ws3 " 3 "
-set $ws4 " 4: 📓"
-set $ws5 " 5: 🗹"
-set $ws6 " 6"
-set $ws7 " 7"
-set $ws8 " 8"
-set $ws9 " 9: 🗑️"
-set $ws10 "10"
+set $ws4 " 4: 📓 "
+set $ws5 " 5: 🗹 "
+set $ws6 " 6 "
+set $ws7 " 7 "
+set $ws8 " 8 "
+set $ws9 " 9: 🗑️ "
+set $ws10 "10 "
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -199,10 +204,10 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym odiaeresis resize grow width 10 px or 10 ppt
+        bindsym h resize shrink width 5 px or 5 ppt
+        bindsym j resize grow height 5 px or 5 ppt
+        bindsym k resize shrink height 5 px or 5 ppt
+        bindsym l resize grow width 5 px or 5 ppt
 
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
@@ -225,6 +230,7 @@ bar {
 	status_command i3status
 	separator_symbol "-+-"
 	position bottom
+	strip_workspace_numbers yes
 
 	colors {
 		background #000000C1

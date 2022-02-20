@@ -9,3 +9,14 @@ cmd open ${{
         *) for f in $fx; do setsid -f $OPENER $f >/dev/null 2>&1; done;;
     esac
 }}
+
+# Leave some space
+set scrolloff 10
+
+# Delete files with x
+map x delete
+
+# Always show hidden files and file sizes
+set hidden!
+set info size
+
