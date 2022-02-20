@@ -153,7 +153,7 @@ set $ws1 "1: 🌎"
 set $ws2 "2: 🖥️"
 set $ws3 "3: Diagram"
 set $ws4 "4: 📓"
-set $ws5 "5"
+set $ws5 "5: 🗹"
 set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
@@ -223,16 +223,16 @@ bindsym $mod+r mode "resize"
 bar {
 	i3bar_command i3bar --transparency
 	status_command i3status
-	separator_symbol "}{"
-	position top
+	separator_symbol "-+-"
+	position bottom
 
 	colors {
-		background #00000021
+		background #000000C1
 		statusline #FFFFFFC9
-		separator #1ecc0aFF
+		separator #73a9ffFF
 
-		focused_workspace  #4c7899 #1ecc0a7F #ffffff
-		inactive_workspace #33333300 #22222200 #6cc7f5
+		focused_workspace  #FF00007F #0000009F #ffffff
+		inactive_workspace #ffffff00 #0000008F #6cc7f5
 	}
 }
 
