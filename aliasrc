@@ -6,8 +6,9 @@ alias gs="git status"
 alias guni="cd ~/Documents/Uni"
 alias scs="cd ~/dotfiles/scripts"
 
-# Always use neovim
-alias v="nvim-qt"
+# Always use neovim, bye bye gui neovim
+# alias v="nvim-qt"
+alias v="nvim"
 
 # vrc opens both neovim config files
 alias vrc="nvim-qt ~/.config/nvim/*.vim"
