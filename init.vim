@@ -114,6 +114,9 @@ autocmd!
 autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
 autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 
+" This way the terminal displays the colors correctly
+set termguicolors
+
 " Set default colorscheme and dark background
 " colorscheme one
 set background=dark

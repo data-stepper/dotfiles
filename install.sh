@@ -37,6 +37,9 @@ sudo add-apt-repository -y ppa:regolith-linux/release
 sudo apt update
 sudo apt install -y i3-gaps
 
+# Install alacritty terminal emulator
+sudo snap install alacritty --classic
+
 # Copy all files
 . ./setup.sh
 
