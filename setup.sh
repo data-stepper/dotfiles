@@ -3,6 +3,10 @@ cp -rf ./aliasrc ~/.aliasrc
 cp .zshrc ~/.zshrc
 cp .Xresources ~/.Xresources
 
+# Copy alacritty config file
+mkdir -p ~/.config/alacritty
+cp ./alacritty.yml ~/.config/alacritty/alacritty.yml
+
 # Create i3 config directory and file
 mkdir -p ~/.config/i3
 cp i3-config ~/.config/i3/config

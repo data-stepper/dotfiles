@@ -1,0 +1,25 @@
+# Font configuration (changes require restart)
+font:
+    # Normal (roman) font face
+    normal:
+        family: FiraCode Nerd Font Mono
+        style: Regular
+
+    # Bold font face
+    bold:
+        family: FiraCode Nerd Font Mono
+        style: Bold
+
+    # Italic font face
+    italic:
+        family: FiraCode Nerd Font Mono
+        style: Italic
+
+    # Bold italic font face
+    bold_italic:
+        family: FiraCode Nerd Font Mono
+        style: Bold Italic
+
+    # Point size
+    size: 9.0
+
