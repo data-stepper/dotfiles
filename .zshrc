@@ -20,9 +20,6 @@ setopt histignorealldups sharehistory
 # Also accept completion with Ctrl-Y
 bindkey '^y' forward-word
 bindkey '^e' end-of-line
-bindkey '^I' end-of-line
-bindkey '^j' down-line-or-select
-bindkey '^k' up-line-or-search
 
 # Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
 HISTSIZE=1000
