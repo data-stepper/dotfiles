@@ -1,9 +1,3 @@
-# Install nerd fonts
-cd ~
-git clone https://github.com/ryanoasis/nerd-fonts.git
-cd nerd-fonts
-sudo ./install.sh
-
 # And install all required packages
 echo "Installing required packages now..."
 sudo apt install -y zathura i3 compton entr zsh nitrogen curl sxiv htop scrot

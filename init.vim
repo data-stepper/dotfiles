@@ -14,6 +14,9 @@ Plug 'heavenshell/vim-pydocstring', { 'do': 'make install', 'for': 'python' }
 	" Don't use default mapping for pydocstring shortcut
 	let g:pydocstring_enable_mapping = 0
 
+" Use devicons because it looks more beautiful
+Plug 'vwxyutarooo/nerdtree-devicons-syntax'
+Plug 'ryanoasis/vim-devicons'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
