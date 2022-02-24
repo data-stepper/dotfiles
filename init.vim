@@ -125,7 +125,7 @@ set termguicolors
 set background=dark
 
 " Better colorscheme for latex
-colorscheme onehalfdark
+colorscheme one
 " colorscheme flattened_dark
 
 " Below is only needed when using nord colorscheme and goyo plugin
