@@ -1,7 +1,7 @@
 # This script is taken from https://gist.github.com/chreniuc/3883ecce07f6c04f57225ed19f9ce65b
 
 timedatectl set-ntp true
-timedatectl set-timezone Europe/Bucharest
+timedatectl set-timezone Europe/Berlin
 
 fdisk /dev/sda
 ########################################
@@ -27,9 +27,9 @@ swapon /dev/sda3
 # Don't forget to generate the grub config file:
 grub-mkconfig -o /boot/grub/grub.cfg
 
-## The config files for all thos programs are here:
-## https://github.com/chreniuc/dotfiles
-pacman -Sy i3
+# The config files for all those programs are here:
+# https://github.com/chreniuc/dotfiles
+pacman -Sy i3-gaps
 pacman -Sy xorg-server xorg-xinit
 pacman -S ttf-dejavu ttf-font-awesome dmenu
 
@@ -38,7 +38,7 @@ pacman -Sy networkmanager network-manager-applet gnome-keyring # Last one is for
 systemctl enable NetworkManger
 
 # Bluetooth and wifi
-#https://gist.github.com/ChrisTimperley/7f08117e7934122fb1d626fa6b725535
+# https://gist.github.com/ChrisTimperley/7f08117e7934122fb1d626fa6b725535
 
 # Sound
 pacman -S pulseaudio pulseaudio-alsa pavucontrol  --noconfirm --needed
@@ -119,6 +119,7 @@ pacman -Sy dunst
 # Change the config
 mkdir ~/.config/dunst
 cp /usr/share/dunst/dunstrc ~/.config/dunst/dunstrc
+
 # Test it
 notify-send "Hi! This is a test"
 # A notification should appear in the right corner
@@ -126,13 +127,14 @@ notify-send "Hi! This is a test"
 ####
 # Control + grave : C-` : Show history of notifications
 # Control + Space : Close notification
-# Control + Shift + period : Opens the link from the notification in broswer
+# Control + Shift + period : Opens the link from the notification in browser
 
 ########################################## Utils ################################################################
 pacman -S git bash-completion tk # tk is used by gitk
 
 # File editor
 pacman -S gedit vim gedit-plugins
+pacman -Sy neovim
 
 # Install skype
 git clone https://aur.archlinux.org/skypeforlinux-stable-bin.git
@@ -191,9 +193,6 @@ pacman -Sy tmux
 # Install xrandr
 # To modify the resolution of the monitors
 pacman -Sy xorg-xrandr
-
-# Libre office
-pacman -Sy libreoffice-fresh
 
 # Torrent client
 pacman -Sy transmission-gtk
