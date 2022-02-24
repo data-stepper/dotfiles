@@ -2,7 +2,6 @@
 
 autoload -Uz promptinit
 promptinit
-prompt adam1
 
 setopt histignorealldups sharehistory
 
@@ -39,8 +38,6 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 # Source aliasrc file
 source ~/.aliasrc
 
-export PS1="{ \u, \T, '\w' } >>> start typing >>>"
-
 # lfcd command
 lfcd () {
     tmp="$(mktemp)"
@@ -51,6 +48,8 @@ lfcd () {
         [ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
     fi
 }
+
+# Bind Ctrl-o to file manager
 bindkey -s '^o' 'lfcd\n'
 
 # Added by Miniconda installer
@@ -72,3 +71,4 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+export PS1="%F{magenta} $CONDA_PROMPT_MODIFIER%F{blue}%~ %F{green}↳%F{default}"
