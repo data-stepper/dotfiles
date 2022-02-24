@@ -26,5 +26,5 @@ alias venv=". ~/dotfiles/scripts/./open_venv.sh"
 
 alias sdn="shutdown now"
 
-alias update="sudo apt update && sudo apt -y upgrade"
+alias update="sudo apt update && sudo apt -y upgrade && sudo npm install -g npm"
 
