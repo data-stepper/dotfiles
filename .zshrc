@@ -17,6 +17,13 @@ znap source zsh-users/zsh-syntax-highlighting
 
 setopt histignorealldups sharehistory
 
+# Also accept completion with Ctrl-Y
+bindkey '^y' forward-word
+bindkey '^e' end-of-line
+bindkey '^I' end-of-line
+bindkey '^j' down-line-or-select
+bindkey '^k' up-line-or-search
+
 # Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
 HISTSIZE=1000
 SAVEHIST=1000
@@ -58,4 +65,7 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+# Don't use my PS1 anymore since pure's is better
 # export PS1="%F{magenta} $CONDA_PROMPT_MODIFIER%F{blue}%~ %F{green}↳%F{default}"
+
+
