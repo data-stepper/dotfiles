@@ -1,3 +1,6 @@
+echo "Downloading patched nerd fonts now..."
+source ./install_nerd_fonts.sh
+
 # And install all required packages
 echo "Installing required packages now..."
 sudo apt install -y zathura i3 compton entr zsh nitrogen curl sxiv htop scrot

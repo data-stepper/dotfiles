@@ -1,4 +1,5 @@
 # Install nerd fonts
+mkdir -p ~/.fonts
 cd ~
 
 # Create temp fonts download directory
@@ -17,5 +18,6 @@ unzip IBMPlexMono.zip
 
 sudo cp *.ttf ~/.fonts
 
-mkdir -p ~/.fonts
+cd ~
+rm fonts_download
 
