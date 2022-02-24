@@ -1,5 +1,13 @@
 echo "Downloading patched nerd fonts now..."
-source ./install_nerd_fonts.sh
+. ./nerd_fonts_install.sh
+
+echo "Installing lf file manager now..."
+cd ~
+curl -LO https://github.com/gokcehan/lf/releases/download/r26/lf-linux-amd64.tar.gz
+tar xf lf-linux-amd64.tar.gz
+sudo chmod +x lf
+sudo mv lf /usr/bin/
+rm lf-linux-amd64.tar.gz
 
 # And install all required packages
 echo "Installing required packages now..."
