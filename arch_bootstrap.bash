@@ -5,8 +5,8 @@
 
 echo "Welcome to Bent's arch bootstrap script\n"
 
-# Check here if base58 is really always installed
-ROOT_PASSWORD=$(dd status=none bs=18 count=1 if=/dev/urandom | base58)
+# Use openssl as it is installed by default
+ROOT_PASSWORD=$(openssl rand -base64 24)
 
 read -r -p "Your root password is '$ROOT_PASSWORD', please write it down" -a arr
 
