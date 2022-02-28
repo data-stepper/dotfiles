@@ -21,18 +21,18 @@ echo $ROOT_PASSWORD'\n'$ROOT_PASSWORD'\n' | passwd
 bootctl install
 
 # Create the default boot loader config file
-echo "" > /boot/loader/entries/arch-uefi.conf
-echo "title\tArch Linux" >> /boot/loader/entries/arch-uefi.conf
-echo "linux\t/vmlinuz-linux" >> /boot/loader/entries/arch-uefi.conf
-echo "initrd\t/initramfs-linux.img" >> /boot/loader/entries/arch-uefi.conf
-echo "options\troot=LABEL=ROOT rw lang=de init=/usr/lib/systemd/systemd locale=en_US.UTF-8" >> /boot/loader/entries/arch-uefi.conf
+printf "" > /boot/loader/entries/arch-uefi.conf
+printf "title\tArch Linux\n" >> /boot/loader/entries/arch-uefi.conf
+printf "linux\t/vmlinuz-linux\n" >> /boot/loader/entries/arch-uefi.conf
+printf "initrd\t/initramfs-linux.img\n" >> /boot/loader/entries/arch-uefi.conf
+printf "options\troot=LABEL=ROOT rw lang=de init=/usr/lib/systemd/systemd locale=en_US.UTF-8\n" >> /boot/loader/entries/arch-uefi.conf
 
 # And create the fallback config file
-echo "" > /boot/loader/entries/arch-uefi-fallback.conf
-echo "title\tArch Linux Fallback" >> /boot/loader/entries/arch-uefi-fallback.conf
-echo "linux\t/vmlinuz-linux" >> /boot/loader/entries/arch-uefi-fallback.conf
-echo "initrd\t/initramfs-linux-fallback.img" >> /boot/loader/entries/arch-uefi-fallback.conf
-echo "options\troot=LABEL=ROOT rw lang=de init=/usr/lib/systemd/systemd locale=en_US.UTF-8" >> /boot/loader/entries/arch-uefi-fallback.conf
+printf "" > /boot/loader/entries/arch-uefi-fallback.conf
+printf "title\tArch Linux Fallback\n" >> /boot/loader/entries/arch-uefi-fallback.conf
+printf "linux\t/vmlinuz-linux\n" >> /boot/loader/entries/arch-uefi-fallback.conf
+printf "initrd\t/initramfs-linux-fallback.img\n" >> /boot/loader/entries/arch-uefi-fallback.conf
+printf "options\troot=LABEL=ROOT rw lang=de init=/usr/lib/systemd/systemd locale=en_US.UTF-8\n" >> /boot/loader/entries/arch-uefi-fallback.conf
 
 # Now create the real boot loader config file
 echo "" > /boot/loader/loader.conf
