@@ -1,0 +1,46 @@
+# This is the part of the install script that needs to be run inside
+# the arch-chroot
+
+# Create locales
+echo LANG=en_US.UTF-8 > /etc/locale.conf
+echo en_US.UTF-8 UTF-8 > /etc/locale.gen
+
+locale-gen
+
+# Set the local time to Berlin and sync the hw clock and sync the hw clock
+ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime
+hwclock --systohc
+
+# Create initramfs
+mkinitcpio -p linux
+
+# Change the root password
+echo $ROOT_PASSWORD'\n'$ROOT_PASSWORD'\n' | passwd
+
+# Now configure the bootloader
+bootctl install
+
+# Create the default boot loader config file
+echo "" > /boot/loader/entries/arch-uefi.conf
+echo "title\tArch Linux" >> /boot/loader/entries/arch-uefi.conf
+echo "linux\t/vmlinuz-linux" >> /boot/loader/entries/arch-uefi.conf
+echo "initrd\t/initramfs-linux.img" >> /boot/loader/entries/arch-uefi.conf
+echo "options\troot=LABEL=ROOT rw lang=de init=/usr/lib/systemd/systemd locale=en_US.UTF-8" >> /boot/loader/entries/arch-uefi.conf
+
+# And create the fallback config file
+echo "" > /boot/loader/entries/arch-uefi-fallback.conf
+echo "title\tArch Linux Fallback" >> /boot/loader/entries/arch-uefi-fallback.conf
+echo "linux\t/vmlinuz-linux" >> /boot/loader/entries/arch-uefi-fallback.conf
+echo "initrd\t/initramfs-linux-fallback.img" >> /boot/loader/entries/arch-uefi-fallback.conf
+echo "options\troot=LABEL=ROOT rw lang=de init=/usr/lib/systemd/systemd locale=en_US.UTF-8" >> /boot/loader/entries/arch-uefi-fallback.conf
+
+# Now create the real boot loader config file
+echo "" > /boot/loader/loader.conf
+echo "default\tarch-uefi.conf" >> /boot/loader/loader.conf
+echo "timeout\t2" >> /boot/loader/loader.conf
+
+# Now update the boot loader
+bootctl update
+
+# Exit from the arch-chroot so the other script can continue running
+exit
