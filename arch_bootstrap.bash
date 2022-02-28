@@ -6,17 +6,17 @@
 echo "Welcome to Bent's arch bootstrap script\n"
 
 read -r -p "Please enter your username: " -a arr
-HOSTNAME=${arr[0]}
+export HOSTNAME=${arr[0]}
 
 read -r -p "Please enter the password you want to use: " -a arr
-USERPASSWORD=${arr[0]}
+export USERPASSWORD=${arr[0]}
 
 read -r -p "Please enter the diskname you want to install arch linux on: " -a arr
-DISKNAME=${arr[0]}
+export DISKNAME=${arr[0]}
 
 # Use openssl as it is installed by default
 # Use it to generate a safe password
-ROOT_PASSWORD=$(openssl rand -base64 24)
+export ROOT_PASSWORD=$(openssl rand -base64 24)
 
 # Remove this line later, just to check if the install works now
 ROOT_PASSWORD=$USERPASSWORD
