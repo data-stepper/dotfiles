@@ -34,5 +34,6 @@ pacman --noconfirm -S firefox xclip scrot
 
 yay -S google-chrome-beta
 
-echo "If you want to use nvidia drivers "
+echo "If you want to use nvidia drivers, run following command assuming you have the newest GPU"
+echo "sudo pacman -S nvidia"
 
