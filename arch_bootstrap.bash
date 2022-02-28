@@ -23,6 +23,9 @@ ROOT_PASSWORD=$USERPASSWORD
 
 read -r -p "Your root password is '$ROOT_PASSWORD', please write it down" -a arr
 
+# First delete all partitions on the disk
+printf "d\n\nd\n\nd\n\nd\n\nd\n\nd\n\nd\n\nd\n\nd\n\nw\n" | fdisk /dev/$DISKNAME
+
 # Commands taken from here: https://wiki.archlinux.de/title/Gdisk
 printf "o\ny\nn\n\n\n+512M\nef00\nn\n\n\n\n8300\nw\ny\n" | gdisk /dev/$DISKNAME
 
@@ -60,6 +63,8 @@ echo $USERNAME > /etc/hostname
 # Create locales
 echo LANG=en_US.UTF-8 > /etc/locale.conf
 echo en_US.UTF-8 UTF-8 >> /etc/locale.gen
+
+locale-gen
 
 # Set the local time to Berlin
 lf -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime
