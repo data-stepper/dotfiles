@@ -35,7 +35,7 @@ printf "initrd\t/initramfs-linux-fallback.img\n" >> /boot/loader/entries/arch-ue
 printf "options\troot=LABEL=ROOT rw lang=de init=/usr/lib/systemd/systemd locale=en_US.UTF-8\n" >> /boot/loader/entries/arch-uefi-fallback.conf
 
 # Now create the real boot loader config file
-echo "" > /boot/loader/loader.conf
+printf "\n" > /boot/loader/loader.conf
 printf "default\tarch-uefi.conf\n" >> /boot/loader/loader.conf
 printf "timeout\t2\n" >> /boot/loader/loader.conf
 
