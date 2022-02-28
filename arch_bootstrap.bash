@@ -18,9 +18,6 @@ export DISKNAME=${arr[0]}
 # generate a safe password
 export ROOT_PASSWORD=$(openssl rand -base64 24)
 
-# Remove this line later, just to check if the install works now
-ROOT_PASSWORD=$USERPASSWORD
-
 read -r -p "Your root password is '$ROOT_PASSWORD', please write it down" -a arr
 
 # First delete all partitions on the disk
