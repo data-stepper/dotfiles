@@ -1,3 +1,9 @@
+# Install the base packages first
+# and update the system
+
+pacman -Syu
+pacman -S xorg
+
 echo "Downloading patched nerd fonts now..."
 . ./nerd_fonts_install.sh
 
@@ -11,22 +17,22 @@ rm lf-linux-amd64.tar.gz
 
 # And install all required packages
 echo "Installing required packages now..."
-sudo apt install -y zathura i3 compton entr zsh nitrogen curl sxiv htop scrot
+sudo pacman --noconfirm -Sy zathura i3 compton entr zsh nitrogen curl sxiv htop scrot
 
 # Install all versions of vim for best compatibility
-sudo apt install -y vim-gtk3 neovim-qt neovim vim
+sudo pacman --noconfirm -Sy vim-gtk3 neovim-qt neovim vim
 
 # Install nodejs and npm for coc language server
 # Install nodejs version 12
 curl -fsSL https://deb.nodesource.com/setup_12.x | sudo -E bash -
-sudo apt-get install -y nodejs
+sudo pacman --noconfirm -Sy nodejs
 
 # Not sure if npm is still needed (maybe remove this?)
 # sudo apt install npm
 
 # Install latex environment
-sudo apt install -y texlive texlive-latex-extra texlive-lang-german texlive-pictures
-sudo apt install -y latexmk
+sudo pacman --noconfirm -Sy texlive texlive-latex-extra texlive-lang-german texlive-pictures
+sudo pacman --noconfirm -Sy latexmk
 
 # Install nativefier
 sudo npm install -g nativefier
@@ -42,16 +48,13 @@ nativefier -n "Notion" https://www.notion.so/Dashboard-4e94ded4b284488d84191448a
 sudo ln -s ~/.nativefied/Gmail-linux-x64/Gmail /usr/bin/gmail
 sudo ln -s ~/.nativefied/Notion-linux-x64/Notion /usr/bin/notion
 
-# Add i3-gaps as primary window manager
-sudo add-apt-repository -y ppa:regolith-linux/release
-sudo apt update
-sudo apt install -y i3-gaps
-
 # Install alacritty terminal emulator
 sudo snap install alacritty --classic
 
 # Copy all files
 . ./setup.sh
+
+pacman -Syu
 
 # Now instruct the user to change the shell
 echo "Installed everything..."
