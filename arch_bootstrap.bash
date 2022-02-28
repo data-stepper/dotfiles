@@ -58,7 +58,7 @@ genfstab -U /mnt > /mnt/etc/fstab
 # Chroot into root file system
 arch-chroot /mnt
 
-echo $USERNAME > /etc/hostname
+echo $USERNAME's-linux-box' > /etc/hostname
 
 # Create locales
 echo LANG=en_US.UTF-8 > /etc/locale.conf
@@ -66,8 +66,9 @@ echo en_US.UTF-8 UTF-8 > /etc/locale.gen
 
 locale-gen
 
-# Set the local time to Berlin
+# Set the local time to Berlin and sync the hw clock and sync the hw clock
 ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime
+hwclock --systohc
 
 # Create initramfs
 mkinitcpio -p linux
