@@ -62,7 +62,7 @@ echo $USERNAME > /etc/hostname
 
 # Create locales
 echo LANG=en_US.UTF-8 > /etc/locale.conf
-echo en_US.UTF-8 UTF-8 >> /etc/locale.gen
+echo en_US.UTF-8 UTF-8 > /etc/locale.gen
 
 locale-gen
 
@@ -87,10 +87,10 @@ echo "options\troot=LABEL=ROOT rw lang=de init=/usr/lib/systemd/systemd locale=e
 
 # And create the fallback config file
 echo "" > /boot/loader/entries/arch-uefi-fallback.conf
-echo "title\tArch Linux Fallback" >> /boot/loader/entries/arch-uefi.conf
-echo "linux\t/vmlinuz-linux" >> /boot/loader/entries/arch-uefi.conf
-echo "initrd\t/initramfs-linux-fallback.img" >> /boot/loader/entries/arch-uefi.conf
-echo "options\troot=LABEL=ROOT rw lang=de init=/usr/lib/systemd/systemd locale=en_US.UTF-8" >> /boot/loader/entries/arch-uefi.conf
+echo "title\tArch Linux Fallback" >> /boot/loader/entries/arch-uefi-fallback.conf
+echo "linux\t/vmlinuz-linux" >> /boot/loader/entries/arch-uefi-fallback.conf
+echo "initrd\t/initramfs-linux-fallback.img" >> /boot/loader/entries/arch-uefi-fallback.conf
+echo "options\troot=LABEL=ROOT rw lang=de init=/usr/lib/systemd/systemd locale=en_US.UTF-8" >> /boot/loader/entries/arch-uefi-fallback.conf
 
 # Now create the real boot loader config file
 echo "" > /boot/loader/loader.conf
@@ -101,8 +101,6 @@ echo "timeout\t2" >> /boot/loader/loader.conf
 bootctl update
 
 # Now reboot the system and the post-install script shall be run
-exit
-
 umount /mnt/boot
 umount /mnt
 
