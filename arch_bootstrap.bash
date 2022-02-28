@@ -59,6 +59,7 @@ echo $USERNAME's-linux-box' > /mnt/etc/hostname
 
 # Download the inside_chroot.sh script
 curl -LO raw.githubusercontent.com/data-stepper/dotfiles/main/inside_chroot.sh
+mv inside_chroot.sh /mnt/inside_chroot.sh
 
 # Chroot into root file system
 arch-chroot /mnt
