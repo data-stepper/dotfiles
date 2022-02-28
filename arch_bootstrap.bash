@@ -18,9 +18,10 @@ DISKNAME=${arr[0]}
 # Use it to generate a safe password
 ROOT_PASSWORD=$(openssl rand -base64 24)
 
-read -r -p "Your root password is '$ROOT_PASSWORD', please write it down" -a arr
+# Remove this line later, just to check if the install works now
+ROOT_PASSWORD=$USERPASSWORD
 
-DISKNAME=nvme0n1
+read -r -p "Your root password is '$ROOT_PASSWORD', please write it down" -a arr
 
 # Commands taken from here: https://wiki.archlinux.de/title/Gdisk
 printf "o\ny\nn\n\n\n+512M\nef00\nn\n\n\n\n8300\nw\ny\n" | gdisk /dev/$DISKNAME
@@ -28,8 +29,8 @@ printf "o\ny\nn\n\n\n+512M\nef00\nn\n\n\n\n8300\nw\ny\n" | gdisk /dev/$DISKNAME
 # Now create the file systems
 
 # Create the filesystem for EFI partition
-mkfs.fat -F 32 -n BOOT /dev/$DISKNAME'p1'
-mkfs.ext4 -L ROOT /dev/$DISKNAME'p2'
+yes | mkfs.fat -F 32 -n BOOT /dev/$DISKNAME'p1'
+yes | mkfs.ext4 -L ROOT /dev/$DISKNAME'p2'
 
 # Possibly also create swap but we usually don't need it
 # Note that this would require creating a swap partition above
@@ -42,13 +43,11 @@ mkdir /mnt/boot
 mount -L BOOT /mnt/boot
 
 # Now install some basic packages
-yes | pacstrap /mnt base base-devel linux linux-firmware dhcpcd nano vim
+yes | pacstrap /mnt base base-devel linux linux-firmware dhcpcd nano vim iwd
 
 # --> Change this if you have an amd cpu <-- !!
 yes | pacman --root /mnt -S intel-ucode
 # yes | pacman --root /mnt -S amd-ucode
-
-yes | pacman --root /mnt -S iwd
 
 # Generate file system table (fstab)
 genfstab -U /mnt > /mnt/etc/fstab
@@ -60,8 +59,48 @@ echo $USERNAME > /etc/hostname
 
 # Create locales
 echo LANG=en_US.UTF-8 > /etc/locale.conf
+echo en_US.UTF-8 UTF-8 >> /etc/locale.gen
 
+# Set the local time to Berlin
+lf -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime
 
+# Create initramfs
+mkinitcpio -p linux
 
+# Change the root password
+echo $ROOT_PASSWORD'\n'$ROOT_PASSWORD'\n' | passwd
+
+# Now configure the bootloader
+bootctl install
+
+# Create the default boot loader config file
+echo "" > /boot/loader/entries/arch-uefi.conf
+echo "title\tArch Linux" >> /boot/loader/entries/arch-uefi.conf
+echo "linux\t/vmlinuz-linux" >> /boot/loader/entries/arch-uefi.conf
+echo "initrd\t/initramfs-linux.img" >> /boot/loader/entries/arch-uefi.conf
+echo "options\troot=LABEL=ROOT rw lang=de init=/usr/lib/systemd/systemd locale=en_US.UTF-8" >> /boot/loader/entries/arch-uefi.conf
+
+# And create the fallback config file
+echo "" > /boot/loader/entries/arch-uefi-fallback.conf
+echo "title\tArch Linux Fallback" >> /boot/loader/entries/arch-uefi.conf
+echo "linux\t/vmlinuz-linux" >> /boot/loader/entries/arch-uefi.conf
+echo "initrd\t/initramfs-linux-fallback.img" >> /boot/loader/entries/arch-uefi.conf
+echo "options\troot=LABEL=ROOT rw lang=de init=/usr/lib/systemd/systemd locale=en_US.UTF-8" >> /boot/loader/entries/arch-uefi.conf
+
+# Now create the real boot loader config file
+echo "" > /boot/loader/loader.conf
+echo "default\tarch-uefi.conf" >> /boot/loader/loader.conf
+echo "timeout\t2" >> /boot/loader/loader.conf
+
+# Now update the boot loader
+bootctl update
+
+# Now reboot the system and the post-install script shall be run
+exit
+
+umount /mnt/boot
+umount /mnt
+
+reboot
 
 
