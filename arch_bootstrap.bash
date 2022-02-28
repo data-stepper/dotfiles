@@ -53,7 +53,7 @@ yes | pacman --root /mnt -S intel-ucode
 # yes | pacman --root /mnt -S amd-ucode
 
 # Generate file system table (fstab)
-genfstab -U /mnt > /mnt/etc/fstab
+genfstab -U /mnt >> /mnt/etc/fstab
 
 # Chroot into root file system
 arch-chroot /mnt
