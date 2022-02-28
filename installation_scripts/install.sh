@@ -1,12 +1,3 @@
-# Install the base packages first
-# and update the system
-
-pacman -Syu
-pacman -S xorg
-
-echo "Downloading patched nerd fonts now..."
-. ./nerd_fonts_install.sh
-
 echo "Installing lf file manager now..."
 cd ~
 curl -LO https://github.com/gokcehan/lf/releases/download/r26/lf-linux-amd64.tar.gz

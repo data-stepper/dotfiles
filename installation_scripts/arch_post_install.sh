@@ -28,9 +28,9 @@ cd ~
 sudo snap install alacritty --classic
 
 # Install some important packages
-pacman --noconfirm -S xorg ttf-ubuntu-font-family xorg-server
-pacman --noconfirm -S xorg-xinit unzip zip xterm i3-gaps
-pacman --noconfirm -S firefox xclip scrot
+pacman --noconfirm -S xorg ttf-ubuntu-font-family xorg-server \
+xorg-xinit unzip zip xterm i3-gaps \
+firefox opera xclip scrot
 
 yay -S google-chrome-beta
 
