@@ -129,7 +129,12 @@ arch-chroot /mnt sh ./inside_chroot.sh
 # Generate file system table (fstab)
 # Do it after the stuff inside chroot is done
 # For some reason it doesn't work when it is done before
-genfstab -U /mnt > /mnt/etc/fstab
+
+# TODO: UUID changes after install
+# Then when trying to boot the system waits to load the drive 
+
+# This is why we are now using the fstab with drive labels and not UUIDs
+genfstab -L /mnt > /mnt/etc/fstab
 
 # Allow wheel users to use sudo without command
 echo "%wheel ALL=(ALL:ALL) NOPASSWD: ALL" >> /mnt/etc/sudoers
