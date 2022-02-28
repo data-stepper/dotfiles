@@ -15,7 +15,7 @@ read -r -p "Please enter the diskname you want to install arch linux on: " -a ar
 export DISKNAME=${arr[0]}
 
 # Use openssl as it is installed by default
-# Use it to generate a safe password
+# generate a safe password
 export ROOT_PASSWORD=$(openssl rand -base64 24)
 
 # Remove this line later, just to check if the install works now
@@ -46,16 +46,13 @@ mkdir /mnt/boot
 mount -L BOOT /mnt/boot
 
 # Now install some basic packages
-yes | pacstrap /mnt base base-devel linux linux-firmware dhcpcd nano vim iwd
+yes | pacstrap /mnt base base-devel linux linux-firmware dhcpcd nano vim iwd vi git
 
-# --> Change this if you have an amd cpu <-- !!
+# --> Change this if you have an AMD cpu <-- !!
 yes | pacman --root /mnt -S intel-ucode
 # yes | pacman --root /mnt -S amd-ucode
 
-# Generate file system table (fstab)
-genfstab -U /mnt >> /mnt/etc/fstab
-
-echo $USERNAME's-linux-box' > /mnt/etc/hostname
+echo $HOSTNAME's-linux-box' > /mnt/etc/hostname
 
 cat <<EOF > /mnt/inside_chroot.sh
 # This is the part of the install script that needs to be run inside
@@ -75,7 +72,18 @@ hwclock --systohc
 mkinitcpio -p linux
 
 # Change the root password
-echo $ROOT_PASSWORD'\n'$ROOT_PASSWORD'\n' | passwd
+printf $ROOT_PASSWORD'\n'$ROOT_PASSWORD'\n' | passwd
+
+# Create the main system's user so root will not be used
+mkdir /home/$HOSTNAME
+useradd --groups wheel --home-dir /home/$HOSTNAME $HOSTNAME
+printf $USERPASSWORD'\n'$USERPASSWORD'\n' | passwd $HOSTNAME
+
+# The user also needs to own his/her home directory
+chown $HOSTNAME:wheel /home/$HOSTNAME
+
+# This script uses systemd-boot as bootloader because it is already
+# installed and thus more easy to set up now
 
 # Now configure the bootloader
 bootctl install
@@ -102,12 +110,35 @@ printf "timeout\t2\n" >> /boot/loader/loader.conf
 # Now update the boot loader
 bootctl update
 
+# Create a git directory and clone the dotfiles into it
+# This way installation can be proceeded with faster
+mkdir /home/$HOSTNAME/git
+cd /home/$HOSTNAME/git
+git clone https://github.com/data-stepper/dotfiles
+
 # Exit from the arch-chroot so the other script can continue running
 exit
 EOF
 
-# Chroot into root file system
-arch-chroot /mnt ROOT_PASSWORD=$ROOT_PASSWORD bash ./inside_chroot.sh
+# Turns out that the environment variables are passed to arch-chroot
+# But set them explicitly here to remember
+export ROOT_PASSWORD=$ROOT_PASSWORD
+export HOSTNAME=$HOSTNAME
+export USERPASSWORD=$USERPASSWORD
+
+# Chroot into root file system and run the script
+arch-chroot /mnt sh ./inside_chroot.sh
+
+# Generate file system table (fstab)
+# Do it after the stuff inside chroot is done
+# For some reason it doesn't work when it is done before
+genfstab -U /mnt > /mnt/etc/fstab
+
+# Allow wheel users to use sudo without command
+echo "%wheel ALL=(ALL:ALL) NOPASSWD: ALL" >> /mnt/etc/sudoers
+
+# And remove the script after installation
+rm /mnt/inside_chroot.sh
 
 # Now reboot the system and the post-install script shall be run
 umount /mnt/boot
