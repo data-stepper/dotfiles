@@ -21,7 +21,7 @@ DISKNAME=${arr[0]}
 
 # TODO: Here pipe in the commands to partition the disks with gdisk
 # Commands taken from here: https://wiki.archlinux.de/title/Gdisk
-printf "" | gdisk /dev/$DISKNAME
+printf "o\ny\nn\n\n\n+512M\nef00\nn\n\n\n\n8300\nw\ny\n" | gdisk /dev/$DISKNAME
 
 
 
