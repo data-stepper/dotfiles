@@ -59,12 +59,12 @@ cp ../config_files/compton.conf ~/.config/compton.conf
 sudo cp ../config_files/zprofile ~/.zprofile
 
 # Copy auto python scripts
-sudo cp ./scripts/autorunpy /usr/bin/
-sudo cp ./scripts/autotestpy /usr/bin/
+sudo cp ../utilitiy_scripts/autorunpy /usr/bin/
+sudo cp ../utilitiy_scripts/autotestpy /usr/bin/
 
 # Create screenshot directory
 mkdir -p ~/screenshots
 
 # Copy screenshot scripts
-sudo cp ./scripts/screenshot-anki-card-trigger.py /bin
+sudo cp ../utilitiy_scripts/screenshot-anki-card-trigger.py /bin
 
