@@ -33,10 +33,14 @@ xorg-xinit unzip zip xterm i3-gaps \
 firefox opera xclip scrot
 
 yay -S google-chrome-beta
+yay --noconfirm -S npm
 
 yay -Syu
 pacman -Syu
 
 echo "If you want to use nvidia drivers, run following command assuming you have the newest GPU"
 echo "sudo pacman -S nvidia"
+echo "Otherwise you should install the regular video drivers like so:"
+echo "sudo pacman -S xf86-video-intel"
+echo "IMPORTANT: ^^^ Install video drivers"
 

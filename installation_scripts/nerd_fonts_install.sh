@@ -16,7 +16,13 @@ unzip FiraCode.zip
 unzip Hack.zip
 unzip IBMPlexMono.zip
 
+# This directory is deprecated apparently
 sudo cp *.ttf ~/.fonts
 
+mkdir -p ~/.local/share/fonts/ttf
+sudo cp *.ttf ~/.local/share/fonts/ttf
+
 cd ~
+
+# The user needs to remove the fonts_download directory by himself
 
