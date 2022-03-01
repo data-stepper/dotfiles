@@ -18,9 +18,6 @@ sudo pacman --noconfirm -Sy vim-gtk3 neovim-qt neovim vim
 curl -fsSL https://deb.nodesource.com/setup_12.x | sudo -E bash -
 sudo pacman --noconfirm -Sy nodejs
 
-# Not sure if npm is still needed (maybe remove this?)
-# sudo apt install npm
-
 # Install latex environment
 sudo pacman --noconfirm -Sy texlive texlive-latex-extra texlive-lang-german texlive-pictures
 sudo pacman --noconfirm -Sy latexmk
@@ -43,7 +40,7 @@ sudo ln -s ~/.nativefied/Notion-linux-x64/Notion /usr/bin/notion
 sudo snap install alacritty --classic
 
 # Copy all files
-. ./setup.sh
+./setup.sh
 
 pacman -Syu
 

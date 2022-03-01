@@ -19,5 +19,4 @@ unzip IBMPlexMono.zip
 sudo cp *.ttf ~/.fonts
 
 cd ~
-rm fonts_download
 
