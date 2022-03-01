@@ -38,9 +38,8 @@ yay --noconfirm -S npm
 yay -Syu
 pacman -Syu
 
-echo "If you want to use nvidia drivers, run following command assuming you have the newest GPU"
-echo "sudo pacman -S nvidia"
-echo "Otherwise you should install the regular video drivers like so:"
-echo "sudo pacman -S xf86-video-intel"
-echo "IMPORTANT: ^^^ Install video drivers"
+cd ~
+curl -LO https://repo.anaconda.com/miniconda/Miniconda3-py39_4.11.0-Linux-x86_64.sh
 
+# That script needs to be run as user and not root
+# sh Miniconda3-py39_4.11.0-Linux-x86_64.sh
