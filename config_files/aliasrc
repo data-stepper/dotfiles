@@ -1,17 +1,12 @@
 
 # Git stuff
-alias gce="~/dotfiles/scripts/git_commit_folder.sh"
 alias gs="git status"
 
-alias guni="cd ~/Documents/Uni"
-alias scs="cd ~/dotfiles/scripts"
-
 # Always use neovim, bye bye gui neovim
-# alias v="nvim-qt"
 alias v="nvim"
 
 # vrc opens both neovim config files
-alias vrc="nvim-qt ~/.config/nvim/*.vim"
+alias vrc="nvim ~/.config/nvim/*.vim"
 
 alias x="chmod +x"
 
@@ -20,11 +15,10 @@ alias mv="mv -iv"
 alias cp="cp -rv"
 alias mkdir="mkdir -pv"
 
-alias prompt="~/dotfiles/prompt.sh"
-alias al="nvim-qt ~/dotfiles/aliasrc"
-alias venv=". ~/dotfiles/scripts/./open_venv.sh"
+alias al="nvim ~/dotfiles/aliasrc"
 
-alias sdn="shutdown now"
+alias sdn="sudo systemctl poweroff"
 
-alias update="sudo apt update && sudo apt -y upgrade && sudo npm install -g npm"
+# Also add snap store update
+alias update="sudo pacman -Syu && sudo yay -Syu && sudo npm install -g npm"
 
