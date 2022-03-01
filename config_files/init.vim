@@ -1,3 +1,5 @@
+" This is what used to be called .vimrc
+
 set nocompatible
 filetype off
 
@@ -57,6 +59,13 @@ Plug 'universal-ctags/ctags'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+	let g:coc_global_extensions = [
+		\'coc-sh',
+		\'coc-pyright',
+		\'coc-jedi',
+		\'coc-tabnine',
+		\'coc-json'
+	\]
 
 " Shows buffers and tabs opened
 Plug 'bling/vim-bufferline'
