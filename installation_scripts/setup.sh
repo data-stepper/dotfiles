@@ -52,8 +52,8 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
 cp ../config_files/coc-settings.json ~/.vim/coc-settings.json
 cp ../config_files/coc-settings.json ~/.config/nvim/coc-settings.json
 
-# Setup compton composition manager
-cp ../config_files/compton.conf ~/.config/compton.conf
+# Setup picom (before compton) composition manager
+cp ../config_files/picom.conf ~/.config/picom.conf
 
 # Copy startup script
 sudo cp ../config_files/zprofile ~/.zprofile
