@@ -1,14 +1,5 @@
-#!/bin/bash
 
-# Increase key repeat
-xset r rate 220 80
-
-# Set wallpaper
-nitrogen --set-zoom-fill ~/Documents/Wallpaper &
-
-# Start composition manager
-compton &
-
-# Clean the download folder to keep it organized always
-rm -rf ~/Downloads/*
-
+# Start only when in console login shell
+if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
+	startx
+fi
