@@ -113,6 +113,9 @@ mkdir /home/$HOSTNAME/git
 cd /home/$HOSTNAME/git
 git clone https://github.com/data-stepper/dotfiles
 
+# IMPORTANT: Change the home directory ownership to the user recursively.
+chown -R $HOSTNAME:wheel /home/$HOSTNAME
+
 # Exit from the arch-chroot so the other script can continue running
 exit
 EOF
@@ -147,5 +150,4 @@ umount /mnt/boot
 umount /mnt
 
 reboot
-
 
