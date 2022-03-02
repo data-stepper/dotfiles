@@ -33,7 +33,7 @@ xorg-xinit unzip zip xterm i3-gaps \
 firefox opera xclip scrot
 
 yay -S google-chrome-beta
-yay --noconfirm -S npm
+yay --noconfirm -S npm termdown
 
 yay -Syu
 pacman -Syu
