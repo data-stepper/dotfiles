@@ -185,9 +185,6 @@ noremap <C-l> <C-w>l
 " In terminals Esc enters normal mode
 tnoremap <Esc> <C-\><C-n>
 
-" In normal mode escape removes search result highlighting
-nnoremap <Esc> :nohlsearch<CR>
-
 " Make sure split movement works in terminals as well
 tnoremap <C-h> <C-w>h
 tnoremap <C-j> <C-w>j
@@ -261,7 +258,9 @@ nnoremap <c-u> :source ~/.config/nvim/init.vim<CR> :CocRestart<CR>
 nnoremap <silent> <leader>n :tabnew<CR>
 nnoremap <silent> <leader>m :bnext<CR>
 nnoremap <silent> <leader>M :bNext<CR>
-nnoremap <Esc> gt
+
+" In normal mode escape removes search result highlighting
+nnoremap <Esc> gt:nohlsearch<CR>
 
 " Quit or close buffers
 nnoremap <leader>q <C-W>c
