@@ -10,6 +10,8 @@ consistent and easy-to-use as well as easy to install Full Disk Encryption (FDE)
 
 ## Installation
 
+UPDATE: Using arch linux from now on
+
 Follow the below described installation process to fully ulitize my dotfiles.
 
 Download and install Kubuntu 20.04:

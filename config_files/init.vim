@@ -59,12 +59,18 @@ Plug 'universal-ctags/ctags'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+	" Maybe think about switching from coc-jedi to
+	" https://github.com/pappasam/jedi-language-server
+	" as it seems to be better supported
 	let g:coc_global_extensions = [
 		\'coc-sh',
 		\'coc-pyright',
 		\'coc-jedi',
 		\'coc-tabnine',
 		\'coc-json',
+		\'coc-texlab',
+		\'coc-markdownlint',
+		\'coc-yaml',
 		\'coc-snippets'
 	\]
 
