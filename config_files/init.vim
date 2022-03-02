@@ -64,7 +64,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 		\'coc-pyright',
 		\'coc-jedi',
 		\'coc-tabnine',
-		\'coc-json'
+		\'coc-json',
+		\'coc-snippets'
 	\]
 
 " Shows buffers and tabs opened
