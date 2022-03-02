@@ -185,6 +185,9 @@ noremap <C-l> <C-w>l
 " In terminals Esc enters normal mode
 tnoremap <Esc> <C-\><C-n>
 
+" In normal mode escape removes search result highlighting
+nnoremap <Esc> :nohlsearch<CR>
+
 " Make sure split movement works in terminals as well
 tnoremap <C-h> <C-w>h
 tnoremap <C-j> <C-w>j
