@@ -32,7 +32,8 @@ ssh-server () {
 	echo "SSH server started now, connect to it via: [ssh|sftp] USER@IP-ADDRESS"
 	echo "Press <Enter> to kill the ssh server again"
 	read
-	sudo systemctl kill sshd.service
+	# Don't use kill it won't stop the server daemon
+	sudo systemctl stop sshd.service
 	echo "SSH server daemon killed"
 }
 
