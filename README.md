@@ -10,52 +10,7 @@ consistent and easy-to-use as well as easy to install Full Disk Encryption (FDE)
 
 ## Installation
 
-UPDATE: Using arch linux from now on
-
-Follow the below described installation process to fully ulitize my dotfiles.
-
-Download and install Kubuntu 20.04:
-
-```
-https://cdimage.ubuntu.com/kubuntu/releases/20.04.3/release/kubuntu-20.04.3-desktop-amd64.iso
-```
-
-After this, run the following commands in konsole to install my dotfiles:
-
-```
-sudo apt install git
-mkdir git
-cd git
-git clone https://github.com/data-stepper/dotfiles
-cd dotfiles
-./install.sh
-```
-
-After this you will need to restart your PC, let i3 generate the default config file and zsh also generate a default .zshrc and then
-run the install script again to override the configuration files.
-
-Unfortunately not the entire installation process is automated yet, so after this you will still need to
-install vim-plug (from https://github.com/junegunn/vim-plug ). But I copied here the exact shell command
-you need to copy in order to install vim-plug for neovim.
-
-```
-sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-```
-
-After you have installed vim-plug, start a new nvim instance (alias v in shell) and run
-
-```
-:PlugInstall
-```
-
-which will install all vim plugins I use. Restart the vim instance and install the following CoC extensions:
-
-```
-:CocInstall coc-jedi coc-json coc-tabnine coc-snippets
-```
-
-After this you should be ready to go and start using my dotfiles.
+UPDATE: Using arch linux from now on, rewrite this part as it needs to be updated.
 
 ## What I use - in detail
 
