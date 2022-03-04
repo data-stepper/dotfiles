@@ -20,6 +20,7 @@ sudo pacman --noconfirm -Sy nodejs
 
 # Install latex environment
 sudo pacman --noconfirm -Sy texlive texlive-latex-extra texlive-lang-german texlive-pictures
+sudo pacman --noconfirm -Sy ctags # Need for neovim
 sudo pacman --noconfirm -Sy latexmk
 
 # Install nativefier
