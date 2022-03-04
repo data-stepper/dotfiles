@@ -33,9 +33,6 @@ Plug 'junegunn/goyo.vim'
 " My own ai assist plugin
 Plug 'data-stepper/ai-text-assist'
 
-" Devicons plugin somehow doesn't work
-" Plug 'ryanoasis/vim-devicons'
-
 " Vim and latex combination
 Plug 'lervag/vimtex'
 	let g:tex_flavor='latex'
@@ -52,6 +49,9 @@ Plug 'KeitaNakamura/tex-conceal.vim'
 Plug 'altercation/vim-colors-solarized'
 Plug 'rafi/awesome-vim-colorschemes'
 Plug 'sonph/onehalf', { 'rtp': 'vim' }
+
+" For markdown editing
+Plug 'ellisonleao/glow.nvim'
 
 " Only use for python editing
 Plug 'majutsushi/tagbar'

@@ -2,7 +2,7 @@
 
 Welcome to my dotfiles repo, feel free to contribute if you like. My dotfiles are at the heart of the work I do, so I am planning to expand its usability, functionality and bare speed.
 
-I use Kubuntu 20.04, neovim through nvim-qt ( as I prefer a graphical interface ) together with i3 window manager, nitrogen for wallpaper support and compton for window transparency.
+I use arch linux.
 
 Disclaimer: In this state my dotfiles are still not matured and I would like to change that. Certain updates affect their functionality.
 For this reason I am planning to switch to arch linux in the future. My only concern is that I did not yet find a way to implement
@@ -45,22 +45,14 @@ As I also work with latex, I use zathura as my primary PDF viewer. It is availab
 
 Compton is a tool I use to make my windows transparent, it is installed by the installation script as an ubuntu package.
 
-### Neovim - the editor of choice!
+### Neovim - the editor of choice
 
 I use neovim, also installed as an ubuntu package. With neovim I use mainly the following plugins to assist coding or writing latex documents:
 
 # TODO List
 
-- [ ] Installation script installs lf file manager
-- [ ] Installation script installs vim-plug
+- [x] Installation script installs lf file manager
+- [x] Installation script installs vim-plug
 - [ ] Finish README.MD
 - [ ] Find a way to do full disk encryption on arch linux
-
-
-
-
-
-
-
-
 
