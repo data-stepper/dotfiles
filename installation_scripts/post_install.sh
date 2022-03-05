@@ -24,20 +24,16 @@ esac
 sudo pacman -Syu
 
 # Now do the big pacman install
+# Put ALL pacman packages in that package list
 sudo pacman --noconfirm -Sy - < ./pkg_lists/pacman.txt
 
-# Install the yay AUR helper
+# Install the yay, AUR helper
 cd ~
 sudo pacman --noconfirm -S --needed git base-devel
 git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si
 cd ~
-
-# Install some important packages
-pacman --noconfirm -S xorg ttf-ubuntu-font-family xorg-server \
-xorg-xinit unzip zip xterm i3-gaps \
-firefox opera xclip scrot
 
 yay -S google-chrome-beta
 yay --noconfirm -S npm termdown
@@ -48,9 +44,6 @@ pacman -Syu
 cd ~
 curl -LO https://repo.anaconda.com/miniconda/Miniconda3-py39_4.11.0-Linux-x86_64.sh
 
-# That script needs to be run as user and not root
-# sh Miniconda3-py39_4.11.0-Linux-x86_64.sh
-
 # sudo sh ./additional_scripts/additional_packages.sh
 echo "Installing lf file manager now..."
 cd ~
@@ -60,22 +53,15 @@ sudo chmod +x lf
 sudo mv lf /usr/bin/
 rm lf-linux-amd64.tar.gz
 
-# And install all required packages
-echo "Installing required packages now..."
-sudo pacman --noconfirm -Sy zathura i3 compton entr zsh nitrogen curl sxiv htop scrot
-
-# Install all versions of vim for best compatibility
-sudo pacman --noconfirm -Sy vim-gtk3 neovim-qt neovim vim
-
 # Install nodejs and npm for coc language server
 # Install nodejs version 12
 curl -fsSL https://deb.nodesource.com/setup_12.x | sudo -E bash -
 sudo pacman --noconfirm -Sy nodejs
 
 # Install latex environment
-sudo pacman --noconfirm -Sy texlive texlive-latex-extra texlive-lang-german texlive-pictures
-sudo pacman --noconfirm -Sy ctags usbutils # Need for neovim
-sudo pacman --noconfirm -Sy latexmk
+# The latex packages don't work right now, check later why that is
+# Or look for different arch packages
+# sudo pacman --noconfirm -Sy texlive texlive-latex-extra texlive-lang-german texlive-pictures
 
 # Install nativefier
 sudo npm install -g nativefier
@@ -91,31 +77,17 @@ nativefier -n "Notion" https://www.notion.so/Dashboard-4e94ded4b284488d84191448a
 sudo ln -s ~/.nativefied/Gmail-linux-x64/Gmail /usr/bin/gmail
 sudo ln -s ~/.nativefied/Notion-linux-x64/Notion /usr/bin/notion
 
-# Install alacritty terminal emulator
-sudo snap install alacritty --classic
-
 # Copy all files
-./setup.sh
+. ./setup.sh
 
-pacman -Syu
+sh ./additional_scripts/nerd_fonts_install.sh
+
+echo "You did it!"
+
+# That script needs to be run as user and not root
+sh Miniconda3-py39_4.11.0-Linux-x86_64.sh
 
 # Now instruct the user to change the shell
 echo "Installed everything..."
 echo "Now you should change your default shell to zsh with the following command:"
 echo "\tchsh -s /usr/bin/zsh"
-
-
-sh ./additional_scripts/nerd_fonts_install.sh
-
-echo "You did it!"
-echo "If you want to use nvidia drivers, run following command assuming you have the newest GPU"
-echo "sudo pacman -S nvidia"
-echo "Otherwise you should install the regular video drivers like so:"
-echo "sudo pacman -S xf86-video-intel"
-echo "IMPORTANT: ^^^ Install video drivers"
-
-echo "After you have installed the video drivers, install miniconda with the script"
-echo "sh Miniconda3-py39_4.11.0-Linux-x86_64.sh"
-echo "You will find it in you ~. Do NOT use sudo to execute that script!"
-
-
