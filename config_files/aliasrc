@@ -19,7 +19,7 @@ alias al="nvim ~/dotfiles/aliasrc"
 alias sdn="sudo systemctl poweroff"
 
 # Also add snap store update
-alias update="sudo pacman -Syu && sudo yay -Syu && sudo npm install -g npm"
+alias update="sudo pacman -Syu && yay -Syu && sudo npm install -g npm"
 
 # Add one for ssh server so I don't always have to google that
 ssh-server () {
