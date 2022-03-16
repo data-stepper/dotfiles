@@ -35,7 +35,7 @@ fi
 # Now start the x server with my configuration
 sudo dhcpcd # Launch dynamic ip address DHCP
 sudo systemctl start iwd # Start the wireless interface
-sudo rm -rf ~/Downloads/* # Remove all contents of the Download folder to keep it clean
+rm -rf ~/Downloads/* # Remove all contents of the Download folder to keep it clean
 nitrogen --set-zoom-fill ~/git/dotfiles/Wallpapers/pexels-mirco-violent-blur-4072840.jpg
 compton &
 xset r rate 220 80

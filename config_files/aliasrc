@@ -17,6 +17,7 @@ alias mkdir="mkdir -pv"
 alias al="nvim ~/dotfiles/aliasrc"
 
 alias sdn="sudo systemctl poweroff"
+alias reboot="sudo systemctl reboot"
 
 # Also add snap store update
 alias update="sudo pacman -Syu && yay -Syu && sudo npm install -g npm"
