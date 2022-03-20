@@ -1,6 +1,6 @@
 {
 	"pyright.enable": true,
-	"python.jediEnabled": false,
+	"python.linting.flake8Enabled": true,
 	"python.formatting.provider": "black",
 	"python.formatting.blackPath": "/home/bent/miniconda3/bin/black",
 	"python.formatting.blackArgs": [
@@ -12,6 +12,7 @@
 	"coc.preferences.formatOnType": true,
 	"coc.preferences.formatOnSaveFiletypes": ["python"],
 	"coc.source.ultisnips.enable": true,
-	"coc.source.ultisnips.priority": 100
+	"coc.source.ultisnips.priority": 100,
+	"snippets.ultisnips.trace": true
 }
 
