@@ -46,6 +46,7 @@ opera
 pacman
 patch
 picom
+python-greenlet
 pkgconf
 pulseaudio
 pulseaudio-alsa
