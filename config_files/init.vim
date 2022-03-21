@@ -30,6 +30,9 @@ Plug 'yegappan/mru'
 Plug 'justinmk/vim-sneak'
 Plug 'junegunn/goyo.vim'
 
+" Try this cool debugging tool
+Plug 'puremourning/vimspector'
+
 " My own ai assist plugin
 Plug 'data-stepper/ai-text-assist'
 
@@ -112,6 +115,9 @@ set noswapfile
 " Map leader key to ','
 let mapleader=","
 nmap <leader>w :w<CR>
+
+" Launch action menu with leader + a
+nmap <silent> <leader>a :CocAction<CR>
 
 " File browser and most recently used files
 nmap <silent> <C-N> :NERDTreeToggle<CR>
