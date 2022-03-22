@@ -150,8 +150,8 @@ set termguicolors
 set background=dark
 
 " Better colorscheme for latex
-colorscheme one
-" colorscheme flattened_dark
+" colorscheme one
+colorscheme flattened_light
 
 " Below is only needed when using nord colorscheme and goyo plugin
 " When using nord, I want folded to not differ from background color
