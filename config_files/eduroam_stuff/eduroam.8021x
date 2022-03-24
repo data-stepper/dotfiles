@@ -3,8 +3,8 @@ EAP-Method=TTLS
 EAP-Identity=eduroam@uni-hamburg.de
 EAP-TTLS-CACert=/var/lib/iwd/.rootcert.pem
 EAP-TTLS-Phase2-Method=Tunneled-PAP
-EAP-TTLS-Phase2-Identity=b<your-identification-code-here>@uni-hamburg.de
-EAP-TTLS-Phase2-Password=<your-password>
+EAP-TTLS-Phase2-Identity=b<YOUR-IDENTIFICATION-CODE-HERE>@uni-hamburg.de
+EAP-TTLS-Phase2-Password=<YOUR-PASSWORD>
 
 [Settings]
 AutoConnect=true
