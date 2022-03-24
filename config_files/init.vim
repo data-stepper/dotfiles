@@ -137,6 +137,13 @@ set numberwidth=1
 " For cleaner python programming and more readability
 set colorcolumn=81
 
+" For easily running python code, I use these mappings
+" Can also be used in visual mode to execute a selection of python code
+" This mapping can also only be set when editing python files but I actually
+" like to have python with me where-ever I code
+" autocmd FileType python map <buffer> <C-r> :w !python<CR>
+map <C-r> :w !python<CR>
+
 " Switch to absolute line numbering in insert mode (and back)
 autocmd!
 autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
