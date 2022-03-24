@@ -27,11 +27,19 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'alvan/vim-closetag'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'yegappan/mru'
-Plug 'justinmk/vim-sneak'
 Plug 'junegunn/goyo.vim'
 
-" Try this cool debugging tool
-Plug 'puremourning/vimspector'
+" Use ipython and send to repl plugin
+" Plug 'sillybun/vim-repl'
+	" Don't use the standard <leader>w as I mapped it so save
+	" let g:sendtorepl_invoke_key = "<C-s>"
+
+Plug 'jeetsukumaran/vim-pythonsense'
+
+" Use vim-slime for interactive development
+Plug 'jpalardy/vim-slime'
+	" Use the neovim terminal feature
+	let g:slime_target = "neovim"
 
 " My own ai assist plugin
 Plug 'data-stepper/ai-text-assist'
@@ -87,6 +95,24 @@ call plug#end()
 set splitbelow
 set splitright
 
+" Below is the configuration of vim-slime, one of the best tools ever built!
+" Use vim-slime because it works best with all kinds of REPLs
+
+" Send the entire buffer
+nmap <silent> <C-r> :%SlimeSend<CR>
+nmap <silent> <F2> :%SlimeSend<CR>
+
+" Only send a selection or current line
+vmap <silent> <C-s> :SlimeSend<CR>
+nmap <silent> <C-s> :SlimeSendCurrentLine<CR>j
+nmap <silent> <F1> :SlimeSendCurrentLine<CR>j
+
+nmap <silent> s :SlimeSendCurrentLine<CR>j
+vmap <silent> s :SlimeSend<CR>
+
+" For python always use ipython
+let g:slime_python_ipython = 1
+
 " Below code is copied from coc-snippets
 
 " Use <C-l> for trigger snippet expand.
@@ -137,13 +163,6 @@ set numberwidth=1
 " For cleaner python programming and more readability
 set colorcolumn=81
 
-" For easily running python code, I use these mappings
-" Can also be used in visual mode to execute a selection of python code
-" This mapping can also only be set when editing python files but I actually
-" like to have python with me where-ever I code
-" autocmd FileType python map <buffer> <C-r> :w !python<CR>
-map <C-r> :w !python<CR>
-
 " Switch to absolute line numbering in insert mode (and back)
 autocmd!
 autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
@@ -173,12 +192,6 @@ colorscheme flattened_light
 " map <silent> <leader>g :Goyo<CR>:Redraw<CR>
 
 map <silent> <leader>g :Goyo<CR>
-
-" Using sneak plugin
-map f <Plug>Sneak_f
-map F <Plug>Sneak_F
-map t <Plug>Sneak_t
-map T <Plug>Sneak_T
 
 " Enable folding with the space bar
 nnoremap <space> za
@@ -221,8 +234,9 @@ noremap <silent> <leader>vs :vs<CR>
 noremap <silent> <leader>ss :split<CR>
 
 " Split a new terminal
-noremap <silent> <leader>vt :vert ter<CR>
-noremap <silent> <leader>st :ter<CR>
+" In a terminal split we don't want to have relative numbers
+noremap <silent> <leader>vt :vsplit<CR>:terminal<CR>:set nonumber<CR>
+noremap <silent> <leader>st :split<CR>:terminal<CR>:set nonumber<CR>
 
 " Split a new empty buffer
 nnoremap <silent> <leader>vn :vnew<CR>
