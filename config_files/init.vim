@@ -107,11 +107,15 @@ vmap <silent> <C-s> :SlimeSend<CR>
 nmap <silent> <C-s> :SlimeSendCurrentLine<CR>j
 nmap <silent> <F1> :SlimeSendCurrentLine<CR>j
 
+" Using s is very convenient
 nmap <silent> s :SlimeSendCurrentLine<CR>j
 vmap <silent> s :SlimeSend<CR>
 
 " For python always use ipython
 let g:slime_python_ipython = 1
+
+" Remove the standard mappings created by vim-slime
+let g:slime_no_mappings = 1
 
 " Below code is copied from coc-snippets
 
