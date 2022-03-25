@@ -6,13 +6,28 @@ if [ "$EUID" -eq 0 ]
 	exit
 fi
 
-# Here I combined the install scripts as their order was wrong
+# The user must be in the wheel group to run this script
+# This is necessary to run sudo commands as well as non-sudo commands
+if [ $(groups | grep -c "wheel") -eq 0 ]
+	then echo "Please run this script as a user in the wheel group"
+	exit
+fi
+
+# Get the user's home directory path
+HOME_DIR=$(getent passwd $USER | cut -d: -f6)
+
+# CD into that directory
+cd $HOME_DIR
+
+# And tell the user where everything will be installed
+echo "Installing Arch Linux additional packages to $HOME_DIR"
 
 # And install the video drivers
 echo "Select which video driver to install"
 echo "  1) nvidia for modern nvidia gpus"
 echo "  2) intel for integrated graphics"
 
+# Inform the user which video driver will be installed
 read n
 case $n in
   1) echo "Installing nvidia drivers"; sudo pacman -S nvidia;;
@@ -28,15 +43,18 @@ sudo pacman -Syu
 sudo pacman --noconfirm -Sy - < ./pkg_lists/pacman.txt
 
 # Install the yay, AUR helper
-cd ~
+cd $HOME_DIR
 sudo pacman --noconfirm -S --needed git base-devel
 git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si
-cd ~
+cd $HOME_DIR
 
-yay -S google-chrome-beta
-yay --noconfirm -S npm termdown
+# Install the AUR packages from the list
+yay --noconfirm -S --needed $(cat ./pkg_lists/yay.txt)
+
+# Tell the user that most of the packages are installed
+echo "Installed most of the packages, updating the system now"
 
 yay -Syu
 pacman -Syu
@@ -55,7 +73,7 @@ rm lf-linux-amd64.tar.gz
 
 # Install nodejs and npm for coc language server
 # Install nodejs version 12
-curl -fsSL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+# curl -fsSL https://deb.nodesource.com/setup_12.x | sudo -E bash -
 sudo pacman --noconfirm -Sy nodejs
 
 # Install latex environment
