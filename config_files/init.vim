@@ -29,11 +29,15 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'yegappan/mru'
 Plug 'junegunn/goyo.vim'
 
+" Use github copilot, yeah
+Plug 'github/copilot.vim'
+
 " Use ipython and send to repl plugin
 " Plug 'sillybun/vim-repl'
 	" Don't use the standard <leader>w as I mapped it so save
 	" let g:sendtorepl_invoke_key = "<C-s>"
 
+" This plugin lets me move inside python code more easily
 Plug 'jeetsukumaran/vim-pythonsense'
 
 " Use vim-slime for interactive development
