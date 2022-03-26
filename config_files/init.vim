@@ -16,13 +16,22 @@ Plug 'heavenshell/vim-pydocstring', { 'do': 'make install', 'for': 'python' }
 	" Don't use default mapping for pydocstring shortcut
 	let g:pydocstring_enable_mapping = 0
 
+" Use nvim-treesitter 
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'eddiebergman/nvim-treesitter-pyfold'
+Plug 'romgrk/nvim-treesitter-context'
+
+" Emojis in vim
+Plug 'junegunn/vim-emoji'
+
+" Switch to nvim-tree, a lua file tree version
+Plug 'kyazdani42/nvim-web-devicons' " for file icons
+Plug 'kyazdani42/nvim-tree.lua'
+
 " Use devicons because it looks more beautiful
-Plug 'vwxyutarooo/nerdtree-devicons-syntax'
-Plug 'ryanoasis/vim-devicons'
-Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
-Plug 'tmhedberg/SimpylFold'
+" Plug 'tmhedberg/SimpylFold'
 Plug 'jiangmiao/auto-pairs'
 Plug 'alvan/vim-closetag'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -63,6 +72,13 @@ Plug 'KeitaNakamura/tex-conceal.vim'
 " Loads of color schemes here
 Plug 'altercation/vim-colors-solarized'
 Plug 'rafi/awesome-vim-colorschemes'
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+Plug 'EdenEast/nightfox.nvim'
+Plug 'patstockwell/vim-monokai-tasty'
+Plug 'rmehri01/onenord.nvim', { 'branch': 'main' }
+Plug 'luisiacc/gruvbox-baby', {'branch': 'main'}
+Plug 'overcache/NeoSolarized'
+Plug 'savq/melange'
 Plug 'sonph/onehalf', { 'rtp': 'vim' }
 
 " For markdown editing
@@ -71,8 +87,8 @@ Plug 'ellisonleao/glow.nvim'
 " Only use for python editing
 Plug 'majutsushi/tagbar'
 Plug 'universal-ctags/ctags'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+" Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 	" Maybe think about switching from coc-jedi to
 	" https://github.com/pappasam/jedi-language-server
@@ -90,8 +106,11 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 	\]
 
 " Shows buffers and tabs opened
-Plug 'bling/vim-bufferline'
-Plug 'mkitt/tabline.vim'
+" Plug 'bling/vim-bufferline'
+" Plug 'mkitt/tabline.vim'
+" The new bufferline written in lua
+Plug 'akinsho/bufferline.nvim'
+Plug 'nvim-lualine/lualine.nvim'
 
 call plug#end()
 
@@ -138,11 +157,12 @@ let g:coc_snippet_prev = '<c-k>'
 " Use <C-j> for both expand and jump (make expand higher priority.)
 imap <C-j> <Plug>(coc-snippets-expand-jump)
 
-" Enable folding
+" Enable folding with treesitter now
 set foldmethod=expr
+set foldexpr=nvim_treesitter#fold_expr()
 
 " Start at lowest fold level always
-set foldlevel=0
+" set foldlevel=0
 
 set noswapfile
 
@@ -157,24 +177,26 @@ nmap <silent> <leader>a :CocAction<CR>
 vmap <silent> <leader>a :CocAction<CR>
 
 " File browser and most recently used files
-nmap <silent> <C-N> :NERDTreeToggle<CR>
+" nmap <silent> <C-N> :NERDTreeToggle<CR>
+" Switched to nvim-tree because it's written in lua
+nmap <silent> <C-N> :NvimTreeToggle<CR>
 nmap <silent> <C-M> :MRU<CR>
 
 " Fuzzy search with ctr-p
 map <C-P> :FZF<CR>
 
-" Line numbering
-set number
-set relativenumber
-set numberwidth=1
+" Line numbering turned off for now
+" set number
+" set relativenumber
+" set numberwidth=1
 
 " For cleaner python programming and more readability
 set colorcolumn=81
 
 " Switch to absolute line numbering in insert mode (and back)
-autocmd!
-autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+" autocmd!
+" autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+" autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 
 " This way the terminal displays the colors correctly
 set termguicolors
@@ -186,18 +208,6 @@ set background=dark
 " Better colorscheme for latex
 " colorscheme one
 colorscheme flattened_light
-
-" Below is only needed when using nord colorscheme and goyo plugin
-" When using nord, I want folded to not differ from background color
-" This function reloads colors because Goyo changes that unwillingly.
-" function! ReloadColors()
-"   hi Folded guibg=#2f343f
-" endfunction
-
-" call ReloadColors()
-" command Redraw call ReloadColors()
-" Map Goyo toggle
-" map <silent> <leader>g :Goyo<CR>:Redraw<CR>
 
 map <silent> <leader>g :Goyo<CR>
 
@@ -212,11 +222,11 @@ set encoding=utf-8
 set laststatus=2                             " for airline
 
 " vim-airline Settings
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#formatter = 'unique_tail'
-let g:airline#extensions#tabline#tab_nr_type = 1
-let g:airline#extensions#tabline#show_tabs = 1
-let g:airline#extensions#tabline#show_buffers = 1
+" let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#tabline#formatter = 'unique_tail'
+" let g:airline#extensions#tabline#tab_nr_type = 1
+" let g:airline#extensions#tabline#show_tabs = 1
+" let g:airline#extensions#tabline#show_buffers = 1
 
 filetype plugin indent on
 
@@ -432,7 +442,7 @@ function! s:show_documentation()
 endfunction
 
 " Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
+" autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
@@ -465,7 +475,7 @@ syntax on
 
 " Powerline fonts
 set guioptions=
-let g:airline_powerline_fonts = 1
+" let g:airline_powerline_fonts = 1
 
 " Closetag plugin
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.erb,*.jsx,*.js"
@@ -480,4 +490,191 @@ set spelllang=en,de
 
 " When in insert mode, ctr-L corrects spelling mistakes on the current line
 inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
+
+
+" The lua part of my config
+" Because I don't want to maintain a separate lua file
+
+lua <<EOF
+require('nvim-treesitter.configs').setup {
+    pyfold = {
+        enable = true,
+        custom_foldtext = true -- Sets provided foldtext on window where module is active
+    }
+}
+
+-- Standard lualine setup
+require('lualine').setup {
+	options = {
+		icons_enabled = true,
+		theme = 'auto',
+		component_separators = { left = '', right = ''},
+		section_separators = { left = '', right = ''},
+		disabled_filetypes = {},
+		always_divide_middle = true,
+		globalstatus = false,
+	},
+	sections = {
+		lualine_a = {'mode'},
+		lualine_b = {'branch', 'diff', 
+			{
+				'diagnostics',
+				-- Table of diagnostic sources, available sources are:
+				--   'nvim_lsp', 'nvim_diagnostic', 'coc', 'ale', 'vim_lsp'.
+				-- or a function that returns a table as such:
+				--   { error=error_cnt, warn=warn_cnt, info=info_cnt, hint=hint_cnt }
+				sources = { 'nvim_diagnostic', 'coc' },
+
+				-- Displays diagnostics for the defined severity types
+				sections = { 'error', 'warn', 'info', 'hint' },
+				symbols = {error = 'E', warn = 'W', info = 'I', hint = 'H'},
+				colored = true,		   -- Displays diagnostics status in color if set to true.
+				update_in_insert = false, -- Update diagnostics in insert mode.
+				always_visible = false,   -- Show diagnostics even if there are none.
+			}
+		},
+		lualine_c = {'filename'},
+		lualine_x = {'filetype'},
+		lualine_y = {'progress'},
+		lualine_z = {'location'}
+	},
+	inactive_sections = {
+		lualine_a = {},
+		lualine_b = {},
+		lualine_c = {'filename'},
+		lualine_x = {'location'},
+		lualine_y = {},
+		lualine_z = {}
+	},
+	tabline = {
+		lualine_a = {
+			{
+				'buffers',
+				show_filename_only = true,   -- Shows shortened relative path when set to false.
+				show_modified_status = true, -- Shows indicator when the buffer is modified.
+
+				mode = 0, -- 0: Shows buffer name
+						-- 1: Shows buffer index (bufnr)
+						-- 2: Shows buffer name + buffer index (bufnr)
+
+				max_length = vim.o.columns * 2 / 3, -- Maximum width of buffers component,
+												  -- it can also be a function that returns
+												  -- the value of `max_length` dynamically.
+				filetype_names = {
+					TelescopePrompt = 'Telescope',
+					dashboard = 'Dashboard',
+					packer = 'Packer',
+					fzf = 'FZF',
+					alpha = 'Alpha'
+				}, -- Shows specific buffer name for that filetype ( { `filetype` = `buffer_name`, ... } )
+			}
+		},
+		lualine_b = {},
+		lualine_c = {},
+		lualine_x = {},
+		lualine_y = {},
+		lualine_z = {'tabs'}
+	},
+	extensions = {}
+}
+
+-- setup with all defaults
+-- each of these are documented in `:help nvim-tree.OPTION_NAME`
+require('nvim-tree').setup { -- BEGIN_DEFAULT_OPTS
+	auto_close = false,
+	auto_reload_on_write = true,
+	disable_netrw = false,
+	hide_root_folder = false,
+	hijack_cursor = false,
+	hijack_netrw = true,
+	hijack_unnamed_buffer_when_opening = false,
+	ignore_buffer_on_setup = false,
+	open_on_setup = true,
+	open_on_tab = false,
+	sort_by = "name",
+	update_cwd = false,
+	view = {
+	width = 40,
+	height = 30,
+	side = "left",
+	preserve_window_proportions = false,
+	number = false,
+	relativenumber = false,
+	signcolumn = "yes",
+	mappings = {
+		custom_only = false,
+		list = {
+			-- user mappings go here
+			},
+		},
+	},
+	hijack_directories = {
+		enable = true,
+		auto_open = true,
+	},
+	update_focused_file = {
+		enable = false,
+		update_cwd = false,
+		ignore_list = {},
+	},
+	ignore_ft_on_setup = {},
+	system_open = {
+		cmd = nil,
+		args = {},
+	},
+	diagnostics = {
+		enable = false,
+		show_on_dirs = false,
+		icons = {
+			hint = "",
+			info = "",
+			warning = "",
+			error = "",
+		},
+	},
+	filters = {
+		dotfiles = true,
+		custom = {},
+		exclude = {},
+	},
+	git = {
+		enable = true,
+		ignore = true,
+		timeout = 400,
+	},
+	actions = {
+	change_dir = {
+		enable = true,
+		global = true,
+	},
+	open_file = {
+		quit_on_open = false,
+		resize_window = false,
+		window_picker = {
+			enable = true,
+			chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
+			exclude = {
+			filetype = { "notify", "packer", "qf", "diff", "fugitive", "fugitiveblame" },
+			buftype = { "nofile", "terminal", "help" },
+			},
+		},
+	},
+	},
+	trash = {
+	cmd = "trash",
+	require_confirm = true,
+	},
+	log = {
+		enable = false,
+		truncate = false,
+		types = {
+			all = false,
+			config = false,
+			copy_paste = false,
+			git = false,
+			profile = false,
+		},
+	},
+} -- END_DEFAULT_OPTS
+EOF
 
