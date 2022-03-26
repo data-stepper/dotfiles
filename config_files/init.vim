@@ -19,7 +19,9 @@ Plug 'heavenshell/vim-pydocstring', { 'do': 'make install', 'for': 'python' }
 " Use nvim-treesitter 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'eddiebergman/nvim-treesitter-pyfold'
-Plug 'romgrk/nvim-treesitter-context'
+" Plug 'romgrk/nvim-treesitter-context' " Not so cool for solarized colors
+Plug 'liuchengxu/vista.vim'
+	let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
 
 " Emojis in vim
 Plug 'junegunn/vim-emoji'
@@ -70,8 +72,8 @@ Plug 'KeitaNakamura/tex-conceal.vim'
 	hi Conceal ctermbg=none
 
 " Loads of color schemes here
-Plug 'altercation/vim-colors-solarized'
-Plug 'rafi/awesome-vim-colorschemes'
+" Plug 'altercation/vim-colors-solarized'
+" Plug 'rafi/awesome-vim-colorschemes'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'EdenEast/nightfox.nvim'
 Plug 'patstockwell/vim-monokai-tasty'
@@ -202,12 +204,8 @@ set colorcolumn=81
 set termguicolors
 
 " Set default colorscheme and dark background
-" colorscheme one
 set background=dark
-
-" Better colorscheme for latex
-" colorscheme one
-colorscheme flattened_light
+colorscheme nightfox
 
 map <silent> <leader>g :Goyo<CR>
 
@@ -220,13 +218,6 @@ set encoding=utf-8
 " No idea what the below is about huh
 " airline Settings
 set laststatus=2                             " for airline
-
-" vim-airline Settings
-" let g:airline#extensions#tabline#enabled = 1
-" let g:airline#extensions#tabline#formatter = 'unique_tail'
-" let g:airline#extensions#tabline#tab_nr_type = 1
-" let g:airline#extensions#tabline#show_tabs = 1
-" let g:airline#extensions#tabline#show_buffers = 1
 
 filetype plugin indent on
 
@@ -290,7 +281,9 @@ noremap <c-q> <c-w>c
 
 " Shows contents of registers and tag bar
 nnoremap <silent> <leader>1 :registers<CR>
-nnoremap <silent> <leader>2 :TagbarToggle<CR>
+" nnoremap <silent> <leader>2 :TagbarToggle<CR>
+" Use the vista plugin because it's written in lua
+nnoremap <silent> <leader>2 :Vista<CR>
 
 " Git commands
 nnoremap <silent> <leader>gs :Git<CR>
@@ -315,7 +308,7 @@ nnoremap <silent> <leader>m :bnext<CR>
 nnoremap <silent> <leader>M :bNext<CR>
 
 " In normal mode escape removes search result highlighting
-nnoremap <Esc> gt:nohlsearch<CR>
+nnoremap <silent> <Esc> gt:nohlsearch<CR>
 
 " Quit or close buffers
 nnoremap <leader>q <C-W>c
@@ -512,7 +505,7 @@ require('lualine').setup {
 		section_separators = { left = '', right = ''},
 		disabled_filetypes = {},
 		always_divide_middle = true,
-		globalstatus = false,
+		globalstatus = true,
 	},
 	sections = {
 		lualine_a = {'mode'},
@@ -590,9 +583,9 @@ require('nvim-tree').setup { -- BEGIN_DEFAULT_OPTS
 	hijack_unnamed_buffer_when_opening = false,
 	ignore_buffer_on_setup = false,
 	open_on_setup = true,
-	open_on_tab = false,
+	open_on_tab = true,
 	sort_by = "name",
-	update_cwd = false,
+	update_cwd = true,
 	view = {
 	width = 40,
 	height = 30,
@@ -661,8 +654,8 @@ require('nvim-tree').setup { -- BEGIN_DEFAULT_OPTS
 	},
 	},
 	trash = {
-	cmd = "trash",
-	require_confirm = true,
+		cmd = "trash",
+		require_confirm = true,
 	},
 	log = {
 		enable = false,
