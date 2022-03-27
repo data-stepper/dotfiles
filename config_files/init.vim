@@ -489,11 +489,20 @@ inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
 " Because I don't want to maintain a separate lua file
 
 lua <<EOF
-require('nvim-treesitter.configs').setup {
-    pyfold = {
-        enable = true,
-        custom_foldtext = true -- Sets provided foldtext on window where module is active
-    }
+require'nvim-treesitter.configs'.setup {
+  -- One of "all", "maintained" (parsers with maintainers), or a list of languages
+  ensure_installed = "maintained",
+
+  highlight = {
+    -- `false` will disable the whole extension
+    enable = true,
+
+    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+    -- Using this option may slow down your editor, and you may see some duplicate highlights.
+    -- Instead of true it can also be a list of languages
+    additional_vim_regex_highlighting = false,
+  },
 }
 
 -- Standard lualine setup
