@@ -56,6 +56,7 @@ sed
 sudo
 sxiv
 texinfo
+texlive-most
 ttf-ubuntu-font-family
 unzip
 usbutils

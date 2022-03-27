@@ -51,7 +51,7 @@ makepkg -si
 cd $HOME_DIR
 
 # Install the AUR packages from the list
-yay --noconfirm -S --needed $(cat ./pkg_lists/yay.txt)
+yay --noconfirm -S $(cat ./pkg_lists/yay.txt)
 
 # Tell the user that most of the packages are installed
 echo "Installed most of the packages, updating the system now"
