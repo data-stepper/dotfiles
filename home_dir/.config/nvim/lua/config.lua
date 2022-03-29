@@ -104,21 +104,21 @@ mapping = {
         ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), {'i', 'c'}),
         ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), {'i', 'c'}),
         ['<C-e>'] = cmp.mapping({ i = cmp.mapping.close(), c = cmp.mapping.close() }),
-        -- ['<CR>'] = cmp.mapping({
-        --     i = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false }),
-        --     c = function(fallback)
-        --         if cmp.visible() then
-        --             cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
-        --         else
-        --             fallback()
-        --         end
-        --     end
-        -- }),
+        ['<CR>'] = cmp.mapping({
+            i = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false }),
+            c = function(fallback)
+                if cmp.visible() then
+                    cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+                else
+                    fallback()
+                end
+            end
+        }),
 },
 sources = cmp.config.sources({
 	{ name = 'nvim_lsp' },
 	{ name = 'ultisnips' }, -- For ultisnips users.
-	{ name = 'path' }, -- For ultisnips users.
+	{ name = 'path' }, -- Add path autocomplete in all buffers
 }, {
   { name = 'buffer' },
 })
@@ -158,6 +158,7 @@ local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protoco
 local lspconfig = require('lspconfig')
 
 -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
+-- Add additional language servers here
 local servers = { 'pyright', 'bash-language-server' }
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
