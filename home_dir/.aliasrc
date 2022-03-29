@@ -1,0 +1,40 @@
+# Git stuff
+alias gs="git status"
+
+# Always use neovim, bye bye gui neovim
+alias v="nvim"
+
+# vrc opens both neovim config files
+alias vrc="nvim ~/.config/nvim/*.vim"
+
+alias x="chmod +x"
+
+alias rm="rm -rf"
+alias mv="mv -iv"
+alias cp="cp -rv"
+alias mkdir="mkdir -pv"
+
+alias al="nvim ~/dotfiles/aliasrc"
+
+alias sdn="sudo systemctl poweroff"
+alias reboot="sudo systemctl reboot"
+
+# Also add snap store update
+alias update="sudo pacman -Syu && yay -Syu && sudo npm install -g npm"
+
+# Add one for ssh server so I don't always have to google that
+ssh-server () {
+	sudo sshd -t
+	echo "If the above command printed something then your ssh config is wrong"
+	ip addr
+	echo "Above you can find your local ip address, something like 192.168...."
+	echo "Starting ssh server daemon now..."
+	sudo systemctl start sshd.service
+	echo "SSH server started now, connect to it via: [ssh|sftp] USER@IP-ADDRESS"
+	echo "Press <Enter> to kill the ssh server again"
+	read
+	# Don't use kill it won't stop the server daemon
+	sudo systemctl stop sshd.service
+	echo "SSH server daemon killed"
+}
+

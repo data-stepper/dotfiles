@@ -124,7 +124,7 @@ xorg-xwud
 xterm
 yay
 zathura
-zathura-pdf-poppler
+zathura-pdf-mupdf
 zip
 zsh
 

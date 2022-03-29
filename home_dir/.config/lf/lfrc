@@ -1,0 +1,22 @@
+# Bent's lf config file
+
+cmd open ${{
+    case $(file --mime-type $f -b) in
+	image/vnd.djvu|application/pdf|application/octet-stream) setsid -f zathura $fx >/dev/null 2>&1 ;;
+        text/*) setsid -f alacritty -e nvim $fx;;
+		image/*) setsid -f sudo sxiv $f ;;
+	application/pdf|application/vnd*|application/epub*) setsid -f sudo zathura $fx >/dev/null 2>&1 ;;
+        *) for f in $fx; do setsid -f $OPENER $f >/dev/null 2>&1; done;;
+    esac
+}}
+
+# Leave some space
+set scrolloff 10
+
+# Delete files with x
+map x delete push y
+
+# Always show hidden files and file sizes
+# set hidden!
+set info size
+

@@ -69,6 +69,6 @@ xorg-xinit
 xorg-server
 xterm
 zathura
-zathura-pdf-poppler
+zathura-pdf-mupdf
 zip
 zsh
