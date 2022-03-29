@@ -1,6 +1,7 @@
 # Get user home directory
 HOME_DIR=$(eval echo ~$user)
 
+# Inform user of the install
 echo "Installing dotfiles to $HOME_DIR"
 
 # Copy all config files now
