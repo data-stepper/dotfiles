@@ -65,6 +65,5 @@ unset __conda_setup
 # Don't use my PS1 anymore since pure's is better
 # export PS1="%F{magenta} $CONDA_PROMPT_MODIFIER%F{blue}%~ %F{green}↳%F{default}"
 
-# Do not start conda base environment by default
-conda deactivate
+# Do start in the base environment because of pynvim and pythonx (for snippets)
 
