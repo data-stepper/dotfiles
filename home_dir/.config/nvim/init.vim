@@ -1,4 +1,5 @@
 " This is what used to be called .vimrc
+" And what will soon be gone when everyone moved to init.lua
 
 set nocompatible
 filetype off
@@ -15,6 +16,16 @@ Plug 'tpope/vim-surround'
 Plug 'heavenshell/vim-pydocstring', { 'do': 'make install', 'for': 'python' }
 	" Don't use default mapping for pydocstring shortcut
 	let g:pydocstring_enable_mapping = 0
+
+" Use the neovim builtin lsp client
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'quangnguyen30192/cmp-nvim-ultisnips'
+Plug 'SirVer/ultisnips'
 
 " Use nvim-treesitter 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -89,21 +100,21 @@ Plug 'sonph/onehalf', { 'rtp': 'vim' }
 " Plug 'vim-airline/vim-airline'
 " Plug 'vim-airline/vim-airline-themes'
 " Switched to alternatives written in lua
-Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': 'CocUpdate'}
-	" Maybe think about switching from coc-jedi to
-	" https://github.com/pappasam/jedi-language-server
-	" as it seems to be better supported
-	let g:coc_global_extensions = [
-		\'coc-sh',
-		\'coc-pyright',
-		\'coc-jedi',
-		\'coc-tabnine',
-		\'coc-json',
-		\'coc-texlab',
-		\'coc-markdownlint',
-		\'coc-yaml',
-		\'coc-snippets'
-	\]
+" Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': 'CocUpdate'}
+" 	" Maybe think about switching from coc-jedi to
+" 	" https://github.com/pappasam/jedi-language-server
+" 	" as it seems to be better supported
+" 	let g:coc_global_extensions = [
+" 		\'coc-sh',
+" 		\'coc-pyright',
+" 		\'coc-jedi',
+" 		\'coc-tabnine',
+" 		\'coc-json',
+" 		\'coc-texlab',
+" 		\'coc-markdownlint',
+" 		\'coc-yaml',
+" 		\'coc-snippets'
+" 	\]
 
 " Shows buffers and tabs opened
 " Plug 'bling/vim-bufferline'
@@ -114,6 +125,9 @@ Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': 'CocUpdate'}
 Plug 'nvim-lualine/lualine.nvim'
 
 call plug#end()
+
+" For nvim-cmp
+set completeopt=menu,menuone,noselect
 
 " New split open below / to the right
 set splitbelow
@@ -300,7 +314,9 @@ noremap <Left> <C-W>>
 noremap <Right> <C-W><
 
 " Reload vimrc in instance
-nnoremap <c-u> :source ~/.config/nvim/init.vim<CR> :CocRestart<CR>
+" nnoremap <c-u> :source ~/.config/nvim/init.vim<CR> :CocRestart<CR>
+" Not using coc anymore
+nnoremap <c-u> :source ~/.config/nvim/init.vim<CR>
 
 " Open new tabs and switch between buffers
 nnoremap <silent> <leader>n :tabnew<CR>
@@ -391,13 +407,13 @@ endif
 nmap <silent> <C-d> <Plug>(pydocstring)
 
 " Cycle through completions with tab
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
+" inoremap <silent><expr> <TAB>
+"       \ pumvisible() ? "\<C-n>" :
+"       \ <SID>check_back_space() ? "\<TAB>" :
+"       \ coc#refresh()
 
 " Cycle backwards with shit-tab
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -488,195 +504,5 @@ inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
 " The lua part of my config
 " Because I don't want to maintain a separate lua file
 
-lua <<EOF
-require'nvim-treesitter.configs'.setup {
-  -- One of "all", "maintained" (parsers with maintainers), or a list of languages
-  ensure_installed = "maintained",
-
-  highlight = {
-    -- `false` will disable the whole extension
-    enable = true,
-
-    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-    -- Using this option may slow down your editor, and you may see some duplicate highlights.
-    -- Instead of true it can also be a list of languages
-    additional_vim_regex_highlighting = false,
-  },
-}
-
--- Standard lualine setup
-require('lualine').setup {
-	options = {
-		icons_enabled = true,
-		theme = 'auto',
-		component_separators = { left = '', right = ''},
-		section_separators = { left = '', right = ''},
-		disabled_filetypes = {},
-		always_divide_middle = true,
-		globalstatus = true,
-	},
-	sections = {
-		lualine_a = {'mode'},
-		lualine_b = {'branch', 'diff', 
-			{
-				'diagnostics',
-				-- Table of diagnostic sources, available sources are:
-				--   'nvim_lsp', 'nvim_diagnostic', 'coc', 'ale', 'vim_lsp'.
-				-- or a function that returns a table as such:
-				--   { error=error_cnt, warn=warn_cnt, info=info_cnt, hint=hint_cnt }
-				sources = { 'nvim_diagnostic', 'coc' },
-
-				-- Displays diagnostics for the defined severity types
-				sections = { 'error', 'warn', 'info', 'hint' },
-				symbols = {error = 'E', warn = 'W', info = 'I', hint = 'H'},
-				colored = true,		   -- Displays diagnostics status in color if set to true.
-				update_in_insert = false, -- Update diagnostics in insert mode.
-				always_visible = false,   -- Show diagnostics even if there are none.
-			}
-		},
-		lualine_c = {'filename'},
-		lualine_x = {'filetype'},
-		lualine_y = {'progress'},
-		lualine_z = {'location'}
-	},
-	inactive_sections = {
-		lualine_a = {},
-		lualine_b = {},
-		lualine_c = {'filename'},
-		lualine_x = {'location'},
-		lualine_y = {},
-		lualine_z = {}
-	},
-	tabline = {
-		lualine_a = {
-			{
-				'buffers',
-				show_filename_only = true,   -- Shows shortened relative path when set to false.
-				show_modified_status = true, -- Shows indicator when the buffer is modified.
-
-				mode = 0, -- 0: Shows buffer name
-						-- 1: Shows buffer index (bufnr)
-						-- 2: Shows buffer name + buffer index (bufnr)
-
-				max_length = vim.o.columns * 2 / 3, -- Maximum width of buffers component,
-												  -- it can also be a function that returns
-												  -- the value of `max_length` dynamically.
-				filetype_names = {
-					TelescopePrompt = 'Telescope',
-					dashboard = 'Dashboard',
-					packer = 'Packer',
-					fzf = 'FZF',
-					alpha = 'Alpha'
-				}, -- Shows specific buffer name for that filetype ( { `filetype` = `buffer_name`, ... } )
-			}
-		},
-		lualine_b = {},
-		lualine_c = {},
-		lualine_x = {},
-		lualine_y = {},
-		lualine_z = {'tabs'}
-	},
-	extensions = {}
-}
-
--- setup with all defaults
--- each of these are documented in `:help nvim-tree.OPTION_NAME`
-require('nvim-tree').setup { -- BEGIN_DEFAULT_OPTS
-	auto_close = false,
-	auto_reload_on_write = true,
-	disable_netrw = false,
-	hide_root_folder = false,
-	hijack_cursor = false,
-	hijack_netrw = true,
-	hijack_unnamed_buffer_when_opening = false,
-	ignore_buffer_on_setup = false,
-	open_on_setup = true,
-	open_on_tab = true,
-	sort_by = "name",
-	update_cwd = true,
-	view = {
-	width = 40,
-	height = 30,
-	side = "left",
-	preserve_window_proportions = false,
-	number = false,
-	relativenumber = false,
-	signcolumn = "yes",
-	mappings = {
-		custom_only = false,
-		list = {
-			-- user mappings go here
-			},
-		},
-	},
-	hijack_directories = {
-		enable = true,
-		auto_open = true,
-	},
-	update_focused_file = {
-		enable = false,
-		update_cwd = false,
-		ignore_list = {},
-	},
-	ignore_ft_on_setup = {},
-	system_open = {
-		cmd = nil,
-		args = {},
-	},
-	diagnostics = {
-		enable = false,
-		show_on_dirs = false,
-		icons = {
-			hint = "",
-			info = "",
-			warning = "",
-			error = "",
-		},
-	},
-	filters = {
-		dotfiles = true,
-		custom = {},
-		exclude = {},
-	},
-	git = {
-		enable = true,
-		ignore = true,
-		timeout = 400,
-	},
-	actions = {
-	change_dir = {
-		enable = true,
-		global = true,
-	},
-	open_file = {
-		quit_on_open = false,
-		resize_window = false,
-		window_picker = {
-			enable = true,
-			chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
-			exclude = {
-			filetype = { "notify", "packer", "qf", "diff", "fugitive", "fugitiveblame" },
-			buftype = { "nofile", "terminal", "help" },
-			},
-		},
-	},
-	},
-	trash = {
-		cmd = "trash",
-		require_confirm = true,
-	},
-	log = {
-		enable = false,
-		truncate = false,
-		types = {
-			all = false,
-			config = false,
-			copy_paste = false,
-			git = false,
-			profile = false,
-		},
-	},
-} -- END_DEFAULT_OPTS
-EOF
+lua require('config')
 
