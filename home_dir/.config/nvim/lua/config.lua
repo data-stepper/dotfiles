@@ -1,4 +1,8 @@
 -- Setup nvim-cmp.
+
+-- -------------------- COMPLETION STUFF --------------------
+
+require('nvim-autopairs').setup{}
 local cmp = require('cmp')
 
 cmp.setup({
@@ -12,20 +16,109 @@ snippet = {
   end,
 },
 mapping = {
-  ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
-  ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
-  ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
-  ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
-  ['<C-e>'] = cmp.mapping({
-	i = cmp.mapping.abort(),
-	c = cmp.mapping.close(),
-  }),
-  ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-  ['<Tab>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+		["<Tab>"] = cmp.mapping({
+            c = function()
+                if cmp.visible() then
+                    cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
+                else
+                    cmp.complete()
+                end
+            end,
+            i = function(fallback)
+                if cmp.visible() then
+                    cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
+                elseif vim.fn["UltiSnips#CanJumpForwards"]() == 1 then
+                    vim.api.nvim_feedkeys(t("<Plug>(ultisnips_jump_forward)"), 'm', true)
+                else
+                    fallback()
+                end
+            end,
+            s = function(fallback)
+                if vim.fn["UltiSnips#CanJumpForwards"]() == 1 then
+                    vim.api.nvim_feedkeys(t("<Plug>(ultisnips_jump_forward)"), 'm', true)
+                else
+                    fallback()
+                end
+            end
+        }),
+        ["<S-Tab>"] = cmp.mapping({
+            c = function()
+                if cmp.visible() then
+                    cmp.select_prev_item({ behavior = cmp.SelectBehavior.Insert })
+                else
+                    cmp.complete()
+                end
+            end,
+            i = function(fallback)
+                if cmp.visible() then
+                    cmp.select_prev_item({ behavior = cmp.SelectBehavior.Insert })
+                elseif vim.fn["UltiSnips#CanJumpBackwards"]() == 1 then
+                    return vim.api.nvim_feedkeys( t("<Plug>(ultisnips_jump_backward)"), 'm', true)
+                else
+                    fallback()
+                end
+            end,
+            s = function(fallback)
+                if vim.fn["UltiSnips#CanJumpBackwards"]() == 1 then
+                    return vim.api.nvim_feedkeys( t("<Plug>(ultisnips_jump_backward)"), 'm', true)
+                else
+                    fallback()
+                end
+            end
+        }),
+        ['<Down>'] = cmp.mapping(cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }), {'i'}),
+        ['<Up>'] = cmp.mapping(cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }), {'i'}),
+        ['<C-n>'] = cmp.mapping({
+            c = function()
+                if cmp.visible() then
+                    cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+                else
+                    vim.api.nvim_feedkeys(t('<Down>'), 'n', true)
+                end
+            end,
+            i = function(fallback)
+                if cmp.visible() then
+                    cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+                else
+                    fallback()
+                end
+            end
+        }),
+        ['<C-p>'] = cmp.mapping({
+            c = function()
+                if cmp.visible() then
+                    cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
+                else
+                    vim.api.nvim_feedkeys(t('<Up>'), 'n', true)
+                end
+            end,
+            i = function(fallback)
+                if cmp.visible() then
+                    cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
+                else
+                    fallback()
+                end
+            end
+        }),
+        ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), {'i', 'c'}),
+        ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), {'i', 'c'}),
+        ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), {'i', 'c'}),
+        ['<C-e>'] = cmp.mapping({ i = cmp.mapping.close(), c = cmp.mapping.close() }),
+        -- ['<CR>'] = cmp.mapping({
+        --     i = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false }),
+        --     c = function(fallback)
+        --         if cmp.visible() then
+        --             cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+        --         else
+        --             fallback()
+        --         end
+        --     end
+        -- }),
 },
 sources = cmp.config.sources({
-{ name = 'nvim_lsp' },
-{ name = 'ultisnips' }, -- For ultisnips users.
+	{ name = 'nvim_lsp' },
+	{ name = 'ultisnips' }, -- For ultisnips users.
+	{ name = 'path' }, -- For ultisnips users.
 }, {
   { name = 'buffer' },
 })
@@ -58,18 +151,62 @@ cmp.setup.cmdline(':', {
 
 -- Setup lspconfig.
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
--- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
 -- require('lspconfig')['pyright'].setup {
 -- 	capabilities = capabilities
 -- }
 
-require('lspconfig').pyright.setup{
+local lspconfig = require('lspconfig')
+
+-- Enable some language servers with the additional completion capabilities offered by nvim-cmp
+local servers = { 'pyright', 'bash-language-server' }
+for _, lsp in ipairs(servers) do
+  lspconfig[lsp].setup {
+    -- on_attach = my_custom_on_attach,
+    capabilities = capabilities,
+  }
+end
+-- require('lspconfig').pyright.setup{
 	-- capabilities = capabilities
+-- }
+
+-- -------------------- LANGUAGE SERVER STUFF --------------------
+
+local saga = require 'lspsaga'
+
+saga.init_lsp_saga {
+	use_saga_diagnostic_sign = true,
+	error_sign = '',
+	warn_sign = '',
+	hint_sign = '',
+	infor_sign = '',
+	dianostic_header_icon = '   ',
+	code_action_icon = ' ',
+	code_action_prompt = {
+		enable = true,
+		sign = true,
+		sign_priority = 20,
+		virtual_text = true,
+	},
+finder_definition_icon = '  ',
+finder_reference_icon = '  ',
+max_preview_lines = 10, -- preview lines of lsp_finder and definition preview
+finder_action_keys = {
+  open = 'o', vsplit = 's',split = 'i',quit = 'q',scroll_down = '<C-f>', scroll_up = '<C-b>' -- quit can be a table
+},
+code_action_keys = {
+  quit = 'q',exec = '<CR>'
+},
+rename_action_keys = {
+  quit = '<C-c>',exec = '<CR>'  -- quit can be a table
+},
+definition_preview_icon = '  ',
+border_style = "single",
+rename_prompt_prefix = '➤',
+server_filetype_map = {}
 }
 
--- require('lspconfig').jedi.setup{
--- 	capabilities = capabilities
--- }
+
+-- -------------------- TREE SITTER STUFF --------------------
 
 require('nvim-treesitter.configs').setup {
 -- One of "all", "maintained" (parsers with maintainers), or a list of languages
@@ -84,8 +221,14 @@ enable = true,
 -- Using this option may slow down your editor, and you may see some duplicate highlights.
 -- Instead of true it can also be a list of languages
 additional_vim_regex_highlighting = false,
+pyfold = {
+        enable = true,
+        custom_foldtext = true, -- Sets provided foldtext on window where module is active
+    }
 },
 }
+
+-- -------------------- LUALINE --------------------
 
 -- Standard lualine setup
 require('lualine').setup {
@@ -161,6 +304,8 @@ tabline = {
 },
 extensions = {}
 }
+
+-- -------------------- NVIM-TREE --------------------
 
 -- setup with all defaults
 -- each of these are documented in `:help nvim-tree.OPTION_NAME`

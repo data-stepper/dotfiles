@@ -19,14 +19,19 @@ Plug 'heavenshell/vim-pydocstring', { 'do': 'make install', 'for': 'python' }
 
 " Use the neovim builtin lsp client
 Plug 'neovim/nvim-lspconfig'
+Plug 'glepnir/lspsaga.nvim' " For language server features
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-nvim-lua'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
+Plug 'windwp/nvim-autopairs'
 Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 Plug 'SirVer/ultisnips'
+
+" Crazy snippet library
+" Plug 'honza/vim-snippets'
 
 " Use nvim-treesitter 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -340,7 +345,8 @@ cnoreabbrev H vert h
 cnoreabbrev E vert e
 
 " Show documentation provided by language server
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+" nnoremap <silent> K :call <SID>show_documentation()<CR>
+" nnoremap <silent> K :Lspsaga hover_doc<CR>
 
 " Move faster with shift-hjkl (except K because it shows docs)
 nnoremap J 5j
@@ -380,7 +386,7 @@ set showmatch
 nmap U <C-R>
 
 " Highlight current line
-set cul
+" set cul
 
 " Coc settings
 set hidden
@@ -388,21 +394,21 @@ set hidden
 set nobackup
 set nowritebackup
 
-set cmdheight=2
+" set cmdheight=2
 
 " Vim backend updates faster for better responsiveness
-set updatetime=300
+" set updatetime=300
 
 set shortmess+=c
 
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved.
-if has("patch-8.1.1564")
-  " Recently vim can merge signcolumn and number column into one
-  set signcolumn=number
-else
-  set signcolumn=yes
-endif
+" if has("patch-8.1.1564")
+"   " Recently vim can merge signcolumn and number column into one
+"   set signcolumn=number
+" else
+"   set signcolumn=yes
+" endif
 
 " Control-d generates docstring for python function / class
 nmap <silent> <C-d> <Plug>(pydocstring)
@@ -416,18 +422,13 @@ nmap <silent> <C-d> <Plug>(pydocstring)
 " Cycle backwards with shit-tab
 " inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
 " have control space confirm a suggestion
-inoremap <C-space> <C-y>
+" inoremap <C-space> <C-y>
 " inoremap <silent><expr> <C-space> coc#refresh()
 
 " Set python docstyle for linting and docstring generation
 " Always use numpy docstyle as it is the best
-let g:ultisnips_python_style = "numpy"
+let g:ultisnips_python_style = 'numpy'
 let g:pydocstring_formatter = 'numpy'
 
 " Use `[g` and `]g` to navigate diagnostics
@@ -444,8 +445,6 @@ nmap <silent> gr <Plug>(coc-references)
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
-  elseif (coc#rpc#ready())
-    call CocActionAsync('doHover')
   else
     execute '!' . &keywordprg . " " . expand('<cword>')
   endif
@@ -455,7 +454,8 @@ endfunction
 " autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Symbol renaming.
-nmap <leader>rn <Plug>(coc-rename)
+" nmap <leader>rn <Plug>(coc-rename)
+nmap <leader>rn :Lspsaga rename<CR>
 
 " Formatting selected code.
 xmap <leader>f  <Plug>(coc-format-selected)
@@ -465,10 +465,10 @@ nmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>qf  <Plug>(coc-fix-current)
 
 " Add `:Format` command to format current buffer.
-command! -nargs=0 Format :call CocAction('format')
+" command! -nargs=0 Format :call CocAction('format')
 
 " Add `:Fold` command to fold current buffer.
-command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+" command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
 " Coc statusline setup
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
