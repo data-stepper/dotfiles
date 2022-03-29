@@ -24,7 +24,7 @@ Plug 'liuchengxu/vista.vim'
 	let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
 
 " Emojis in vim
-Plug 'junegunn/vim-emoji'
+" Plug 'junegunn/vim-emoji'
 
 " Switch to nvim-tree, a lua file tree version
 Plug 'kyazdani42/nvim-web-devicons' " for file icons
@@ -42,11 +42,6 @@ Plug 'junegunn/goyo.vim'
 
 " Use github copilot, yeah
 Plug 'github/copilot.vim'
-
-" Use ipython and send to repl plugin
-" Plug 'sillybun/vim-repl'
-	" Don't use the standard <leader>w as I mapped it so save
-	" let g:sendtorepl_invoke_key = "<C-s>"
 
 " This plugin lets me move inside python code more easily
 Plug 'jeetsukumaran/vim-pythonsense'
@@ -74,6 +69,7 @@ Plug 'KeitaNakamura/tex-conceal.vim'
 " Loads of color schemes here
 " Plug 'altercation/vim-colors-solarized'
 " Plug 'rafi/awesome-vim-colorschemes'
+" From now on only use neovim compatible colorschemes
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'EdenEast/nightfox.nvim'
 Plug 'patstockwell/vim-monokai-tasty'
@@ -84,14 +80,16 @@ Plug 'savq/melange'
 Plug 'sonph/onehalf', { 'rtp': 'vim' }
 
 " For markdown editing
-Plug 'ellisonleao/glow.nvim'
+" Found it not so useful after all
+" Plug 'ellisonleao/glow.nvim'
 
 " Only use for python editing
-Plug 'majutsushi/tagbar'
-Plug 'universal-ctags/ctags'
+" Plug 'majutsushi/tagbar'
+" Plug 'universal-ctags/ctags'
 " Plug 'vim-airline/vim-airline'
 " Plug 'vim-airline/vim-airline-themes'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Switched to alternatives written in lua
+Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': 'CocUpdate'}
 	" Maybe think about switching from coc-jedi to
 	" https://github.com/pappasam/jedi-language-server
 	" as it seems to be better supported
@@ -111,7 +109,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Plug 'bling/vim-bufferline'
 " Plug 'mkitt/tabline.vim'
 " The new bufferline written in lua
-Plug 'akinsho/bufferline.nvim'
+" Plug 'akinsho/bufferline.nvim'
+" One can do also the bufferline with lualine
 Plug 'nvim-lualine/lualine.nvim'
 
 call plug#end()
