@@ -5,7 +5,7 @@ echo "Installing dotfiles to $HOME_DIR"
 
 # Copy all config files now
 # This copies all config files recursively to the user's home directory
-cp -Rf ../home_dir/.* /home/$user
+cp -Rf ../home_dir/.* $HOME_DIR
 
 # Install vim-plug as plugin manager for neovim
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
