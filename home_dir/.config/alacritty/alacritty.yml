@@ -28,11 +28,16 @@ font:
     size: 8.0
 
 
+window:
+    
+    # Significantly more convenient when using nvim
+    dynamic_padding: true
+
 # Scrolling configuration
 scrolling:
 
     # Don't use scrolling because we want maximum speed
-    history: 0
+    history: 500
     
     # Always scroll to the bottom of the page
     auto_scroll: true
