@@ -66,13 +66,13 @@ local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protoco
 -- 	capabilities = capabilities
 -- }
 
--- require('lspconfig').pyright.setup{
+require('lspconfig').pyright.setup{
+	-- capabilities = capabilities
+}
+
+-- require('lspconfig').jedi.setup{
 -- 	capabilities = capabilities
 -- }
-
-require('lspconfig').jedi.setup{
-	capabilities = capabilities
-}
 
 require('nvim-treesitter.configs').setup {
 -- One of "all", "maintained" (parsers with maintainers), or a list of languages
