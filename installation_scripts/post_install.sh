@@ -1,16 +1,16 @@
 # Run this script after you have installed arch linux completely
 # Also it shall be run as a user in the wheel group
 
-if [ "$EUID" -eq 0 ]
-	then echo "Please run this script as a user and not root"
-	exit
+if [ "$EUID" -eq 0 ]; then
+    echo "Please run this script as a user and not root"
+    exit
 fi
 
 # The user must be in the wheel group to run this script
 # This is necessary to run sudo commands as well as non-sudo commands
-if [ $(groups | grep -c "wheel") -eq 0 ]
-	then echo "Please run this script as a user in the wheel group"
-	exit
+if [ $(groups | grep -c "wheel") -eq 0 ]; then
+    echo "Please run this script as a user in the wheel group"
+    exit
 fi
 
 # Get the user's home directory path
@@ -30,9 +30,15 @@ echo "  2) intel for integrated graphics"
 # Inform the user which video driver will be installed
 read n
 case $n in
-  1) echo "Installing nvidia drivers"; sudo pacman -S nvidia;;
-  2) echo "Installing intel drivers"; sudo pacman -S xf86-video-intel mesa;;
-  *) echo "invalid option, not installing video drivers";;
+1)
+    echo "Installing nvidia drivers"
+    sudo pacman -S nvidia
+    ;;
+2)
+    echo "Installing intel drivers"
+    sudo pacman -S xf86-video-intel mesa
+    ;;
+*) echo "invalid option, not installing video drivers" ;;
 esac
 
 # Update the system first
@@ -40,7 +46,7 @@ sudo pacman -Syu
 
 # Now do the big pacman install
 # Put ALL pacman packages in that package list
-sudo pacman --noconfirm -Sy - < ./pkg_lists/pacman.txt
+sudo pacman --noconfirm -Sy - <./pkg_lists/pacman.txt
 
 # Install the yay, AUR helper
 cd $HOME_DIR

@@ -30,6 +30,16 @@ Plug 'windwp/nvim-autopairs'
 Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 Plug 'SirVer/ultisnips'
 
+" Code formatting for python
+Plug 'mhartington/formatter.nvim'
+" Plug 'averms/black-nvim', {'do': ':UpdateRemotePlugins'}
+" 	let g:black#settings = {
+" 		\ 'fast': 1,
+" 		\ 'line_length': 89
+" 	\}
+" 		" \ 'experimental_string_processing': 1
+" 	let g:python3_host_prog = $HOME . '/miniconda3/bin/python3'
+
 " Crazy snippet library
 " Plug 'honza/vim-snippets'
 
