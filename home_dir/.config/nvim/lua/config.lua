@@ -65,6 +65,9 @@ augroup END
 ]],
   true
 )
+-- Fix this issue where after formatting the folds are gone.
+-- setting 'foldmethod' to 'expr' fixes this but it needs to be done automatically.
+-- autocmd BufWritePost *.lua,*.py,*.tex,*.sh,*.bash, :set foldmethod=expr
 
 -- -------------------- COMPLETION STUFF --------------------
 
