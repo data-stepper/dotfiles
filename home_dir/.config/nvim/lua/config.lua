@@ -1,6 +1,6 @@
 -- Setup nvim-cmp.
 
--- -------------------- COMPLETION STUFF --------------------
+-- -------------------- CODE FORMATTING --------------------
 require("formatter").setup(
   {
     filetype = {
@@ -37,7 +37,7 @@ require("formatter").setup(
         function()
           return {
             exe = "luafmt",
-            args = {"--indent-count", 4, "--stdin"},
+            args = {"--indent-count", 2, "--stdin"},
             stdin = true
           }
         end
@@ -66,78 +66,76 @@ augroup END
   true
 )
 
+-- -------------------- COMPLETION STUFF --------------------
+
 require("nvim-autopairs").setup {}
 local cmp = require("cmp")
 
 cmp.setup(
   {
     snippet = {
-      -- REQUIRED - you must specify a snippet engine
       expand = function(args)
-        -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-        -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-        -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
         vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
       end
     },
     mapping = {
-      ["<Tab>"] = cmp.mapping(
-        {
-          c = function()
-            if cmp.visible() then
-              cmp.select_next_item({behavior = cmp.SelectBehavior.Insert})
-            else
-              cmp.complete()
-            end
-          end,
-          i = function(fallback)
-            if cmp.visible() then
-              cmp.select_next_item({behavior = cmp.SelectBehavior.Insert})
-            elseif vim.fn["UltiSnips#CanJumpForwards"]() == 1 then
-              vim.api.nvim_feedkeys(t("<Plug>(ultisnips_jump_forward)"), "m", true)
-            else
-              fallback()
-            end
-          end,
-          s = function(fallback)
-            if vim.fn["UltiSnips#CanJumpForwards"]() == 1 then
-              vim.api.nvim_feedkeys(t("<Plug>(ultisnips_jump_forward)"), "m", true)
-            else
-              fallback()
-            end
-          end
-        }
-      ),
-      ["<S-Tab>"] = cmp.mapping(
-        {
-          c = function()
-            if cmp.visible() then
-              cmp.select_prev_item({behavior = cmp.SelectBehavior.Insert})
-            else
-              cmp.complete()
-            end
-          end,
-          i = function(fallback)
-            if cmp.visible() then
-              cmp.select_prev_item({behavior = cmp.SelectBehavior.Insert})
-            elseif vim.fn["UltiSnips#CanJumpBackwards"]() == 1 then
-              return vim.api.nvim_feedkeys(t("<Plug>(ultisnips_jump_backward)"), "m", true)
-            else
-              fallback()
-            end
-          end,
-          s = function(fallback)
-            if vim.fn["UltiSnips#CanJumpBackwards"]() == 1 then
-              return vim.api.nvim_feedkeys(t("<Plug>(ultisnips_jump_backward)"), "m", true)
-            else
-              fallback()
-            end
-          end
-        }
-      ),
+      -- ["<Tab>"] = cmp.mapping(
+      --     {
+      --         c = function()
+      --             if cmp.visible() then
+      --                 cmp.select_next_item({behavior = cmp.SelectBehavior.Insert})
+      --             else
+      --                 cmp.complete()
+      --             end
+      --         end,
+      --         i = function(fallback)
+      --             if cmp.visible() then
+      --                 cmp.select_next_item({behavior = cmp.SelectBehavior.Insert})
+      --             elseif vim.fn["UltiSnips#CanJumpForwards"]() == 1 then
+      --                 vim.api.nvim_feedkeys(t("<Plug>(ultisnips_jump_forward)"), "m", true)
+      --             else
+      --                 fallback()
+      --             end
+      --         end,
+      --         s = function(fallback)
+      --             if vim.fn["UltiSnips#CanJumpForwards"]() == 1 then
+      --                 vim.api.nvim_feedkeys(t("<Plug>(ultisnips_jump_forward)"), "m", true)
+      --             else
+      --                 fallback()
+      --             end
+      --         end
+      --     }
+      -- ),
+      -- ["<S-Tab>"] = cmp.mapping(
+      --     {
+      --         c = function()
+      --             if cmp.visible() then
+      --                 cmp.select_prev_item({behavior = cmp.SelectBehavior.Insert})
+      --             else
+      --                 cmp.complete()
+      --             end
+      --         end,
+      --         i = function(fallback)
+      --             if cmp.visible() then
+      --                 cmp.select_prev_item({behavior = cmp.SelectBehavior.Insert})
+      --             elseif vim.fn["UltiSnips#CanJumpBackwards"]() == 1 then
+      --                 return vim.api.nvim_feedkeys(t("<Plug>(ultisnips_jump_backward)"), "m", true)
+      --             else
+      --                 fallback()
+      --             end
+      --         end,
+      --         s = function(fallback)
+      --             if vim.fn["UltiSnips#CanJumpBackwards"]() == 1 then
+      --                 return vim.api.nvim_feedkeys(t("<Plug>(ultisnips_jump_backward)"), "m", true)
+      --             else
+      --                 fallback()
+      --             end
+      --         end
+      --     }
+      -- ),
       ["<Down>"] = cmp.mapping(cmp.mapping.select_next_item({behavior = cmp.SelectBehavior.Select}), {"i"}),
       ["<Up>"] = cmp.mapping(cmp.mapping.select_prev_item({behavior = cmp.SelectBehavior.Select}), {"i"}),
-      ["<C-n>"] = cmp.mapping(
+      ["<C-j>"] = cmp.mapping(
         {
           c = function()
             if cmp.visible() then
@@ -155,7 +153,7 @@ cmp.setup(
           end
         }
       ),
-      ["<C-p>"] = cmp.mapping(
+      ["<C-k>"] = cmp.mapping(
         {
           c = function()
             if cmp.visible() then
@@ -173,16 +171,16 @@ cmp.setup(
           end
         }
       ),
-      ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), {"i", "c"}),
-      ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), {"i", "c"}),
-      ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), {"i", "c"}),
+      ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-2), {"i", "c"}),
+      ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(2), {"i", "c"}),
+      -- ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), {"i", "c"}),
       ["<C-e>"] = cmp.mapping({i = cmp.mapping.close(), c = cmp.mapping.close()}),
-      ["<CR>"] = cmp.mapping(
+      ["<C-y>"] = cmp.mapping(
         {
-          i = cmp.mapping.confirm({behavior = cmp.ConfirmBehavior.Replace, select = false}),
+          i = cmp.mapping.confirm({behavior = cmp.ConfirmBehavior.Replace, select = true}),
           c = function(fallback)
             if cmp.visible() then
-              cmp.confirm({behavior = cmp.ConfirmBehavior.Replace, select = false})
+              cmp.confirm({behavior = cmp.ConfirmBehavior.Replace, select = true})
             else
               fallback()
             end
@@ -269,44 +267,7 @@ end
 
 local saga = require "lspsaga"
 
-saga.init_lsp_saga {
-  use_saga_diagnostic_sign = true,
-  error_sign = "",
-  warn_sign = "",
-  hint_sign = "",
-  infor_sign = "",
-  dianostic_header_icon = "   ",
-  code_action_icon = " ",
-  code_action_prompt = {
-    enable = true,
-    sign = true,
-    sign_priority = 20,
-    virtual_text = true
-  },
-  finder_definition_icon = "  ",
-  finder_reference_icon = "  ",
-  max_preview_lines = 10, -- preview lines of lsp_finder and definition preview
-  finder_action_keys = {
-    open = "o",
-    vsplit = "s",
-    split = "i",
-    quit = "q",
-    scroll_down = "<C-f>",
-    scroll_up = "<C-b>" -- quit can be a table
-  },
-  code_action_keys = {
-    quit = "q",
-    exec = "<CR>"
-  },
-  rename_action_keys = {
-    quit = "<C-c>",
-    exec = "<CR>" -- quit can be a table
-  },
-  definition_preview_icon = "  ",
-  border_style = "single",
-  rename_prompt_prefix = "➤",
-  server_filetype_map = {}
-}
+saga.init_lsp_saga {}
 
 -- -------------------- TREE SITTER STUFF --------------------
 
@@ -320,13 +281,17 @@ require("nvim-treesitter.configs").setup {
     -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
     -- Using this option may slow down your editor, and you may see some duplicate highlights.
     -- Instead of true it can also be a list of languages
-    additional_vim_regex_highlighting = false,
-    pyfold = {
-      enable = true,
-      custom_foldtext = true -- Sets provided foldtext on window where module is active
-    }
+    additional_vim_regex_highlighting = false
+    -- pyfold = {
+    --   enable = true,
+    --   custom_foldtext = true -- Sets provided foldtext on window where module is active
+    -- }
   }
 }
+
+-- Set up folding here for some reason this works here but not in init.vim ?
+vim.o.foldmethod = "expr"
+vim.o.foldexpr = "nvim_treesitter#foldexpr()"
 
 -- -------------------- LUALINE --------------------
 
@@ -352,7 +317,7 @@ require("lualine").setup {
         --   'nvim_lsp', 'nvim_diagnostic', 'coc', 'ale', 'vim_lsp'.
         -- or a function that returns a table as such:
         --   { error=error_cnt, warn=warn_cnt, info=info_cnt, hint=hint_cnt }
-        sources = {"nvim_diagnostic", "coc"},
+        sources = {"nvim_diagnostic"},
         -- Displays diagnostics for the defined severity types
         sections = {"error", "warn", "info", "hint"},
         symbols = {error = "E", warn = "W", info = "I", hint = "H"},

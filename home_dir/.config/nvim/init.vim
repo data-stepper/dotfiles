@@ -27,8 +27,12 @@ Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'windwp/nvim-autopairs'
+
+
 Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 Plug 'SirVer/ultisnips'
+	let g:UltiSnipsNoMap = 1
+	let g:UltiSnipsExpandTrigger = "<NUL>"
 
 " Code formatting for python
 Plug 'mhartington/formatter.nvim'
@@ -45,7 +49,7 @@ Plug 'mhartington/formatter.nvim'
 
 " Use nvim-treesitter 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'eddiebergman/nvim-treesitter-pyfold'
+" Plug 'eddiebergman/nvim-treesitter-pyfold'
 " Plug 'romgrk/nvim-treesitter-context' " Not so cool for solarized colors
 Plug 'liuchengxu/vista.vim'
 	let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
@@ -77,6 +81,12 @@ Plug 'jeetsukumaran/vim-pythonsense'
 Plug 'jpalardy/vim-slime'
 	" Use the neovim terminal feature
 	let g:slime_target = "neovim"
+
+	" For python always use ipython
+	let g:slime_python_ipython = 1
+
+	" Remove the standard mappings created by vim-slime
+	let g:slime_no_mappings = 1
 
 " My own ai assist plugin
 Plug 'data-stepper/ai-text-assist'
@@ -165,12 +175,6 @@ nmap <silent> <F1> :SlimeSendCurrentLine<CR>j
 nmap <silent> s :SlimeSendCurrentLine<CR>j
 vmap <silent> s :SlimeSend<CR>
 
-" For python always use ipython
-let g:slime_python_ipython = 1
-
-" Remove the standard mappings created by vim-slime
-let g:slime_no_mappings = 1
-
 " Below code is copied from coc-snippets
 
 " Use <C-l> for trigger snippet expand.
@@ -189,8 +193,8 @@ let g:coc_snippet_prev = '<c-k>'
 imap <C-j> <Plug>(coc-snippets-expand-jump)
 
 " Enable folding with treesitter now
-set foldmethod=expr
-set foldexpr=nvim_treesitter#fold_expr()
+" set foldmethod=expr
+" set foldexpr=nvim_treesitter#fold_expr()
 
 " Start at lowest fold level always
 " set foldlevel=0
@@ -199,7 +203,7 @@ set noswapfile
 
 " Map leader key to ','
 let mapleader=","
-nmap <leader>w :w<CR>
+nmap <leader>w :w!<CR>
 
 " Launch action menu with leader + a
 nmap <silent> <leader>a :CocAction<CR>
@@ -481,12 +485,12 @@ nmap <leader>qf  <Plug>(coc-fix-current)
 " command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
 " Coc statusline setup
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+" set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Cursor never gets closer than n lines to the top / bottom of the split
 set scrolloff=10
 
-" Activate syntax highlightin
+" Activate syntax highlighting
 syntax on
 
 " Different options for fonts
