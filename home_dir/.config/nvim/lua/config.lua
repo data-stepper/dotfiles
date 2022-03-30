@@ -133,13 +133,20 @@ cmp.setup(
       --         end
       --     }
       -- ),
-      ["<Down>"] = cmp.mapping(cmp.mapping.select_next_item({behavior = cmp.SelectBehavior.Select}), {"i"}),
-      ["<Up>"] = cmp.mapping(cmp.mapping.select_prev_item({behavior = cmp.SelectBehavior.Select}), {"i"}),
+      -- Short description of how EXACTLY the completion menu works now
+      -- When typing somewhere, a completion menu will be shown
+      -- It will not complete anything unless items from it are selected
+      --
+      -- Select the below item using <C-j> and scroll through the suggestions
+      -- scroll back up with <C-k>. In insert mode you will have to press
+      -- <C-y> to confirm a suggestion, in command line mode selected options
+      -- will automatically be inserted and then you can just keep typing.
+      --
       ["<C-j>"] = cmp.mapping(
         {
           c = function()
             if cmp.visible() then
-              cmp.select_next_item({behavior = cmp.SelectBehavior.Select})
+              cmp.select_next_item({behavior = cmp.SelectBehavior.Replace})
             else
               vim.api.nvim_feedkeys(t("<Down>"), "n", true)
             end
@@ -157,7 +164,7 @@ cmp.setup(
         {
           c = function()
             if cmp.visible() then
-              cmp.select_prev_item({behavior = cmp.SelectBehavior.Select})
+              cmp.select_prev_item({behavior = cmp.SelectBehavior.Replace})
             else
               vim.api.nvim_feedkeys(t("<Up>"), "n", true)
             end
@@ -243,9 +250,6 @@ cmp.setup.cmdline(
 
 -- Setup lspconfig.
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
--- require('lspconfig')['pyright'].setup {
--- 	capabilities = capabilities
--- }
 
 local lspconfig = require("lspconfig")
 
@@ -259,10 +263,6 @@ for _, lsp in ipairs(servers) do
     capabilities = capabilities
   }
 end
--- require('lspconfig').pyright.setup{
--- capabilities = capabilities
--- }
-
 -- -------------------- LANGUAGE SERVER STUFF --------------------
 
 local saga = require "lspsaga"
