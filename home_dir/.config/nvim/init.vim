@@ -206,10 +206,10 @@ let mapleader=","
 nmap <leader>w :w!<CR>
 
 " Launch action menu with leader + a
-nmap <silent> <leader>a :CocAction<CR>
+" nmap <silent> <leader>a :CocAction<CR>
 
 " Also enable in visual mode
-vmap <silent> <leader>a :CocAction<CR>
+" vmap <silent> <leader>a :CocAction<CR>
 
 " File browser and most recently used files
 " nmap <silent> <C-N> :NERDTreeToggle<CR>
