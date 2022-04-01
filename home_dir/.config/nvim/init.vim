@@ -73,6 +73,10 @@ Plug 'junegunn/goyo.vim'
 
 " Use github copilot, yeah
 Plug 'github/copilot.vim'
+	" Enable copilot by default for all filetypes
+	let g:copilot_filetypes = {
+		\ '*': v:true,
+	\ }
 
 " This plugin lets me move inside python code more easily
 Plug 'jeetsukumaran/vim-pythonsense'
