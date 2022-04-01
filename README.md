@@ -49,6 +49,14 @@ Compton is a tool I use to make my windows transparent, it is installed by the i
 
 I use neovim, also installed as an ubuntu package. With neovim I use mainly the following plugins to assist coding or writing latex documents:
 
+## How to crop pdf files
+
+My way to crop pdf files.
+
+```
+	pdfcrop --margins 5 --clip <infile>.pdf <outfile>.pdf
+```
+
 # TODO List
 
 - [x] Installation script installs lf file manager
