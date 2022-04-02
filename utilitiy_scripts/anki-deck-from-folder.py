@@ -40,7 +40,7 @@ def read_and_parse_entry_file(path_to_entry_file, dir_path):
     with path_to_entry_file.open("r") as f:
         # Skip the first line
         for line in f.readlines()[1:]:
-            items = line[:-1].split(",")
+            items = line[:-1].split(";")  # Since I changed the delimiter to ";"
 
             *files, description = items
 
@@ -66,9 +66,7 @@ def parse_path(path):
         # Now read and parse the entry file
         parsed_entries = read_and_parse_entry_file(entry_file, path)
 
-        logging.info(
-            "Parsed {} entries from folder".format(len(parsed_entries))
-        )
+        logging.info("Parsed {} entries from folder".format(len(parsed_entries)))
 
         logging.debug("Entries read: {}".format(pformat(parsed_entries)))
 
@@ -124,10 +122,7 @@ def main(args):
     target_dir = deck_dir / "screenshots_source"
     target_dir.mkdir()
 
-    assert (
-        system("cp -Rf {} {}".format(str(args.path) + "/*", str(target_dir)))
-        == 0
-    )
+    assert system("cp -Rf {} {}".format(str(args.path) + "/*", str(target_dir))) == 0
 
     logging.info("Copied source files into '{}'".format(target_dir))
 
@@ -138,9 +133,7 @@ def main(args):
         ".local/share/Anki2/User\ 1/collection.media"
     )
 
-    copy_command = "sudo cp {} {}".format(
-        str(args.path) + "/*.png", anki_collections
-    )
+    copy_command = "sudo cp {} {}".format(str(args.path) + "/*.png", anki_collections)
 
     assert system(copy_command) == 0
 
