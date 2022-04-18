@@ -69,6 +69,19 @@ augroup END
 -- setting 'foldmethod' to 'expr' fixes this but it needs to be done automatically.
 -- autocmd BufWritePost *.lua,*.py,*.tex,*.sh,*.bash, :set foldmethod=expr
 
+-- -------------------- TELESCOPE --------------------
+require("telescope").setup {
+  defaults = {
+    -- Default configuration for telescope goes here:
+    -- config_key = value,
+    mappings = {
+      i = {}
+    }
+  },
+  pickers = {},
+  extensions = {}
+}
+
 -- -------------------- COMPLETION STUFF --------------------
 
 require("nvim-autopairs").setup {}
