@@ -172,7 +172,7 @@ set splitright
 " Use vim-slime because it works best with all kinds of REPLs
 
 " Send the entire buffer
-nmap <silent> <C-r> :%SlimeSend<CR>
+" nmap <silent> <C-r> :%SlimeSend<CR>
 nmap <silent> <F2> :%SlimeSend<CR>
 
 " Only send a selection or current line
@@ -205,6 +205,11 @@ vmap <silent> s :SlimeSend<CR>
 map <leader>t :Telescope<CR>
 map <C-t> :Telescope<CR>
 map <F3> :Telescope<CR>
+
+" Some more specific telescope mappings
+map <C-f> :Telescope find_files<CR> 
+map <C-b> :Telescope buffers<CR> 
+map <C-r> :Telescope oldfiles<CR>
 
 " Enable folding with treesitter now
 " set foldmethod=expr
