@@ -76,6 +76,9 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'yegappan/mru'
 Plug 'junegunn/goyo.vim'
 
+	" Use a little wider than the default (80)
+	let g:goyo_width = 90
+
 " Use github copilot, yeah
 Plug 'github/copilot.vim'
 	" Enable copilot by default for all filetypes
@@ -98,7 +101,7 @@ Plug 'jpalardy/vim-slime'
 	let g:slime_no_mappings = 1
 
 " My own ai assist plugin
-Plug 'data-stepper/ai-text-assist'
+" Plug 'data-stepper/ai-text-assist'
 
 " Vim and latex combination
 Plug 'lervag/vimtex'
@@ -261,6 +264,7 @@ set background=dark
 colorscheme NeoSolarized
 
 map <silent> <leader>g :Goyo<CR>
+map <silent> <C-g> :Goyo<CR>
 
 " Enable folding with the space bar
 nnoremap <space> za
