@@ -95,7 +95,9 @@ Plug 'jpalardy/vim-slime'
 	let g:slime_target = "neovim"
 
 	" For python always use ipython
-	let g:slime_python_ipython = 1
+	" Don't use ipython anymore since it uses way to much ram
+	" use bpython or python3 interactive directly
+	" let g:slime_python_ipython = 1
 
 	" Remove the standard mappings created by vim-slime
 	let g:slime_no_mappings = 1
