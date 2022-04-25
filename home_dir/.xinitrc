@@ -37,6 +37,8 @@ sudo dhcpcd # Launch dynamic ip address DHCP
 sudo systemctl start iwd # Start the wireless interface
 rm -rf ~/Downloads/* # Remove all contents of the Download folder to keep it clean
 nitrogen --set-zoom-fill ~/git/dotfiles/Wallpapers/pexels-mirco-violent-blur-4072840.jpg
-compton &
+
+# Start compton with some additional arguments to prevent screen tearing
+compton --backend glx --vsync &
 xset r rate 220 80
 exec i3
