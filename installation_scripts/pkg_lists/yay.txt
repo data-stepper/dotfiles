@@ -11,6 +11,7 @@ dhcpcd
 dmenu
 entr
 fakeroot
+brave-bin
 file
 findutils
 firefox
