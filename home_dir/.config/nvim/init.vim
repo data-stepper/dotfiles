@@ -262,8 +262,8 @@ set termguicolors
 
 " Set default colorscheme and dark background
 set background=dark
-" colorscheme nightfox
-colorscheme NeoSolarized
+colorscheme melange
+" colorscheme NeoSolarized
 
 map <silent> <leader>g :Goyo<CR>
 map <silent> <C-g> :Goyo<CR>
