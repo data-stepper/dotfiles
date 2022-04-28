@@ -10,6 +10,8 @@ dhcpcd
 dmenu
 entr
 fakeroot
+xdotool
+ripgrep
 file
 findutils
 firefox
