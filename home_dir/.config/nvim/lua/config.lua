@@ -307,7 +307,7 @@ local on_attach = function(client, bufnr)
   --
 end
 
-local servers = {"pyright", "texlab"}
+local servers = {"pyright"}
 
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
@@ -315,11 +315,15 @@ for _, lsp in ipairs(servers) do
     capabilities = capabilities
   }
 end
+
+-- Setup texlab extra as it is not really a language server.
+lspconfig["texlab"].setup {}
+
 -- -------------------- LANGUAGE SERVER STUFF --------------------
 
-local saga = require "lspsaga"
+-- local saga = require "lspsaga"
 
-saga.init_lsp_saga {}
+-- saga.init_lsp_saga {}
 
 -- -------------------- TREE SITTER STUFF --------------------
 
