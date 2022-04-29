@@ -307,7 +307,7 @@ local on_attach = function(client, bufnr)
   --
 end
 
-local servers = {"pyright"}
+local servers = {"pyright", "texlab"}
 
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {

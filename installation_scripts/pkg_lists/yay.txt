@@ -3,6 +3,7 @@ anki-official-binary-bundle
 autoconf
 automake
 base
+texlab
 binutils
 bison
 cmatrix
