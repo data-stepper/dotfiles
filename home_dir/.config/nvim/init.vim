@@ -75,9 +75,13 @@ Plug 'nvim-telescope/telescope.nvim'
 
 Plug 'yegappan/mru'
 Plug 'junegunn/goyo.vim'
-
 	" Use a little wider than the default (80)
 	let g:goyo_width = 90
+
+Plug 'junegunn/limelight.vim'
+	" Always use limelight when using goyo
+	autocmd! User GoyoEnter Limelight
+	autocmd! User GoyoLeave Limelight!
 
 " Use github copilot, yeah
 Plug 'github/copilot.vim'
