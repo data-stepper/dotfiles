@@ -8,7 +8,7 @@ def env(name):
 	return x != '0' and y != '0'
 endglobal
 
-###################### Template snippets ######################################
+###################### Template snippets #######################################
 
 snippet template "Basic template" b
 \documentclass[a4paper]{article}
@@ -138,10 +138,60 @@ snippet tht "New Theorem" bA
 \\end{theorem}
 endsnippet
 
-priority 100
+###################### Stuff I commented out when writing my bachelor degree ###
+
+# snippet inn "... in Natural Numbers" iA
+# \in \mathbb{N} $1
+# endsnippet
+
+# snippet only "Latex beamer only include on -- slides" iA
+# \only<$1>{
+# 	$2
+# } $0
+# endsnippet
+
+# snippet lim "limit" w
+# \lim_{${1:n} \to ${2:\infty}} 
+# endsnippet
+
+# priority 10
+# # context "math()"
+# snippet "bar" "bar" riA
+# \overline{$1}$0
+# endsnippet
+
+# priority 100
+# # context "math()"
+# snippet "([a-zA-Z])bar" "bar" riA
+# \overline{`!p snip.rv=match.group(1)`}
+# endsnippet
+
+# priority 10
+# # context "math()"
+# snippet "hat" "hat" riA
+# \hat{$1}$0
+# endsnippet
+
+# priority 100
+# # context "math()"
+# snippet "([a-zA-Z])hat" "hat" riA
+# \hat{`!p snip.rv=match.group(1)`}
+# endsnippet
+
+# priority 100
 # snippet ... "ldots" iA
 # \ldots
 # endsnippet
+
+# # context "math()"
+# snippet rd "to the ... power" iA
+# ^{($1)}$0
+# endsnippet
+
+snippet pfunc "Parametrized function" iA
+${1: Function}_{${2: \theta}}: \; & \R^{${3: d}} \longrightarrow \R^{${4: d}} \\\\
+& x \longmapsto $5
+endsnippet
 
 snippet table "Table environment" b
 \begin{table}[${1:htpb}]
@@ -188,12 +238,6 @@ endsnippet
 snippet vss "Vertical Space for Latex beamer" iA
 \vspace{5mm}
 $0
-endsnippet
-
-snippet only "Latex beamer only include on -- slides" iA
-\only<$1>{
-	$2
-} $0
 endsnippet
 
 snippet => "implies" Ai
@@ -549,10 +593,6 @@ snippet taylor "taylor" w
 \sum_{${1:k}=${2:0}}^{${3:\infty}} ${4:c_$1} (x-a)^$1 $0
 endsnippet
 
-snippet lim "limit" w
-\lim_{${1:n} \to ${2:\infty}} 
-endsnippet
-
 snippet limsup "limsup" w
 \limsup_{${1:n} \to ${2:\infty}} 
 endsnippet
@@ -587,11 +627,6 @@ endsnippet
 # context "math()"
 snippet td "to the ... power" iA
 ^{$1}$0
-endsnippet
-
-# context "math()"
-snippet rd "to the ... power" iA
-^{($1)}$0
 endsnippet
 
 snippet __ "subscript" iA
@@ -770,10 +805,6 @@ snippet bframe "Beamer class frame" iA
 	$2
 \end{frame}
 $0
-endsnippet
-
-snippet inn "... in Natural Numbers" iA
-\in \mathbb{N} $1
 endsnippet
 
 snippet mbb "mathbb" iA
@@ -976,34 +1007,9 @@ snippet cvec "column vector" iA
 \begin{pmatrix} ${1:x}_${2:1}\\\\ \vdots\\\\ $1_${2:n} \end{pmatrix}
 endsnippet
 
-priority 10
-# context "math()"
-snippet "bar" "bar" riA
-\overline{$1}$0
-endsnippet
-
-priority 100
-# context "math()"
-snippet "([a-zA-Z])bar" "bar" riA
-\overline{`!p snip.rv=match.group(1)`}
-endsnippet
-
-priority 10
-# context "math()"
-snippet "hat" "hat" riA
-\hat{$1}$0
-endsnippet
-
-priority 100
-# context "math()"
-snippet "([a-zA-Z])hat" "hat" riA
-\hat{`!p snip.rv=match.group(1)`}
-endsnippet
-
 snippet letw "let omega" iA
 Let $\Omega \subset \C$ be open.
 endsnippet
-
 
 snippet HH "H" iA
 \mathbb{H}
