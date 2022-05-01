@@ -44,9 +44,8 @@ esac
 # Update the system first
 sudo pacman -Syu
 
-# Now do the big pacman install
-# Put ALL pacman packages in that package list
-sudo pacman --noconfirm -Sy - <./pkg_lists/pacman.txt
+# Run the script './install_packages.sh' to install all needed packages
+source ./install_packages.sh
 
 # Install the yay, AUR helper
 cd $HOME_DIR
@@ -55,9 +54,6 @@ git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si
 cd $HOME_DIR
-
-# Install the AUR packages from the list
-yay --noconfirm -S $(cat ./pkg_lists/yay.txt)
 
 # Tell the user that most of the packages are installed
 echo "Installed most of the packages, updating the system now"

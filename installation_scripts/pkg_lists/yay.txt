@@ -40,7 +40,7 @@ make
 mesa-utils
 nano
 neofetch
-neovim
+neovim-nightly-bin
 networkmanager
 nitrogen
 nodejs
