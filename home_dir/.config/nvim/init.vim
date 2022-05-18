@@ -107,7 +107,7 @@ Plug 'jpalardy/vim-slime'
 	let g:slime_no_mappings = 1
 
 " My own ai assist plugin
-" Plug 'data-stepper/ai-text-assist'
+Plug 'data-stepper/ai-text-assist'
 
 " Vim and latex combination
 Plug 'lervag/vimtex'
