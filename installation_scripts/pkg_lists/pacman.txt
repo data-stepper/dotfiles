@@ -38,7 +38,7 @@ make
 mesa-utils
 nano
 nitrogen
-nodejs
+nodejs-lts-gallium
 noto-fonts-cjk
 noto-fonts-emoji
 npm
