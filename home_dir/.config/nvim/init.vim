@@ -265,9 +265,9 @@ set colorcolumn=81
 set termguicolors
 
 " Set default colorscheme and dark background
-set background=dark
-colorscheme melange
-" colorscheme NeoSolarized
+set background=light
+colorscheme NeoSolarized
+" colorscheme melange
 
 map <silent> <leader>g :Goyo<CR>
 map <silent> <C-g> :Goyo<CR>
