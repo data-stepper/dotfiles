@@ -28,6 +28,12 @@ Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'windwp/nvim-autopairs'
 
+" For math stuff in neovim
+Plug 'jbyuki/nabla.nvim' 
+
+" Use Neorg from now on, to organize stuff yeah
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-neorg/neorg' 
 
 Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 Plug 'SirVer/ultisnips'
@@ -70,7 +76,6 @@ Plug 'alvan/vim-closetag'
 
 " Now using telescope
 " Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 
 Plug 'yegappan/mru'

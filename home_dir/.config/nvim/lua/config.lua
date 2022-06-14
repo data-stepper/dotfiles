@@ -69,6 +69,9 @@ augroup END
 -- setting 'foldmethod' to 'expr' fixes this but it needs to be done automatically.
 -- autocmd BufWritePost *.lua,*.py,*.tex,*.sh,*.bash, :set foldmethod=expr
 
+--
+require("neorg").setup()
+
 -- -------------------- TELESCOPE --------------------
 require("telescope").setup {
   defaults = {
