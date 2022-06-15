@@ -69,8 +69,20 @@ augroup END
 -- setting 'foldmethod' to 'expr' fixes this but it needs to be done automatically.
 -- autocmd BufWritePost *.lua,*.py,*.tex,*.sh,*.bash, :set foldmethod=expr
 
---
-require("neorg").setup()
+-- -------------------- NEORG SETUP --------------------
+require("neorg").setup {
+  load = {
+    ["core.defaults"] = {},
+    ["core.norg.dirman"] = {
+      config = {
+        workspaces = {
+          work = "~/notes/work",
+          home = "~/notes/home"
+        }
+      }
+    }
+  }
+}
 
 -- -------------------- TELESCOPE --------------------
 require("telescope").setup {
