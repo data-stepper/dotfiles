@@ -53,6 +53,9 @@ Plug 'mhartington/formatter.nvim'
 " Crazy snippet library
 " Plug 'honza/vim-snippets'
 
+" Nicely indent the lines everywhere
+Plug 'lukas-reineke/indent-blankline.nvim'
+
 " Use nvim-treesitter 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " Plug 'eddiebergman/nvim-treesitter-pyfold'
