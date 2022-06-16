@@ -76,8 +76,8 @@ require("neorg").setup {
     ["core.norg.dirman"] = {
       config = {
         workspaces = {
-          work = "~/notes/work",
-          home = "~/notes/home"
+          main = "~/git/notes/main",
+          gtd = "~/git/notes/gtd"
         }
       }
     },
@@ -85,7 +85,7 @@ require("neorg").setup {
     ["core.norg.qol.toc"] = {},
     ["core.gtd.base"] = {
       config = {
-        workspace = "home"
+        workspace = "gtd"
       }
     }
   }
