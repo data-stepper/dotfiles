@@ -71,14 +71,14 @@ augroup END
 
 -- -------------------- INDENT BLANKLINE --------------------
 vim.opt.list = true
-vim.opt.listchars:append("space:⋅")
-vim.opt.listchars:append("eol:<")
+-- vim.opt.listchars:append("space:⋅")
+-- vim.opt.listchars:append("eol:<")
 
 require("indent_blankline").setup {
   -- for example, context is off by default, use this to turn it on
   show_current_context = true,
   show_current_context_start = true,
-  show_end_of_line = true,
+  -- show_end_of_line = true,
   space_char_blankline = " "
 }
 
@@ -86,6 +86,7 @@ require("indent_blankline").setup {
 require("neorg").setup {
   load = {
     ["core.defaults"] = {},
+    ["core.integrations.telescope"] = {},
     ["core.norg.dirman"] = {
       config = {
         workspaces = {
@@ -94,13 +95,25 @@ require("neorg").setup {
         }
       }
     },
-    ["core.norg.concealer"] = {},
-    ["core.norg.qol.toc"] = {},
     ["core.gtd.base"] = {
       config = {
         workspace = "gtd"
       }
-    }
+    },
+    ["core.norg.concealer"] = {
+      config = {
+        -- icon_preset = "diamond",
+        dim_code_blocks = false
+      }
+    },
+    ["core.norg.qol.toc"] = {}
+    -- ["core.norg.completion"] = {},
+    -- ["core.export"] = {},
+    -- ["core.norg.manoeuvre "] = {},
+    -- ["core.integrations.nvim-cmp"] = {},
+    -- ["core.gtd.ui"] = {},
+    -- ["core.highlights"] = {},
+    -- ["core.export.markdown"] = {}
   }
 }
 

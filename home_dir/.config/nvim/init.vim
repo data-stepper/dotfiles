@@ -80,6 +80,7 @@ Plug 'alvan/vim-closetag'
 " Now using telescope
 " Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-neorg/neorg-telescope'
 
 Plug 'yegappan/mru'
 Plug 'junegunn/goyo.vim'
