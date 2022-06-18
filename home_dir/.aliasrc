@@ -19,8 +19,11 @@ alias al="nvim ~/dotfiles/aliasrc"
 alias sdn="sudo systemctl poweroff"
 alias reboot="sudo systemctl reboot"
 
-# Also add snap store update
+# The old update alias
 # alias update="sudo pacman --noconfirm -Syu && yay -Syu && sudo npm install -g npm"
+
+# Now I use the sync script at ./.local/bin/sync a python script
+alias update="sync"
 
 # Add one for ssh server so I don't always have to google that
 ssh-server () {
