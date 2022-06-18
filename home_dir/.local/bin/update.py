@@ -29,8 +29,13 @@ def sync_repository_at_path(path):
     chdir(path)
     run_command("git pull")
     run_command("git add -A")
-    run_command("git commit -m 'Auto-Sync commit'")
-    run_command("git push")
+
+    try:
+        run_command("git commit -m 'Auto-Sync commit'")
+        run_command("git push")
+
+    except IOError:
+        print("No changes to commit.")
 
 
 # Update with pacman
