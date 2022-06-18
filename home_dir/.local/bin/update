@@ -27,22 +27,22 @@ def sync_repository_at_path(path):
     """Syncs the repository at the given path."""
 
     chdir(path)
-    run_command("git pull")
-    run_command("git add -A")
+
+    run_command("git pull; git add -A")
 
     try:
         run_command("git commit -m 'Auto-Sync commit'")
         run_command("git push")
 
     except IOError:
-        print("No changes to commit.")
+        print("No changes to commit in repository: {}".format(path))
 
 
 # Update with pacman
 run_command("sudo pacman --noconfirm -Syu")
 
 # Update with yay
-run_command("sudo yay -Syu")
+run_command("yay --nocleanmenu --noupgrademenu --nodiffmenu --noeditmenu -Syu")
 # TODO: Make this script run without confirmation.
 
 # Sync the git repositories
