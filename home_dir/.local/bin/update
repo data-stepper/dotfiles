@@ -28,7 +28,12 @@ def sync_repository_at_path(path):
 
     chdir(path)
 
-    run_command("git pull; git add -A")
+    try:
+        run_command("git pull; git add -A")
+
+    except IOError as e:
+        print("Failed to sync repository at path: {}".format(path))
+        return
 
     try:
         run_command("git commit -m 'Auto-Sync commit'")
