@@ -494,10 +494,10 @@ require("lualine").setup {
 -- each of these are documented in `:help nvim-tree.OPTION_NAME`
 require("nvim-tree").setup {
   -- BEGIN_DEFAULT_OPTS
-  auto_close = false,
+  -- auto_close = false,
+  -- hide_root_folder = false, -- These options deprecated ???
   auto_reload_on_write = true,
   disable_netrw = false,
-  hide_root_folder = false,
   hijack_cursor = false,
   hijack_netrw = true,
   hijack_unnamed_buffer_when_opening = false,
@@ -544,7 +544,7 @@ require("nvim-tree").setup {
     }
   },
   filters = {
-    dotfiles = true,
+    dotfiles = false,
     custom = {},
     exclude = {}
   },
