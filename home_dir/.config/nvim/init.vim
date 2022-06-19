@@ -81,6 +81,7 @@ Plug 'alvan/vim-closetag'
 " Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-neorg/neorg-telescope'
+Plug 'max397574/neorg-kanban'
 
 Plug 'yegappan/mru'
 Plug 'junegunn/goyo.vim'

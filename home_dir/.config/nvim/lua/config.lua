@@ -106,6 +106,20 @@ require("neorg").setup {
         dim_code_blocks = false
       }
     },
+    ["external.kanban"] = {
+      config = {
+        task_states = {
+          "undone",
+          "done",
+          "pending",
+          "cancelled",
+          "uncertain",
+          "urgent",
+          "recurring",
+          "on_hold"
+        }
+      }
+    },
     ["core.norg.qol.toc"] = {}
     -- ["core.norg.completion"] = {},
     -- ["core.export"] = {},
