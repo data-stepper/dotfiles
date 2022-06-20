@@ -71,7 +71,9 @@ def sync_repositories(repos: list = ['dotfiles', 'notes']):
     for repo in repos:
         sync_repository_at_path(git_dir / repo)
 
-    print("Synced repositories: {}".format(synces_repos))
+    print("Synced repositories: ")
+    for repo in synces_repos:
+        print("\t{}".format(repo.absolute))
 
     if len(failed_repos) > 0:
         print(80 * "=")
