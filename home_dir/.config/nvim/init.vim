@@ -22,6 +22,9 @@ Plug 'kevinhwang91/promise-async'
 Plug 'kevinhwang91/nvim-ufo'
 Plug 'ray-x/lsp_signature.nvim'
 
+" Google keep integration, yeah
+Plug 'stevearc/gkeep.nvim', { 'do': ':UpdateRemotePlugins' }
+
 " Use the neovim builtin lsp client
 Plug 'neovim/nvim-lspconfig'
 Plug 'glepnir/lspsaga.nvim' " For language server features
