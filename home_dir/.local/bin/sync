@@ -86,14 +86,13 @@ def sync_repositories(repos: list = ['dotfiles', 'notes']):
 if __name__ == "__main__":
     parser = ArgumentParser(description="Update my arch linux system.")
     parser.add_argument("-u", "--update", action="store_true", help="Update the system.")
-    parser.add_argument("--no-sync", action="store_false", help="Sync the repositories.")
+    # parser.add_argument("--no-sync", action="store_false", help="Sync the repositories.")
     args = parser.parse_args()
 
     if args.update:
         update()
 
-    if args.sync:
-        sync_repositories()
+    sync_repositories()
 
     if not args.update and not args.sync:
         parser.print_help()
