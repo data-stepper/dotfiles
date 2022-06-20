@@ -68,8 +68,6 @@ def sync_repositories(repos: list = ['dotfiles', 'notes']):
     # Sync the git repositories
     git_dir = Path.home() / "git"
 
-    repos_failed
-
     for repo in repos:
         sync_repository_at_path(git_dir / repo)
 
