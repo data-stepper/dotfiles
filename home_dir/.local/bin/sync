@@ -73,7 +73,7 @@ def sync_repositories(repos: list = ['dotfiles', 'notes']):
 
     print("Synced repositories: ")
     for repo in synces_repos:
-        print("\t{}".format(repo.absolute))
+        print("\t{}".format(repo.absolute()))
 
     if len(failed_repos) > 0:
         print(80 * "=")
