@@ -24,6 +24,8 @@ def run_command(command):
     if rv != 0:
         raise IOError("Error occurred while running command: {}, {}".format(command, rv))
 
+synces_repos: list = []
+failed_repos: list = []
 
 def sync_repository_at_path(path):
     """Syncs the repository at the given path."""
@@ -34,7 +36,9 @@ def sync_repository_at_path(path):
         run_command("git pull")
 
     except IOError as e:
+
         print("Failed to sync repository at path: {}".format(path))
+        failed_repos.append(path)
         return
 
     try:
@@ -44,6 +48,8 @@ def sync_repository_at_path(path):
 
     except IOError:
         print("No changes to commit in repository: {}".format(path))
+
+    synces_repos.append(path)
 
 
 def update():
@@ -62,8 +68,17 @@ def sync_repositories(repos: list = ['dotfiles', 'notes']):
     # Sync the git repositories
     git_dir = Path.home() / "git"
 
+    repos_failed
+
     for repo in repos:
         sync_repository_at_path(git_dir / repo)
+
+    print("Synced repositories: {}".format(synces_repos))
+
+    if len(failed_repos) > 0:
+        print(80 * "=")
+        print('ERROR:')
+        print("\tFailed to sync repositories: {}".format(failed_repos))
 
 if __name__ == "__main__":
     parser = ArgumentParser(description="Update my arch linux system.")
