@@ -20,6 +20,7 @@ Plug 'heavenshell/vim-pydocstring', { 'do': 'make install', 'for': 'python' }
 " Better folding
 Plug 'kevinhwang91/promise-async'
 Plug 'kevinhwang91/nvim-ufo'
+Plug 'ray-x/lsp_signature.nvim'
 
 " Use the neovim builtin lsp client
 Plug 'neovim/nvim-lspconfig'
