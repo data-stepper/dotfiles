@@ -69,6 +69,9 @@ augroup END
 -- setting 'foldmethod' to 'expr' fixes this but it needs to be done automatically.
 -- autocmd BufWritePost *.lua,*.py,*.tex,*.sh,*.bash, :set foldmethod=expr
 
+-- -------------------- REFACTORING STUFF --------------------
+require("refactoring").setup({})
+
 -- -------------------- INDENT BLANKLINE --------------------
 vim.opt.list = true
 -- vim.opt.listchars:append("space:⋅")
@@ -143,6 +146,15 @@ require("telescope").setup {
   pickers = {},
   extensions = {}
 }
+
+require("telescope").load_extension("refactoring")
+
+vim.api.nvim_set_keymap(
+  "v",
+  "<leader>rr",
+  "<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>",
+  {noremap = true}
+)
 
 -- -------------------- COMPLETION STUFF --------------------
 
@@ -277,10 +289,17 @@ cmp.setup(
       {
         {name = "nvim_lsp"},
         {name = "ultisnips"}, -- For ultisnips users.
-        {name = "path"} -- Add path autocomplete in all buffers
+        {name = "path"}, -- Add path autocomplete in all buffers
+        {name = "zsh"},
+        {name = "latex_symbols"},
+        {name = "nvim_lsp_signature_help"},
+        {name = "nvim_lsp_document_symbol"},
+        {name = "rg"} -- Ripgrep
+        -- {name = "copilot"}
       },
       {
-        {name = "buffer"}
+        {name = "buffer"},
+        {name = "emoji"}
       }
     )
   }
@@ -320,7 +339,8 @@ cmp.setup.cmdline(
         {name = "path"}
       },
       {
-        {name = "cmdline"}
+        {name = "cmdline"},
+        {name = "cmdline_history"}
       }
     )
   }
@@ -383,9 +403,9 @@ lspconfig["texlab"].setup {}
 
 -- -------------------- LANGUAGE SERVER STUFF --------------------
 
--- local saga = require "lspsaga"
+local saga = require "lspsaga"
 
--- saga.init_lsp_saga {}
+saga.init_lsp_saga {}
 
 -- -------------------- TREE SITTER STUFF --------------------
 

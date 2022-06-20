@@ -21,12 +21,23 @@ Plug 'heavenshell/vim-pydocstring', { 'do': 'make install', 'for': 'python' }
 Plug 'neovim/nvim-lspconfig'
 Plug 'glepnir/lspsaga.nvim' " For language server features
 Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-nvim-lsp-document-symbol'
+Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
 Plug 'hrsh7th/cmp-nvim-lua'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/cmp-emoji'
+Plug 'dmitmel/cmp-cmdline-history'
+Plug 'tamago324/cmp-zsh'
+Plug 'kdheepak/cmp-latex-symbols'
+Plug 'lukas-reineke/cmp-rg'
+" Plug 'hrsh7th/cmp-copilot' " Normal copilot is better
 Plug 'hrsh7th/nvim-cmp'
 Plug 'windwp/nvim-autopairs'
+
+" For refactoring
+Plug 'ThePrimeagen/refactoring.nvim'
 
 " For math stuff in neovim
 Plug 'jbyuki/nabla.nvim' 
