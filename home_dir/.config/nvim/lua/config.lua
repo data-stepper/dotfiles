@@ -157,10 +157,12 @@ vim.api.nvim_set_keymap(
 -- -------------------- COMPLETION STUFF --------------------
 
 require("nvim-autopairs").setup {}
+require("cmp_nvim_ultisnips").setup {}
 local lspkind = require("lspkind")
 local cmp = require("cmp")
 local types = require("cmp.types")
 local str = require("cmp.utils.str")
+local cmp_ultisnips_mappings = require("cmp_nvim_ultisnips.mappings")
 
 cmp.setup(
   {
@@ -214,60 +216,6 @@ cmp.setup(
       end
     },
     mapping = {
-      -- ["<Tab>"] = cmp.mapping(
-      --     {
-      --         c = function()
-      --             if cmp.visible() then
-      --                 cmp.select_next_item({behavior = cmp.SelectBehavior.Insert})
-      --             else
-      --                 cmp.complete()
-      --             end
-      --         end,
-      --         i = function(fallback)
-      --             if cmp.visible() then
-      --                 cmp.select_next_item({behavior = cmp.SelectBehavior.Insert})
-      --             elseif vim.fn["UltiSnips#CanJumpForwards"]() == 1 then
-      --                 vim.api.nvim_feedkeys(t("<Plug>(ultisnips_jump_forward)"), "m", true)
-      --             else
-      --                 fallback()
-      --             end
-      --         end,
-      --         s = function(fallback)
-      --             if vim.fn["UltiSnips#CanJumpForwards"]() == 1 then
-      --                 vim.api.nvim_feedkeys(t("<Plug>(ultisnips_jump_forward)"), "m", true)
-      --             else
-      --                 fallback()
-      --             end
-      --         end
-      --     }
-      -- ),
-      -- ["<S-Tab>"] = cmp.mapping(
-      --     {
-      --         c = function()
-      --             if cmp.visible() then
-      --                 cmp.select_prev_item({behavior = cmp.SelectBehavior.Insert})
-      --             else
-      --                 cmp.complete()
-      --             end
-      --         end,
-      --         i = function(fallback)
-      --             if cmp.visible() then
-      --                 cmp.select_prev_item({behavior = cmp.SelectBehavior.Insert})
-      --             elseif vim.fn["UltiSnips#CanJumpBackwards"]() == 1 then
-      --                 return vim.api.nvim_feedkeys(t("<Plug>(ultisnips_jump_backward)"), "m", true)
-      --             else
-      --                 fallback()
-      --             end
-      --         end,
-      --         s = function(fallback)
-      --             if vim.fn["UltiSnips#CanJumpBackwards"]() == 1 then
-      --                 return vim.api.nvim_feedkeys(t("<Plug>(ultisnips_jump_backward)"), "m", true)
-      --             else
-      --                 fallback()
-      --             end
-      --         end
-      --     }
-      -- ),
       -- Short description of how EXACTLY the completion menu works now
       -- When typing somewhere, a completion menu will be shown
       -- It will not complete anything unless items from it are selected
@@ -288,7 +236,10 @@ cmp.setup(
           end,
           i = function(fallback)
             if cmp.visible() then
-              cmp.select_next_item({behavior = cmp.SelectBehavior.Replace})
+              select_fallback = function()
+                cmp.select_next_item({behavior = cmp.SelectBehavior.Replace})
+              end
+              cmp_ultisnips_mappings.compose {"jump_forwards"}(select_fallback)
             else
               fallback()
             end
@@ -306,13 +257,29 @@ cmp.setup(
           end,
           i = function(fallback)
             if cmp.visible() then
-              cmp.select_prev_item({behavior = cmp.SelectBehavior.Replace})
+              select_fallback = function()
+                cmp.select_prev_item({behavior = cmp.SelectBehavior.Replace})
+              end
+              cmp_ultisnips_mappings.compose {"jump_backwards"}(select_fallback)
             else
               fallback()
             end
           end
         }
       ),
+      -- The below defined mappings ONLY jump between ultisnips tabstops!
+      -- ["<C-l>"] = cmp.mapping(
+      --   function(fallback)
+      --     cmp_ultisnips_mappings.compose {"jump_forwards"}(fallback)
+      --   end,
+      --   {"i", "s" --[[ "c" (to enable the mapping in command mode) ]]}
+      -- ),
+      -- ["<C-h>"] = cmp.mapping(
+      --   function(fallback)
+      --     cmp_ultisnips_mappings.compose {"jump_backwards"}(fallback)
+      --   end,
+      --   {"i", "s" --[[ "c" (to enable the mapping in command mode) ]]}
+      -- ),
       ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-2), {"i", "c"}),
       ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(2), {"i", "c"}),
       -- ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), {"i", "c"}),
