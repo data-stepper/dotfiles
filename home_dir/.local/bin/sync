@@ -93,6 +93,3 @@ if __name__ == "__main__":
         update()
 
     sync_repositories()
-
-    if not args.update and not args.sync:
-        parser.print_help()
