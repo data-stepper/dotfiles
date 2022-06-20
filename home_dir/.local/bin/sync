@@ -74,6 +74,7 @@ def sync_repositories(repos: list = ['dotfiles', 'notes']):
     print('\n' * 3)
     print('-' * 80)
     print("Synced repositories: ")
+
     for repo in synces_repos:
         print("\t{}".format(repo.absolute()))
 
@@ -85,7 +86,7 @@ def sync_repositories(repos: list = ['dotfiles', 'notes']):
 if __name__ == "__main__":
     parser = ArgumentParser(description="Update my arch linux system.")
     parser.add_argument("-u", "--update", action="store_true", help="Update the system.")
-    parser.add_argument("-s", "--sync", action="store_true", help="Sync the repositories.")
+    parser.add_argument("--no-sync", action="store_false", help="Sync the repositories.")
     args = parser.parse_args()
 
     if args.update:

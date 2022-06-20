@@ -23,7 +23,7 @@ alias reboot="sudo systemctl reboot"
 # alias update="sudo pacman --noconfirm -Syu && yay -Syu && sudo npm install -g npm"
 
 # Now I use the sync script at ./.local/bin/sync a python script
-alias update="sync"
+alias update="sync -u"
 
 # Add one for ssh server so I don't always have to google that
 ssh-server () {
