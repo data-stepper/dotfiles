@@ -1,5 +1,3 @@
--- Setup nvim-cmp.
-
 -- -------------------- CODE FORMATTING --------------------
 require("formatter").setup(
   {
@@ -159,10 +157,57 @@ vim.api.nvim_set_keymap(
 -- -------------------- COMPLETION STUFF --------------------
 
 require("nvim-autopairs").setup {}
+local lspkind = require("lspkind")
 local cmp = require("cmp")
+local types = require("cmp.types")
+local str = require("cmp.utils.str")
 
 cmp.setup(
   {
+    experimental = {
+      ghost_text = true
+    },
+    window = {
+      completion = cmp.config.window.bordered(),
+      documentation = cmp.config.window.bordered()
+    },
+    formatting = {
+      format = lspkind.cmp_format(
+        {
+          mode = "symbol_text", -- show only symbol annotations
+          maxwidth = 70, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+          before = function(entry, vim_item)
+            vim_item.menu =
+              ({
+              nvim_lsp = "ﲳ",
+              nvim_lua = "",
+              treesitter = "",
+              path = "ﱮ",
+              buffer = "﬘",
+              zsh = "",
+              vsnip = "",
+              spell = "暈"
+            })[entry.source.name]
+
+            -- Get the full snippet (and only keep first line)
+            local word = entry:get_insert_text()
+            if entry.completion_item.insertTextFormat == types.lsp.InsertTextFormat.Snippet then
+              word = vim.lsp.util.parse_snippet(word)
+            end
+            word = str.oneline(word)
+            if
+              entry.completion_item.insertTextFormat == types.lsp.InsertTextFormat.Snippet and
+                string.sub(vim_item.abbr, -1, -1) == "~"
+             then
+              word = word .. "~"
+            end
+            vim_item.abbr = word
+
+            return vim_item
+          end
+        }
+      )
+    },
     snippet = {
       expand = function(args)
         vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
@@ -348,6 +393,51 @@ cmp.setup.cmdline(
 
 -- Setup lspconfig.
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+
+vim.wo.foldcolumn = "1"
+-- vim.wo.foldlevel = 99 -- feel free to decrease the value
+vim.wo.foldenable = true
+
+-- local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.foldingRange = {
+  dynamicRegistration = false,
+  lineFoldingOnly = true
+}
+
+local handler = function(virtText, lnum, endLnum, width, truncate)
+  local newVirtText = {}
+  local suffix = ("  %d "):format(endLnum - lnum)
+  local sufWidth = vim.fn.strdisplaywidth(suffix)
+  local targetWidth = width - sufWidth
+  local curWidth = 0
+  for _, chunk in ipairs(virtText) do
+    local chunkText = chunk[1]
+    local chunkWidth = vim.fn.strdisplaywidth(chunkText)
+    if targetWidth > curWidth + chunkWidth then
+      table.insert(newVirtText, chunk)
+    else
+      chunkText = truncate(chunkText, targetWidth - curWidth)
+      local hlGroup = chunk[2]
+      table.insert(newVirtText, {chunkText, hlGroup})
+      chunkWidth = vim.fn.strdisplaywidth(chunkText)
+      -- str width returned from truncate() may less than 2nd argument, need padding
+      if curWidth + chunkWidth < targetWidth then
+        suffix = suffix .. (" "):rep(targetWidth - curWidth - chunkWidth)
+      end
+      break
+    end
+    curWidth = curWidth + chunkWidth
+  end
+  table.insert(newVirtText, {suffix, "MoreMsg"})
+  return newVirtText
+end
+
+-- global handler
+require("ufo").setup(
+  {
+    fold_virt_text_handler = handler
+  }
+)
 
 local lspconfig = require("lspconfig")
 

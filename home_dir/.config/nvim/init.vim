@@ -17,9 +17,14 @@ Plug 'heavenshell/vim-pydocstring', { 'do': 'make install', 'for': 'python' }
 	" Don't use default mapping for pydocstring shortcut
 	let g:pydocstring_enable_mapping = 0
 
+" Better folding
+Plug 'kevinhwang91/promise-async'
+Plug 'kevinhwang91/nvim-ufo'
+
 " Use the neovim builtin lsp client
 Plug 'neovim/nvim-lspconfig'
 Plug 'glepnir/lspsaga.nvim' " For language server features
+Plug 'onsails/lspkind.nvim'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-nvim-lsp-document-symbol'
 Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
