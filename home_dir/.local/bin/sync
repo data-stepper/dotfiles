@@ -13,6 +13,8 @@
 import os
 from os import system, chdir
 from pathlib import Path
+import argparse
+from argparse import ArgumentParser
 
 
 def run_command(command):
@@ -29,13 +31,14 @@ def sync_repository_at_path(path):
     chdir(path)
 
     try:
-        run_command("git pull; git add -A")
+        run_command("git pull")
 
     except IOError as e:
         print("Failed to sync repository at path: {}".format(path))
         return
 
     try:
+        run_command("git add -A")
         run_command("git commit -m 'Auto-Sync commit'")
         run_command("git push")
 
@@ -43,18 +46,36 @@ def sync_repository_at_path(path):
         print("No changes to commit in repository: {}".format(path))
 
 
-# Update with pacman
-run_command("sudo pacman --noconfirm -Syu")
+def update():
+    """Updates the system."""
 
-# Update with yay
-run_command("yay --nocleanmenu --noupgrademenu --nodiffmenu --noeditmenu -Syu")
-# TODO: Make this script run without confirmation.
+    # Update with pacman
+    run_command("sudo pacman --noconfirm -Syu")
 
-# Sync the git repositories
-git_dir = Path.home() / "git"
+    # Update with yay
+    run_command("yay --nocleanmenu --noupgrademenu --nodiffmenu --noeditmenu -Syu")
 
-# Sync the dotfiles repository
-sync_repository_at_path(git_dir / "dotfiles")
 
-# And the notes repository
-sync_repository_at_path(git_dir / "notes")
+def sync_repositories(repos: list = ['dotfiles', 'notes']):
+    """Syncs the repositories."""
+
+    # Sync the git repositories
+    git_dir = Path.home() / "git"
+
+    for repo in repos:
+        sync_repository_at_path(git_dir / repo)
+
+if __name__ == "__main__":
+    parser = ArgumentParser(description="Update my arch linux system.")
+    parser.add_argument("-u", "--update", action="store_true", help="Update the system.")
+    parser.add_argument("-s", "--sync", action="store_true", help="Sync the repositories.")
+    args = parser.parse_args()
+
+    if args.update:
+        update()
+
+    if args.sync:
+        sync_repositories()
+
+    if not args.update and not args.sync:
+        parser.print_help()
