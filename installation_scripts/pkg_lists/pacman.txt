@@ -12,6 +12,7 @@ entr
 fakeroot
 xdotool
 ripgrep
+redshift
 file
 findutils
 firefox
