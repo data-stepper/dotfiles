@@ -34,6 +34,7 @@ iwd
 libtool
 linux
 linux-firmware
+lua-language-server
 m4
 make
 mesa-utils
