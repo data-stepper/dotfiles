@@ -506,7 +506,7 @@ local on_attach = function(client, bufnr)
   --
 end
 
-local servers = {"pyright"}
+local servers = {"pyright", "texlab"}
 
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
@@ -516,7 +516,7 @@ for _, lsp in ipairs(servers) do
 end
 
 -- Setup texlab extra as it is not really a language server.
-lspconfig["texlab"].setup {}
+-- lspconfig["texlab"].setup {}
 
 -- -------------------- LANGUAGE SERVER STUFF --------------------
 

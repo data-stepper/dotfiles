@@ -81,8 +81,10 @@ Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " Plug 'eddiebergman/nvim-treesitter-pyfold'
 " Plug 'romgrk/nvim-treesitter-context' " Not so cool for solarized colors
-Plug 'liuchengxu/vista.vim'
-	let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
+" Plug 'liuchengxu/vista.vim'
+" 	let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
+" Not using vista anymore, it is not hierarchical
+Plug 'simrat39/symbols-outline.nvim'
 
 " Emojis in vim
 " Plug 'junegunn/vim-emoji'
@@ -375,9 +377,8 @@ noremap <c-q> <c-w>c
 
 " Shows contents of registers and tag bar
 nnoremap <silent> <leader>1 :registers<CR>
-" nnoremap <silent> <leader>2 :TagbarToggle<CR>
-" Use the vista plugin because it's written in lua
-nnoremap <silent> <leader>2 :Vista<CR>
+" Use the symbols outline plugin
+nnoremap <silent> <leader>2 :SymbolsOutline<CR>
 
 " Git commands
 nnoremap <silent> <leader>gs :Git<CR>
@@ -579,5 +580,6 @@ inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
 " The lua part of my config
 " Because I don't want to maintain a separate lua file
 
+" TODO: Add more lua config files to keep the code more organized
 lua require('config')
 
