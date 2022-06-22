@@ -273,7 +273,6 @@ nmap <leader>w :w!<CR>
 " vmap <silent> <leader>a :CocAction<CR>
 
 " File browser and most recently used files
-" nmap <silent> <C-N> :NERDTreeToggle<CR>
 " Switched to nvim-tree because it's written in lua
 nmap <silent> <C-N> :NvimTreeToggle<CR>
 nmap <silent> <C-M> :MRU<CR>
@@ -298,8 +297,8 @@ set colorcolumn=81
 set termguicolors
 
 " Set default colorscheme and dark background
-set background=light
-colorscheme NeoSolarized
+set background=dark
+colorscheme tokyonight
 " colorscheme melange
 
 map <silent> <leader>g :Goyo<CR>
