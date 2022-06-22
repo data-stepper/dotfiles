@@ -6,8 +6,8 @@ filetype off
 
 call plug#begin()
 " Rainbow parentheses, yeah
-Plug 'luochen1990/rainbow'
-	let g:rainbow_active = 1
+" Plug 'luochen1990/rainbow'
+" 	let g:rainbow_active = 1
 
 Plug 'tpope/vim-surround'
 	" Custom surround with space for editing latex
@@ -54,7 +54,6 @@ Plug 'jbyuki/nabla.nvim'
 
 " Use Neorg from now on, to organize stuff yeah
 Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-neorg/neorg' 
 
 Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 Plug 'SirVer/ultisnips'
@@ -103,13 +102,14 @@ Plug 'alvan/vim-closetag'
 " Now using telescope
 " Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-neorg/neorg' 
 Plug 'nvim-neorg/neorg-telescope'
 Plug 'max397574/neorg-kanban'
 
 Plug 'yegappan/mru'
 Plug 'junegunn/goyo.vim'
 	" Use a little wider than the default (80)
-	let g:goyo_width = 90
+	let g:goyo_width = 100
 
 Plug 'junegunn/limelight.vim'
 	" Always use limelight when using goyo
@@ -118,6 +118,7 @@ Plug 'junegunn/limelight.vim'
 
 " Use github copilot, yeah
 Plug 'github/copilot.vim'
+
 	" Enable copilot by default for all filetypes
 	let g:copilot_filetypes = {
 		\ '*': v:true,
@@ -132,7 +133,7 @@ Plug 'jpalardy/vim-slime'
 	let g:slime_target = "neovim"
 
 	" For python always use ipython
-	" Don't use ipython anymore since it uses way to much ram
+	" Don't use ipython anymore since it uses way to much ram,
 	" use bpython or python3 interactive directly
 	" let g:slime_python_ipython = 1
 
@@ -140,7 +141,7 @@ Plug 'jpalardy/vim-slime'
 	let g:slime_no_mappings = 1
 
 " My own ai assist plugin
-Plug 'data-stepper/ai-text-assist'
+" Plug 'data-stepper/ai-text-assist'
 
 " Vim and latex combination
 Plug 'lervag/vimtex'
@@ -154,18 +155,23 @@ Plug 'KeitaNakamura/tex-conceal.vim'
 	let g:tex_conceal='abdmg'
 	hi Conceal ctermbg=none
 
-" Loads of color schemes here
+" Loads of color schemes here (colorscheme)
 " Plug 'altercation/vim-colors-solarized'
 " Plug 'rafi/awesome-vim-colorschemes'
+" Plug 'arzg/vim-colors-xcode'
+" Plug 'patstockwell/vim-monokai-tasty'
+" The above colorschemes where abandoned
+
 " From now on only use neovim compatible colorschemes
+Plug 'Plug 'junegunn/seoul256.vim'', { 'branch': 'main' }
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'EdenEast/nightfox.nvim'
-Plug 'patstockwell/vim-monokai-tasty'
 Plug 'rmehri01/onenord.nvim', { 'branch': 'main' }
 Plug 'luisiacc/gruvbox-baby', {'branch': 'main'}
 Plug 'overcache/NeoSolarized'
 Plug 'savq/melange'
 Plug 'sonph/onehalf', { 'rtp': 'vim' }
+Plug 'sainnhe/everforest'
 
 " For markdown editing
 " Found it not so useful after all

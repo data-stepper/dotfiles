@@ -85,9 +85,7 @@ require("lualine").setup {
         end
       }
     },
-    lualine_c = {
-      {navic.get_location, cond = navic.is_available}
-    },
+    lualine_c = {},
     lualine_x = {},
     lualine_z = {
       search_result
@@ -115,6 +113,18 @@ require("lualine").setup {
   },
   tabline = {
     lualine_a = {
+      {navic.get_location, cond = navic.is_available}
+    },
+    lualine_b = {},
+    lualine_c = {},
+    lualine_x = {},
+    lualine_y = {},
+    lualine_z = {
+      {
+        "tabs",
+        component_separators = {left = "|", right = "|"},
+        section_separators = {left = " ", right = " "}
+      },
       {
         "windows",
         show_filename_only = true, -- Shows shortened relative path when set to false.
@@ -142,17 +152,6 @@ require("lualine").setup {
           alternate_file = "", -- Text to show to identify the alternate file
           directory = "" -- Text to show when the buffer is a directory
         }
-      }
-    },
-    lualine_b = {},
-    lualine_c = {},
-    lualine_x = {},
-    lualine_y = {},
-    lualine_z = {
-      {
-        "tabs",
-        component_separators = {left = "|", right = "|"},
-        section_separators = {left = " ", right = " "}
       }
     }
   },
