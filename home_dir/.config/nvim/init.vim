@@ -21,6 +21,7 @@ Plug 'heavenshell/vim-pydocstring', { 'do': 'make install', 'for': 'python' }
 Plug 'kevinhwang91/promise-async'
 Plug 'kevinhwang91/nvim-ufo'
 Plug 'ray-x/lsp_signature.nvim'
+Plug 'SmiteshP/nvim-navic'
 
 " Google keep integration, yeah
 Plug 'stevearc/gkeep.nvim', { 'do': ':UpdateRemotePlugins' }

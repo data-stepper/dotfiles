@@ -416,6 +416,9 @@ cmp.setup.cmdline(
 -- Setup lspconfig.
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
+-- Use navic for the statusline info
+local navic = require("nvim-navic")
+
 vim.wo.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 vim.wo.foldcolumn = "6"
 vim.wo.foldlevel = 99 -- feel free to decrease the value
@@ -478,6 +481,7 @@ vim.api.nvim_set_keymap("n", "<leader>d", "<cmd>lua vim.diagnostic.open_float()<
 -- after the language server attaches to the current buffer
 
 local on_attach = function(client, bufnr)
+  navic.attach(client, bufnr) -- Pass the call to navic
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   vim.api.nvim_buf_set_keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
@@ -517,7 +521,6 @@ lspconfig["texlab"].setup {}
 -- -------------------- LANGUAGE SERVER STUFF --------------------
 
 local saga = require "lspsaga"
-
 saga.init_lsp_saga {}
 
 -- -------------------- TREE SITTER STUFF --------------------
@@ -528,15 +531,23 @@ require("nvim-treesitter.configs").setup {
   highlight = {
     -- `false` will disable the whole extension
     enable = true,
-    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-    -- Using this option may slow down your editor, and you may see some duplicate highlights.
-    -- Instead of true it can also be a list of languages
     additional_vim_regex_highlighting = false
     -- pyfold = {
     --   enable = true,
     --   custom_foldtext = true -- Sets provided foldtext on window where module is active
     -- }
+  },
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = "gnn",
+      node_incremental = "grn",
+      scope_incremental = "grc",
+      node_decremental = "grm"
+    }
+  },
+  indent = {
+    enable = true
   }
 }
 
@@ -545,55 +556,126 @@ vim.o.foldmethod = "expr"
 vim.o.foldexpr = "nvim_treesitter#foldexpr()"
 
 -- -------------------- LUALINE --------------------
+local function search_result()
+  if vim.v.hlsearch == 0 then
+    return ""
+  end
+  local last_search = vim.fn.getreg("/")
+  if not last_search or last_search == "" then
+    return ""
+  end
+  local searchcount = vim.fn.searchcount {maxcount = 9999}
+  return last_search .. "(" .. searchcount.current .. "/" .. searchcount.total .. ")"
+end
+
+local function modified()
+  if vim.bo.modified then
+    return "+"
+  elseif vim.bo.modifiable == false or vim.bo.readonly == true then
+    return "-"
+  end
+  return ""
+end
+
+local ts_utils = require("nvim-treesitter.ts_utils")
 
 -- Standard lualine setup
 require("lualine").setup {
   options = {
     icons_enabled = true,
     theme = "auto",
-    component_separators = {left = "", right = ""},
+    -- component_separators = {left = "", right = ""},
+    component_separators = {left = "|", right = "|"},
     section_separators = {left = "", right = ""},
+    -- section_separators = {left = " ", right = " "},
     disabled_filetypes = {},
     always_divide_middle = true,
     globalstatus = true
   },
   sections = {
-    lualine_a = {"mode"},
+    lualine_a = {
+      {
+        "mode",
+        fmt = function(str)
+          return str:sub(1, 1)
+        end
+      }
+    },
     lualine_b = {
-      "branch",
-      "diff",
+      {
+        "branch",
+        icon_only = true
+      },
+      {"filename", file_status = false},
+      {modified},
       {
         "diagnostics",
         -- Table of diagnostic sources, available sources are:
         --   'nvim_lsp', 'nvim_diagnostic', 'coc', 'ale', 'vim_lsp'.
         -- or a function that returns a table as such:
         --   { error=error_cnt, warn=warn_cnt, info=info_cnt, hint=hint_cnt }
-        sources = {"nvim_diagnostic"},
+        -- sources = {"nvim_diagnostic"},
+        sources = {"nvim_lsp"},
         -- Displays diagnostics for the defined severity types
-        sections = {"error", "warn", "info", "hint"},
+        sections = {"error"},
         symbols = {error = "E", warn = "W", info = "I", hint = "H"},
         colored = true, -- Displays diagnostics status in color if set to true.
         update_in_insert = false, -- Update diagnostics in insert mode.
         always_visible = false -- Show diagnostics even if there are none.
+      },
+      {
+        "%w",
+        cond = function()
+          return vim.wo.previewwindow
+        end
+      },
+      {
+        "%r",
+        cond = function()
+          return vim.bo.readonly
+        end
+      },
+      {
+        "%q",
+        cond = function()
+          return vim.bo.buftype == "quickfix"
+        end
       }
     },
-    lualine_c = {"filename"},
-    lualine_x = {"filetype"},
-    lualine_y = {"progress"},
-    lualine_z = {"location"}
+    lualine_c = {
+      {navic.get_location, cond = navic.is_available}
+    },
+    lualine_x = {
+      ts_utils.get_node_text
+    },
+    lualine_z = {
+      search_result
+    },
+    lualine_y = {
+      {
+        "filetype",
+        colored = true, -- Displays filetype icon in color if set to true
+        icon_only = true, -- Display only an icon for filetype
+        icon = {align = "right"} -- Display filetype icon on the right hand side
+        -- icon =    {'X', align='right'}
+        -- Icon string ^ in table is ignored in filetype component
+      },
+      "location"
+    }
+    -- Here I removed some unnecessary stuff
   },
   inactive_sections = {
     lualine_a = {},
     lualine_b = {},
-    lualine_c = {"filename"},
-    lualine_x = {"location"},
+    lualine_c = {},
+    lualine_x = {},
     lualine_y = {},
     lualine_z = {}
   },
   tabline = {
     lualine_a = {
       {
-        "buffers",
+        "windows",
         show_filename_only = true, -- Shows shortened relative path when set to false.
         show_modified_status = true, -- Shows indicator when the buffer is modified.
         mode = 0, -- 0: Shows buffer name
@@ -609,14 +691,29 @@ require("lualine").setup {
           packer = "Packer",
           fzf = "FZF",
           alpha = "Alpha"
-        } -- Shows specific buffer name for that filetype ( { `filetype` = `buffer_name`, ... } )
+        }, -- Shows specific buffer name for that filetype ( { `filetype` = `buffer_name`, ... } )
+        disabled_buftypes = {"quickfix", "prompt"},
+        -- Set special seperators for the buffers
+        component_separators = {left = "|", right = "|"},
+        section_separators = {left = "", right = ""},
+        symbols = {
+          modified = " ●", -- Text to show when the buffer is modified
+          alternate_file = "", -- Text to show to identify the alternate file
+          directory = "" -- Text to show when the buffer is a directory
+        }
       }
     },
     lualine_b = {},
     lualine_c = {},
     lualine_x = {},
     lualine_y = {},
-    lualine_z = {"tabs"}
+    lualine_z = {
+      {
+        "tabs",
+        component_separators = {left = "|", right = "|"},
+        section_separators = {left = " ", right = " "}
+      }
+    }
   },
   extensions = {}
 }
