@@ -580,6 +580,9 @@ inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
 " The lua part of my config
 " Because I don't want to maintain a separate lua file
 
-" TODO: Add more lua config files to keep the code more organized
 lua require('config')
+lua require('file-tree')
+lua require('code-formatting')
+lua require('neorg-config')
+lua require('lualine-config')
 
