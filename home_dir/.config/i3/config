@@ -251,14 +251,16 @@ bar {
 	separator_symbol "-+-"
 	position bottom
 	strip_workspace_numbers yes
+	mode hide
+	modifier $mod
 
 	colors {
-		background #000000C1
+		background #5E5E5EC1
 		statusline #FFFFFFC9
 		separator #73a9ffFF
 
-		focused_workspace  #FF00007F #0000009F #ffffff
-		inactive_workspace #ffffff00 #0000008F #6cc7f5
+		focused_workspace  #FF000000 #0000009F #ffffff
+		inactive_workspace #ffffff00 #9E9E9E8F #6cc7f5
 	}
 }
 
