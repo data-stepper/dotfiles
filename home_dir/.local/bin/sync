@@ -10,7 +10,6 @@
     :license: MIT, see LICENSE for more details.
 """
 
-import os
 from os import system, chdir
 from pathlib import Path
 import argparse
