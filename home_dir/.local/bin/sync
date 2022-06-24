@@ -21,10 +21,14 @@ def run_command(command):
     rv = system(command)
 
     if rv != 0:
-        raise IOError("Error occurred while running command: {}, {}".format(command, rv))
+        raise IOError(
+            "Error occurred while running command: {}, {}".format(command, rv)
+        )
+
 
 synces_repos: list = []
 failed_repos: list = []
+
 
 def sync_repository_at_path(path):
     """Syncs the repository at the given path."""
@@ -61,7 +65,7 @@ def update():
     run_command("yay --nocleanmenu --noupgrademenu --nodiffmenu --noeditmenu -Syu")
 
 
-def sync_repositories(repos: list = ['dotfiles', 'notes']):
+def sync_repositories(repos: list = ["dotfiles", "notes"]):
     """Syncs the repositories."""
 
     # Sync the git repositories
@@ -70,8 +74,8 @@ def sync_repositories(repos: list = ['dotfiles', 'notes']):
     for repo in repos:
         sync_repository_at_path(git_dir / repo)
 
-    print('\n' * 3)
-    print('-' * 80)
+    print("\n" * 3)
+    print("-" * 80)
     print("Synced repositories: ")
 
     for repo in synces_repos:
@@ -79,12 +83,34 @@ def sync_repositories(repos: list = ['dotfiles', 'notes']):
 
     if len(failed_repos) > 0:
         print(80 * "=")
-        print('ERROR:')
+        print("ERROR:")
         print("\tFailed to sync repositories: {}".format(failed_repos))
+
+
+def check_github_email_address():
+    """Checks if the github email address is set."""
+
+    if not (Path.home() / ".gitconfig").exists():
+        raise IOError(
+            "No .gitconfig file found at: {}".format(Path.home() / ".gitconfig")
+        )
+
+    with open(Path.home() / ".gitconfig") as f:
+        for line in f:
+            if "email" in line and "bent.hochrad@gmail.com" in line:
+                return True
+
+    raise IOError(
+        "Incorrect email address found in the ~/.gitconfig file, this way contributions"
+        " are not counted correctly!"
+    )
+
 
 if __name__ == "__main__":
     parser = ArgumentParser(description="Update my arch linux system.")
-    parser.add_argument("-u", "--update", action="store_true", help="Update the system.")
+    parser.add_argument(
+        "-u", "--update", action="store_true", help="Update the system."
+    )
     # parser.add_argument("--no-sync", action="store_false", help="Sync the repositories.")
     args = parser.parse_args()
 
