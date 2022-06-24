@@ -52,6 +52,7 @@ key_bindings:
     - { key: Return,   mods: Control|Shift, action: SpawnNewInstance }
     - { key: Return,   mods: Control, action: SpawnNewInstance }
     - { key: Return,   mods: Shift, action: SpawnNewInstance }
-    - { key: V,  mods: Control, mode: ~Search, action: ToggleViMode }
+    # Overlaps with neovim visual block mode Find a solution
+    # - { key: V,  mods: Control, mode: ~Search, action: ToggleViMode }
 
 
