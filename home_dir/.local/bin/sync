@@ -114,6 +114,8 @@ if __name__ == "__main__":
     # parser.add_argument("--no-sync", action="store_false", help="Sync the repositories.")
     args = parser.parse_args()
 
+    assert check_github_email_address(), "Github email address is not set."
+
     if args.update:
         update()
 
