@@ -163,7 +163,8 @@ Plug 'KeitaNakamura/tex-conceal.vim'
 " The above colorschemes where abandoned
 
 " From now on only use neovim compatible colorschemes
-Plug 'Plug junegunn/seoul256.vim', { 'branch': 'main' }
+" Plug 'Plug junegunn/seoul256.vim', { 'branch': 'main' }
+" This colorscheme doesn't work anymore ?
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'EdenEast/nightfox.nvim'
 Plug 'rmehri01/onenord.nvim', { 'branch': 'main' }
