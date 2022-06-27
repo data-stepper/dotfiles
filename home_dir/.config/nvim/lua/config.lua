@@ -352,6 +352,9 @@ require("ufo").setup(
   }
 )
 
+local bufnr = vim.api.nvim_get_current_buf()
+require("ufo").setFoldVirtTextHandler(bufnr, handler)
+
 local lspconfig = require("lspconfig")
 
 -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
