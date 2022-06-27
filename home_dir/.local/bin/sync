@@ -64,6 +64,9 @@ def update():
     # Update with yay
     run_command("yay --nocleanmenu --noupgrademenu --nodiffmenu --noeditmenu -Syu")
 
+    # Update the npm modules
+    run_command("sudo npm -g update")
+
 
 def sync_repositories(repos: list = ["dotfiles", "notes"]):
     """Syncs the repositories."""
