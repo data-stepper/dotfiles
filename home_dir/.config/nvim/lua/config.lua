@@ -221,7 +221,6 @@ cmp.setup(
       {
         {name = "nvim_lsp"},
         {name = "ultisnips"}, -- For ultisnips users.
-        {name = "path"}, -- Add path autocomplete in all buffers
         {name = "zsh"},
         {name = "nvim_lsp_document_symbol"},
         {name = "emoji"}
@@ -230,23 +229,37 @@ cmp.setup(
         -- {name = "copilot"}
       },
       {
-        {name = "buffer"}
+        {name = "path"}, -- Add path autocomplete in all buffers
+        {name = "fuzzy_path", keyword_length = 5} -- Add path autocomplete in all buffers
+      },
+      {
+        {name = "buffer", keyword_length = 3},
+        {name = "fuzzy_buffer", keyword_length = 5}
       }
     )
   }
 )
 
--- Set configuration for specific filetype.
 cmp.setup.filetype(
-  "gitcommit",
+  "python",
   {
     sources = cmp.config.sources(
       {
-        {name = "cmp_git"} -- You can specify the `cmp_git` source if you were installed it.
+        {name = "nvim_lsp", keyword_length = 2},
+        {name = "ultisnips"}, -- I use ultisnips for now
+        {name = "nvim_lsp_document_symbol", keyword_length = 3},
+        {name = "emoji"}
+        -- {name = "latex_symbols"}
       },
       {
-        {name = "buffer"}
+        {name = "path", keyword_length = 2} -- Add path autocomplete in all buffers
+        -- {name = "fuzzy_path"} -- Add path autocomplete in all buffers
       }
+      -- {
+      --   {name = "buffer"},
+      --   {name = "fuzzy_buffer"}
+      --   -- {name = "zsh"}
+      -- }
     )
   }
 )
@@ -259,8 +272,25 @@ cmp.setup.filetype(
         {name = "nvim_lsp"},
         {name = "nvim_lsp_document_symbol"},
         {name = "ultisnips"}, -- For ultisnips users.
-        {name = "emoji"},
-        {name = "latex_symbols"}
+        {name = "emoji"}
+        -- {name = "latex_symbols"}
+      },
+      {
+        {name = "buffer", keyword_length = 4},
+        {name = "fuzzy_buffer", keyword_length = 5}
+      }
+    )
+  }
+)
+
+-- Set configuration for specific filetype.
+cmp.setup.filetype(
+  "gitcommit",
+  {
+    sources = cmp.config.sources(
+      {
+        {name = "cmp_git"}, -- You can specify the `cmp_git` source if you were installed it.
+        {name = "emoji"}
       },
       {
         {name = "buffer"}
@@ -274,7 +304,8 @@ cmp.setup.cmdline(
   "/",
   {
     sources = {
-      {name = "buffer"}
+      {name = "buffer"},
+      {name = "fuzzy_buffer"}
     }
   }
 )
@@ -285,18 +316,20 @@ cmp.setup.cmdline(
   {
     sources = cmp.config.sources(
       {
-        {name = "path"}
-      },
-      {
         {name = "cmdline"},
         {name = "cmdline_history"}
+      },
+      {
+        {name = "path"},
+        {name = "fuzzy_path"}
       }
     )
   }
 )
 
 -- Setup lspconfig.
-local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+local capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
 -- Use navic for the statusline info
 local navic = require("nvim-navic")

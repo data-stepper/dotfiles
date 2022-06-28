@@ -30,6 +30,8 @@ Plug 'stevearc/gkeep.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'neovim/nvim-lspconfig'
 Plug 'glepnir/lspsaga.nvim' " For language server features
 Plug 'onsails/lspkind.nvim'
+
+" Nvim CMP stuff (completion sources)
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-nvim-lsp-document-symbol'
 Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
@@ -44,6 +46,13 @@ Plug 'kdheepak/cmp-latex-symbols'
 Plug 'lukas-reineke/cmp-rg'
 " Plug 'hrsh7th/cmp-copilot' " Normal copilot is better
 Plug 'hrsh7th/nvim-cmp'
+
+" Use fuzzy buffer and path in nvim cmp
+Plug 'romgrk/fzy-lua-native'
+Plug 'tzachar/fuzzy.nvim'
+Plug 'tzachar/cmp-fuzzy-buffer'
+Plug 'tzachar/cmp-fuzzy-path'
+
 Plug 'windwp/nvim-autopairs'
 
 " For refactoring

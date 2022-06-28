@@ -21,6 +21,7 @@ gawk
 gcc
 gettext
 git
+fzy
 grep
 groff
 gzip
