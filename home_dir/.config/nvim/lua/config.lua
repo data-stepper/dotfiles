@@ -217,6 +217,7 @@ cmp.setup(
         }
       )
     },
+    -- Maybe the keyword length is too long for some completion sources?
     sources = cmp.config.sources(
       {
         {name = "nvim_lsp"},
@@ -241,7 +242,10 @@ cmp.setup(
 )
 
 cmp.setup.filetype(
-  "python",
+  {
+    "python",
+    "lua"
+  },
   {
     sources = cmp.config.sources(
       {
