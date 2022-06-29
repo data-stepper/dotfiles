@@ -294,7 +294,10 @@ nmap <silent> <C-N> :NvimTreeToggle<CR>
 nmap <silent> <C-M> :MRU<CR>
 
 " Fuzzy search with ctr-p
-map <C-P> :FZF<CR>
+" map <C-P> :FZF<CR>
+
+" Copilot panel now mapped to <C-p>
+map <C-P> :Copilot panel<CR>
 
 " Line numbering turned off for now
 " set number
