@@ -158,10 +158,10 @@ cmp.setup(
           end,
           i = function(fallback)
             if cmp.visible() then
-              select_fallback = function()
-                cmp.select_next_item({behavior = cmp.SelectBehavior.Replace})
-              end
-              cmp_ultisnips_mappings.compose {"jump_forwards"}(select_fallback)
+              -- end
+              -- cmp_ultisnips_mappings.compose {"jump_forwards"}(select_fallback)
+              -- local select_fallback = function()
+              cmp.select_next_item({behavior = cmp.SelectBehavior.Replace})
             else
               fallback()
             end
@@ -179,10 +179,10 @@ cmp.setup(
           end,
           i = function(fallback)
             if cmp.visible() then
-              select_fallback = function()
-                cmp.select_prev_item({behavior = cmp.SelectBehavior.Replace})
-              end
-              cmp_ultisnips_mappings.compose {"jump_backwards"}(select_fallback)
+              -- end
+              -- cmp_ultisnips_mappings.compose {"jump_backwards"}(select_fallback)
+              -- local select_fallback = function()
+              cmp.select_prev_item({behavior = cmp.SelectBehavior.Replace})
             else
               fallback()
             end
@@ -326,8 +326,8 @@ cmp.setup.cmdline(
         {name = "cmdline_history"}
       },
       {
-        {name = "path"},
-        {name = "fuzzy_path"}
+        {name = "path"}
+        -- {name = "fuzzy_path"}
       }
     )
   }

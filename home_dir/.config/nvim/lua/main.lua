@@ -4,6 +4,7 @@ require("file-tree")
 require("code-formatting")
 require("neorg-config")
 require("lualine-config")
+require("keymaps")
 
 -- Set all the globals stuff here now
 vim.g.pydocstring_enable_mapping = 0
