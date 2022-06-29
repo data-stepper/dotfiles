@@ -4,6 +4,7 @@ autoconf
 automake
 base
 texlab
+nvim-packer-git
 binutils
 bison
 cmatrix

@@ -77,12 +77,14 @@ vim.api.nvim_set_keymap(
 -- -------------------- COMPLETION STUFF --------------------
 
 require("nvim-autopairs").setup {}
-require("cmp_nvim_ultisnips").setup {}
+
+-- require("cmp_nvim_ultisnips").setup {}
+-- local cmp_ultisnips_mappings = require("cmp_nvim_ultisnips.mappings")
+
 local lspkind = require("lspkind")
 local cmp = require("cmp")
 local types = require("cmp.types")
 local str = require("cmp.utils.str")
-local cmp_ultisnips_mappings = require("cmp_nvim_ultisnips.mappings")
 
 cmp.setup(
   {
@@ -130,11 +132,11 @@ cmp.setup(
         }
       )
     },
-    snippet = {
-      expand = function(args)
-        vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
-      end
-    },
+    -- snippet = {
+    -- expand = function(args)
+    -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+    -- end
+    -- },
     mapping = {
       -- Short description of how EXACTLY the completion menu works now
       -- When typing somewhere, a completion menu will be shown
@@ -221,7 +223,7 @@ cmp.setup(
     sources = cmp.config.sources(
       {
         {name = "nvim_lsp"},
-        {name = "ultisnips"}, -- For ultisnips users.
+        -- {name = "ultisnips"}, -- For ultisnips users.
         {name = "zsh"},
         {name = "nvim_lsp_document_symbol"},
         {name = "emoji"}
@@ -250,7 +252,7 @@ cmp.setup.filetype(
     sources = cmp.config.sources(
       {
         {name = "nvim_lsp", keyword_length = 2},
-        {name = "ultisnips"}, -- I use ultisnips for now
+        -- {name = "ultisnips"}, -- I use ultisnips for now
         {name = "nvim_lsp_document_symbol", keyword_length = 3},
         {name = "emoji"}
         -- {name = "latex_symbols"}
@@ -480,7 +482,7 @@ saga.init_lsp_saga {}
 
 require("nvim-treesitter.configs").setup {
   -- One of "all", "maintained" (parsers with maintainers), or a list of languages
-  ensure_installed = "all",
+  -- ensure_installed = "all",
   highlight = {
     -- `false` will disable the whole extension
     enable = true,
