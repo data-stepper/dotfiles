@@ -2,7 +2,7 @@
 alias gs="git status"
 
 # Always use neovim, bye bye gui neovim
-alias v="nvim"
+alias v="nvim -S ~/.persistent_session"
 
 # Ls aliases
 alias l="ls -l"

@@ -54,5 +54,6 @@ require("file-tree")
 require("code-formatting")
 require("neorg-config")
 require("lualine-config")
+require("persistent_sessions")
 
 print("Configuration loaded successfully!")
