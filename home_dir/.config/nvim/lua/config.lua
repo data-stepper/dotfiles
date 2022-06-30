@@ -53,25 +53,13 @@ require("indent_blankline").setup {
 }
 
 -- -------------------- TELESCOPE --------------------
-require("telescope").setup {
-  defaults = {
-    -- Default configuration for telescope goes here:
-    -- config_key = value,
-    mappings = {
-      i = {}
-    }
-  },
-  pickers = {},
-  extensions = {}
-}
-
 require("telescope").load_extension("refactoring")
 
 vim.api.nvim_set_keymap(
   "v",
   "<leader>rr",
   "<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>",
-  {noremap = true}
+  {noremap = true, silent = true}
 )
 
 -- -------------------- COMPLETION STUFF --------------------
@@ -339,11 +327,6 @@ local capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
 -- Use navic for the statusline info
 local navic = require("nvim-navic")
-
-vim.wo.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
-vim.wo.foldcolumn = "6"
-vim.wo.foldlevel = 99 -- feel free to decrease the value
-vim.wo.foldenable = true
 
 -- local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.foldingRange = {

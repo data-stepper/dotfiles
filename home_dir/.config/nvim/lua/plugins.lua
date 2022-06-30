@@ -5,14 +5,13 @@ return require("packer").startup(
 
     use "tpope/vim-surround"
 
-    use "heavenshell/vim-pydocstring"
+    use {"heavenshell/vim-pydocstring", ft = "python"}
+    use {"stevearc/gkeep.nvim", cmd = "GkeepOpen"}
 
     use "kevinhwang91/promise-async"
     use "kevinhwang91/nvim-ufo"
     use "ray-x/lsp_signature.nvim"
     use "SmiteshP/nvim-navic"
-
-    use "stevearc/gkeep.nvim"
 
     use "neovim/nvim-lspconfig"
     use "glepnir/lspsaga.nvim"
@@ -41,14 +40,18 @@ return require("packer").startup(
 
     use "ThePrimeagen/refactoring.nvim"
 
-    use "jbyuki/nabla.nvim"
+    -- use "jbyuki/nabla.nvim"
 
     use "nvim-lua/plenary.nvim"
 
-    use "quangnguyen30192/cmp-nvim-ultisnips"
-    -- use "SirVer/ultisnips"
-    -- 	let g:UltiSnipsNoMap = 1
-    -- 	let g:UltiSnipsExpandTrigger = "<NUL>"
+    use {
+      "quangnguyen30192/cmp-nvim-ultisnips",
+      config = function()
+        vim.g.UltiSnipsExpandTrigger = "<NUL>"
+        vim.g.UltiSnipsNoMap = 1
+      end
+    }
+    use {"SirVer/ultisnips"}
 
     use "mhartington/formatter.nvim"
 
@@ -57,12 +60,11 @@ return require("packer").startup(
     use "lukas-reineke/indent-blankline.nvim"
 
     -- Use nvim-treesitter
-    use "nvim-treesitter/nvim-treesitter"
-    -- use "eddiebergman/nvim-treesitter-pyfold"
-    -- use "romgrk/nvim-treesitter-context-- -- Not so cool for solarized colors
-    -- use "liuchengxu/vista.vim"
-    -- 	let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
-    -- Not using vista anymore, it is not hierarchical
+    use {
+      "nvim-treesitter/nvim-treesitter",
+      run = ":TSUpdate"
+    }
+
     use "simrat39/symbols-outline.nvim"
 
     -- Emojis in vim
@@ -75,26 +77,44 @@ return require("packer").startup(
     -- Use devicons because it looks more beautiful
     use "tpope/vim-fugitive"
     use "tpope/vim-commentary"
-    -- use "tmhedberg/SimpylFold"
     use "jiangmiao/auto-pairs"
     use "alvan/vim-closetag"
 
     -- Now using telescope
-    -- use "junegunn/fzf", { "do": { -> fzf#install() } }
-    use "nvim-telescope/telescope.nvim"
-    use "nvim-neorg/neorg"
+    use {
+      "nvim-telescope/telescope.nvim",
+      config = function()
+        require("telescope").setup {
+          defaults = {
+            mappings = {
+              i = {
+                ["<Tab>"] = false,
+                ["U"] = false
+              }
+            }
+          },
+          pickers = {},
+          extensions = {}
+        }
+      end
+    }
+
+    use {
+      "nvim-neorg/neorg",
+      run = ":NeorgStart silent=true"
+    }
+
     use "nvim-neorg/neorg-telescope"
     use "max397574/neorg-kanban"
 
-    use "yegappan/mru"
-    use "junegunn/goyo.vim"
-    -- Use a little wider than the default (80)
-    -- let g:goyo_width = 100
+    use {
+      "junegunn/goyo.vim",
+      config = function()
+        vim.g.goyo_width = 100
+      end
+    }
 
     use "junegunn/limelight.vim"
-    -- Always use limelight when using goyo
-    -- autocmd! User GoyoEnter Limelight
-    -- autocmd! User GoyoLeave Limelight!
 
     -- Use github copilot, yeah
     use "github/copilot.vim"
@@ -109,16 +129,6 @@ return require("packer").startup(
 
     -- Use vim-slime for interactive development
     use "jpalardy/vim-slime"
-    -- Use the neovim terminal feature
-    -- let g:slime_target = "neovim"
-
-    -- For python always use ipython
-    -- Don"t use ipython anymore since it uses way to much ram,
-    -- use bpython or python3 interactive directly
-    -- let g:slime_python_ipython = 1
-
-    -- Remove the standard mappings created by vim-slime
-    -- let g:slime_no_mappings = 1
 
     -- My own ai assist plugin
     -- use "data-stepper/ai-text-assist"
@@ -130,17 +140,10 @@ return require("packer").startup(
     -- let g:vimtex_quickfix_mode=0
 
     -- Text concealment
-    use "KeitaNakamura/tex-conceal.vim"
+    -- use "KeitaNakamura/tex-conceal.vim" I think this is outdated, let's see
     -- set conceallevel=1
     -- let g:tex_conceal="abdmg"
     -- hi Conceal ctermbg=none
-
-    -- Loads of color schemes here (colorscheme)
-    -- use "altercation/vim-colors-solarized"
-    -- use "rafi/awesome-vim-colorschemes"
-    -- use "arzg/vim-colors-xcode"
-    -- use "patstockwell/vim-monokai-tasty"
-    -- The above colorschemes where abandoned
 
     -- From now on only use neovim compatible colorschemes
     -- use "Plug junegunn/seoul256.vim", { "branch": 'main' }
@@ -154,11 +157,6 @@ return require("packer").startup(
     use "sonph/onehalf"
     use "sainnhe/everforest"
 
-    -- Shows buffers and tabs opened
-    -- use "bling/vim-bufferline"
-    -- use "mkitt/tabline.vim"
-    -- The new bufferline written in lua
-    -- use "akinsho/bufferline.nvim"
     -- One can do also the bufferline with lualine
     use "nvim-lualine/lualine.nvim"
   end
