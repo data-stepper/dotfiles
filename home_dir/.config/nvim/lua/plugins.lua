@@ -26,6 +26,7 @@ return require("packer").startup(
     use "hrsh7th/cmp-cmdline"
     use "hrsh7th/cmp-emoji"
     use "dmitmel/cmp-cmdline-history"
+
     use "tamago324/cmp-zsh"
     use "kdheepak/cmp-latex-symbols"
     use "lukas-reineke/cmp-rg"
@@ -51,7 +52,7 @@ return require("packer").startup(
         vim.g.UltiSnipsNoMap = 1
       end
     }
-    use {"SirVer/ultisnips"}
+    use "SirVer/ultisnips"
 
     use "mhartington/formatter.nvim"
 
@@ -134,7 +135,10 @@ return require("packer").startup(
     -- use "data-stepper/ai-text-assist"
 
     -- Vim and latex combination
-    use "lervag/vimtex"
+    use {
+      "lervag/vimtex",
+      ft = "tex"
+    }
     -- let g:tex_flavor="latex"
     -- let g:vimtex_view_method="zathura"
     -- let g:vimtex_quickfix_mode=0

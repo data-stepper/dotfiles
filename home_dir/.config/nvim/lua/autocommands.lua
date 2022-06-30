@@ -8,7 +8,7 @@ vim.api.nvim_create_autocmd(
       vim.wo.colorcolumn = "81"
       vim.bo.tabstop = 4
       vim.bo.shiftwidth = 4
-      -- vim.wo.foldcolumn = "auto:7"
+      vim.wo.foldcolumn = "7"
     end
   }
 )
@@ -49,3 +49,14 @@ vim.api.nvim_create_autocmd(
     end
   }
 )
+
+-- vim.api.nvim_create_autocmd(
+--   "Colorscheme",
+--   {
+--     pattern = "*",
+--     desc = "Set colorscheme dynamically",
+--     callback = function()
+--       print("Setting colorscheme to " .. vim.g.colors_name)
+--     end
+--   }
+-- )

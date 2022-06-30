@@ -96,5 +96,3 @@ vim.cmd [[
 	vnoremap <Tab> >gv
 	vnoremap <S-Tab> <gv
 ]]
-
-print("Keymaps loaded")

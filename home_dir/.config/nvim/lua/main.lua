@@ -38,11 +38,13 @@ require("autocommands")
 
 -- Load and configure plugins
 require("plugins")
+require("completion")
 require("config")
 
 require("file-tree")
 require("code-formatting")
 require("neorg-config")
 require("lualine-config")
+require("autoload_colorscheme")
 
--- Save and load last used colorscheme from a file
+print("Configuration loaded successfully!")
