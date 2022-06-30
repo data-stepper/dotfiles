@@ -11,6 +11,9 @@
 " For nvim-cmp
 set completeopt=menu,menuone,noselect
 
+" Maybe use this for sessions if needed
+" set sessionoptions+=globals
+
 " New split open below / to the right
 set splitbelow
 set splitright
@@ -21,8 +24,8 @@ set noswapfile
 set termguicolors
 
 " Set default colorscheme and dark background
-set background=light
-colorscheme NeoSolarized
+" set background=light
+" colorscheme NeoSolarized
 " colorscheme melange
 
 " Unicode encoding for everything
