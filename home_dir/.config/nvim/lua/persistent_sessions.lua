@@ -3,7 +3,9 @@ if not vim.g.persistent_sessions_path then
 end
 
 local write_session_state = function()
-  vim.cmd("mksession! " .. vim.g.persistent_sessions_path)
+  if not vim.bo.filetype == "gitcommit" then
+    vim.cmd("mksession! " .. vim.g.persistent_sessions_path)
+  end
 end
 
 -- Save colors

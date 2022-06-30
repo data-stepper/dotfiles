@@ -50,6 +50,7 @@ require("plugins")
 require("completion")
 require("config")
 
+-- Load file tree
 require("file-tree")
 require("code-formatting")
 require("neorg-config")
