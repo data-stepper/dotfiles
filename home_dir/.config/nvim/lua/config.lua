@@ -231,7 +231,3 @@ require("nvim-treesitter.configs").setup {
     enable = true
   }
 }
-
--- Set up folding here for some reason this works here but not in init.vim ?
-vim.o.foldmethod = "expr"
-vim.o.foldexpr = "nvim_treesitter#foldexpr()"

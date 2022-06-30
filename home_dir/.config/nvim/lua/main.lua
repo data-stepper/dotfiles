@@ -17,15 +17,24 @@ vim.opt.fillchars = {
   foldclose = ""
 }
 
+vim.o.foldmethod = "expr"
+vim.o.foldexpr = "nvim_treesitter#foldexpr()"
+
 vim.o.foldcolumn = "auto"
 vim.o.foldclose = "all"
 vim.o.foldlevel = 99 -- feel free to decrease the value
 vim.o.foldenable = true
 
+vim.o.scrolloff = 10
+
 -- Latex stuff
 vim.g.tex_flavor = "latex"
 vim.g.vimtex_view_method = "zathura"
 vim.g.vimtex_quickfix_mode = 0
+
+-- Use numpy style docstrings for python
+vim.g.pydocstring_formatter = "numpy"
+vim.g.pydocstring_style = "numpy"
 
 -- Use copilot everywhere
 vim.g.copilot_filetypes = {
@@ -45,6 +54,5 @@ require("file-tree")
 require("code-formatting")
 require("neorg-config")
 require("lualine-config")
-require("autoload_colorscheme")
 
 print("Configuration loaded successfully!")

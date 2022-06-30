@@ -83,11 +83,17 @@ vim.cmd [[
 	nnoremap <silent> <leader>m :bnext<CR>
 	nnoremap <silent> <leader>M :bNext<CR>
 
+	" TODO: Think about additional ways to map <C-[Up, Down, ...]>
+	nnoremap <silent> <S-Up> :bnext<CR>
+	nnoremap <silent> <S-Down> :bNext<CR>
+	nnoremap <silent> <S-Right> :bnext<CR>
+	nnoremap <silent> <S-Left> :bNext<CR>
+
 	" In normal mode escape removes search result highlighting
 	nnoremap <silent> <Esc> gt:nohlsearch<CR>
 
 	" Quit or close buffers
-	nnoremap <leader>q <C-W>c
+	nnoremap <leader>q :qa!<CR>
 	nnoremap <silent> <leader>c :bw!<CR>
 
 	" Shifting
