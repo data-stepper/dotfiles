@@ -48,8 +48,6 @@ local load_state = function()
   end
 end
 
-load_state()
-
 -- Makes sure that the autocommands are not defined twice
 if not vim.g.autocommands_defined_persistent_state then
   vim.api.nvim_create_autocmd(
@@ -71,12 +69,4 @@ if not vim.g.autocommands_defined_persistent_state then
   vim.g.autocommands_defined_persistent_state = true
 end
 
--- vim.api.nvim_create_user_command(
---   "LoadPersistentSession",
--- 	{
--- 		sync = true,
--- 		func = function()
--- 			vim.cmd("source " .. vim.g.persistent_sessions_path)
--- 		end
--- 	}
--- )
+load_state()
