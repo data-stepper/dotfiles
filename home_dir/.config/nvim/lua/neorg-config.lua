@@ -6,14 +6,14 @@ require("neorg").setup {
     ["core.norg.dirman"] = {
       config = {
         workspaces = {
-          main = "~/git/notes/main",
-          gtd = "~/git/notes/gtd"
+          -- main = "~/git/notes/main",
+          main = "~/git/notes/gtd"
         }
       }
     },
     ["core.gtd.base"] = {
       config = {
-        workspace = "gtd"
+        workspace = "main"
       }
     },
     ["core.norg.concealer"] = {
