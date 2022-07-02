@@ -10,7 +10,36 @@ consistent and easy-to-use as well as easy to install Full Disk Encryption (FDE)
 
 ## Installation
 
-UPDATE: Using arch linux from now on, rewrite this part as it needs to be updated.
+On a fresh install of arch linux, install curl and run the following command:
+
+```
+	curl -sSL https://raw.githubusercontent.com/data-stepper/dotfiles/installation_scripts/arch_bootstrap.bash | bash
+```
+
+After that reboot your system and run
+
+```
+	sudo bash ~/git/dotfiles/installation_scripts/post_install.sh
+```
+
+Then everything should be install properly. Basics after that:
+
+```
+	Mod + Enter: Open terminal (alacrity in our case)
+	Mod + Shift + Enter: Open browser (brave)
+```
+
+In the termincal you should already have neovim-nightly installed and you can start it by running
+
+```
+	v <some_file>
+```
+
+Note that at first it will throw an error since there is now `~/.persistent_session` file.
+This will be created once you save something (that is not a `gitcommit` file).
+From then on `v` will open neovim in the last session with all buffers, tabs and everything you were working on that time.
+
+Note that most of the stuff is still WIP, so some things might break. Feel free to open an issue if you find any.
 
 ## What I use - in detail
 
@@ -28,13 +57,13 @@ file for lr called .lfrc.
 Unfortunately, it is not yet available as an ubuntu package and thus needs to be installed manually by downloading from the following link.
 
 ```
-https://github.com/gokcehan/lf/releases/download/r24/lf-linux-amd64.tar.gz
+	https://github.com/gokcehan/lf/releases/download/r24/lf-linux-amd64.tar.gz
 ```
 
 After this you will need to unpack the binary and then move it with the following command:
 
 ```
-sudo mv Downloads/lf /bin
+	sudo mv Downloads/lf /bin
 ```
 
 ### Zathura PDF viewer
