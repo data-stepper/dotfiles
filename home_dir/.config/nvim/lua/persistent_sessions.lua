@@ -10,9 +10,13 @@ end
 
 -- Write session state to 'mksession' file
 local write_session_state = function()
-  if not vim.bo.filetype == "gitcommit" then
-    vim.cmd("mksession! " .. vim.g.persistent_sessions_path)
+  -- Do not write session state if the current buffer is a 'gitcommit' filetype
+
+  if vim.bo.filetype == "gitcommit" then
+    return
   end
+
+  vim.cmd("mksession! " .. vim.g.persistent_sessions_path)
 end
 
 -- Save colors
