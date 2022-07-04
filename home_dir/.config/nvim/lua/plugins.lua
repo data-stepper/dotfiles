@@ -10,13 +10,55 @@ return require("packer").startup(
 
     use "kevinhwang91/promise-async"
     use "kevinhwang91/nvim-ufo"
-    use "ray-x/lsp_signature.nvim"
     use "SmiteshP/nvim-navic"
+
+    use {
+      "ray-x/lsp_signature.nvim",
+      ft = {"python", "lua"},
+      config = function()
+        require "lsp_signature".setup {
+          debug = false, -- set to true to enable debug logging
+          log_path = vim.fn.stdpath("cache") .. "/lsp_signature.log", -- log dir when debug is on
+          -- default is  ~/.cache/nvim/lsp_signature.log
+          verbose = false, -- show debug line number
+          bind = true, -- This is mandatory, otherwise border config won't get registered.
+          -- If you want to hook lspsaga or other signature handler, pls set to false
+          doc_lines = 15, -- will show two lines of comment/doc(if there are more than two lines in doc, will be truncated);
+          -- set to 0 if you DO NOT want any API comments be shown
+          -- This setting only take effect in insert mode, it does not affect signature help in normal
+          -- mode, 10 by default
+
+          floating_window = true, -- show hint in a floating window, set to false for virtual text only mode
+          floating_window_above_cur_line = true, -- try to place the floating above the current line when possible Note:
+          -- will set to true when fully tested, set to false will use whichever side has more space
+          -- this setting will be helpful if you do not want the PUM and floating win overlap
+
+          floating_window_off_x = 1, -- adjust float windows x position.
+          floating_window_off_y = -2, -- adjust float windows y position.
+          fix_pos = false, -- set to true, the floating window will not auto-close until finish all parameters
+          hint_enable = true, -- virtual hint enable
+          hint_prefix = "🐼 ", -- Panda for parameter
+          hint_scheme = "String",
+          hi_parameter = "LspSignatureActiveParameter", -- how your parameter will be highlight
+          max_height = 20, -- max height of signature floating_window, if content is more than max_height, you can scroll down
+          -- to view the hiding contents
+          max_width = 120, -- max_width of signature floating_window, line will be wrapped if exceed max_width
+          handler_opts = {
+            border = "rounded" -- double, rounded, single, shadow, none
+          },
+          always_trigger = false, -- sometime show signature on new line or in middle of parameter can be confusing, set it to false for #58
+          transparency = 10 -- disabled by default, allow floating win transparent value 1~100
+          -- shadow_blend = 36, -- if you using shadow as border use this set the opacity
+          -- shadow_guibg = "Black", -- if you using shadow as border use this set the color e.g. 'Green' or '#121315'
+        }
+      end
+    }
 
     use "neovim/nvim-lspconfig"
     use "glepnir/lspsaga.nvim"
     use "onsails/lspkind.nvim"
 
+    -- Nvim CMP stuff
     use "hrsh7th/cmp-nvim-lsp"
     use "hrsh7th/cmp-nvim-lsp-document-symbol"
     use "hrsh7th/cmp-nvim-lsp-signature-help"
@@ -27,19 +69,26 @@ return require("packer").startup(
     use "hrsh7th/cmp-emoji"
     use "dmitmel/cmp-cmdline-history"
 
-    use "tamago324/cmp-zsh"
-    use "kdheepak/cmp-latex-symbols"
-    use "lukas-reineke/cmp-rg"
+    -- use "tamago324/cmp-zsh"
+    -- use "kdheepak/cmp-latex-symbols"
+    -- use "lukas-reineke/cmp-rg"
+
+    -- CMP itself
     use "hrsh7th/nvim-cmp"
 
     use "romgrk/fzy-lua-native"
     use "tzachar/fuzzy.nvim"
     use "tzachar/cmp-fuzzy-buffer"
-    use "tzachar/cmp-fuzzy-path"
+    -- use "tzachar/cmp-fuzzy-path"
 
     use "windwp/nvim-autopairs"
 
-    use "ThePrimeagen/refactoring.nvim"
+    use {
+      "ThePrimeagen/refactoring.nvim",
+      config = function()
+        require("refactoring").setup({})
+      end
+    }
 
     -- use "jbyuki/nabla.nvim"
 
@@ -58,7 +107,21 @@ return require("packer").startup(
 
     -- use "honza/vim-snippets"
 
-    use "lukas-reineke/indent-blankline.nvim"
+    use {
+      "lukas-reineke/indent-blankline.nvim",
+      config = function()
+        vim.opt.list = true
+        -- vim.opt.listchars:append("space:⋅")
+        -- vim.opt.listchars:append("eol:<")
+
+        require("indent_blankline").setup {
+          show_current_context = true,
+          show_current_context_start = true,
+          -- show_end_of_line = true,
+          space_char_blankline = " "
+        }
+      end
+    }
 
     -- Use nvim-treesitter
     use {

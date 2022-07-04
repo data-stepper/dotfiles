@@ -107,13 +107,25 @@ cmp.setup(
         }
       ),
       -- The below defined mappings ONLY jump between ultisnips tabstops!
-      ["<C-l>"] = cmp.mapping(
+      ["<C-Right>"] = cmp.mapping(
+        function(fallback)
+          cmp_ultisnips_mappings.compose {"jump_forwards"}(fallback)
+        end,
+        {"i", "s" --[[ "c" (to enable the mapping in command mode) ]]}
+      ),
+      ["<C-Left>"] = cmp.mapping(
+        function(fallback)
+          cmp_ultisnips_mappings.compose {"jump_backwards"}(fallback)
+        end,
+        {"i", "s" --[[ "c" (to enable the mapping in command mode) ]]}
+      ),
+      ["<Tab>"] = cmp.mapping(
         function(fallback)
           cmp_ultisnips_mappings.compose {"jump_forwards"}(fallback)
         end,
         {"i" --[[ "c" (to enable the mapping in command mode) ]]}
       ),
-      ["<C-h>"] = cmp.mapping(
+      ["<S-Tab>"] = cmp.mapping(
         function(fallback)
           cmp_ultisnips_mappings.compose {"jump_backwards"}(fallback)
         end,
@@ -146,7 +158,6 @@ cmp.setup(
         {name = "emoji"}
         -- {name = "nvim_lsp_signature_help"},
         -- {name = "rg"} -- Ripgrep
-        -- {name = "copilot"}
       },
       {
         {name = "path"} -- Add path autocomplete in all buffers
