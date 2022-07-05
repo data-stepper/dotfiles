@@ -119,12 +119,13 @@ cmp.setup(
         end,
         {"i", "s" --[[ "c" (to enable the mapping in command mode) ]]}
       ),
-      ["<Tab>"] = cmp.mapping(
-        function(fallback)
-          cmp_ultisnips_mappings.compose {"jump_forwards"}(fallback)
-        end,
-        {"i" --[[ "c" (to enable the mapping in command mode) ]]}
-      ),
+      -- This overwrites Copilots mapping
+      -- ["<Tab>"] = cmp.mapping(
+      --   function(fallback)
+      --     cmp_ultisnips_mappings.compose {"jump_forwards"}(fallback)
+      --   end,
+      --   {"i" --[[ "c" (to enable the mapping in command mode) ]]}
+      -- ),
       ["<S-Tab>"] = cmp.mapping(
         function(fallback)
           cmp_ultisnips_mappings.compose {"jump_backwards"}(fallback)
