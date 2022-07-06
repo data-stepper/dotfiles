@@ -154,6 +154,7 @@ saga.init_lsp_saga {}
 
 require("nvim-treesitter.configs").setup {
   -- One of "all", "maintained" (parsers with maintainers), or a list of languages
+  -- The below list should cover all of the programming languages I am viewing in neovim
   ensure_installed = {
     "c",
     "lua",
