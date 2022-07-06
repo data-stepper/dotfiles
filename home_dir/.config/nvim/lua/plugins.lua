@@ -58,6 +58,8 @@ return require("packer").startup(
     use "glepnir/lspsaga.nvim"
     use "onsails/lspkind.nvim"
 
+    use "arkav/lualine-lsp-progress"
+
     -- Nvim CMP stuff
     use "hrsh7th/cmp-nvim-lsp"
     use "hrsh7th/cmp-nvim-lsp-document-symbol"
