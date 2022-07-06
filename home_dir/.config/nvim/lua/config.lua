@@ -154,7 +154,31 @@ saga.init_lsp_saga {}
 
 require("nvim-treesitter.configs").setup {
   -- One of "all", "maintained" (parsers with maintainers), or a list of languages
-  -- ensure_installed = "all",
+  ensure_installed = {
+    "c",
+    "lua",
+    "python",
+    "javascript",
+    "bibtex",
+    "markdown",
+    "norg",
+    "css",
+    "json",
+    "json5",
+    "jsonc",
+    "hjson",
+    "markdown_inline",
+    "make",
+    "cmake",
+    "vim",
+    "help",
+    "html",
+    "yaml",
+    "bash",
+    "latex",
+    "dockerfile",
+    "rst"
+  },
   highlight = {
     -- `false` will disable the whole extension
     enable = true,
