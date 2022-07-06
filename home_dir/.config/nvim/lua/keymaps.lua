@@ -101,4 +101,10 @@ vim.cmd [[
 	nnoremap <S-Tab> <<
 	vnoremap <Tab> >gv
 	vnoremap <S-Tab> <gv
+
+	" Mappings for moving over folds
+	noremap H zm
+	noremap L zr
+	noremap K zk
+	noremap J zj
 ]]
