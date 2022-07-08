@@ -1,3 +1,6 @@
+
+![Dark demo](/screenshots/demo_nvim_dark.png?raw=true "My neovim config in action")
+
 # My dotfiles repository
 
 Welcome to my dotfiles repo, feel free to contribute if you like. My dotfiles are at the heart of the work I do, so I am planning to expand its usability, functionality and bare speed.
