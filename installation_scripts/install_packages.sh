@@ -6,3 +6,7 @@ sudo pacman --noconfirm -Sy - <./pkg_lists/pacman.txt
 
 # Install the AUR packages from the list
 yay --noconfirm --nodiffmenu -S $(cat ./pkg_lists/yay.txt)
+
+# Install some packages with npm
+sudo npm install -g pyright
+sudo npm install -g lua-fmt
