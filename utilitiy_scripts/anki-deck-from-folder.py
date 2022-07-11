@@ -128,10 +128,20 @@ def main(args):
 
     create_deck(entries, deck_dir / "deck.tsv")
 
+    # Get the anki username first
+    anki_path = Path.home() / normpath(".local/share/Anki2/")
+
+    # Get all directories in that path
+    anki_dirs = [d for d in anki_path.iterdir() if d.is_dir() and d.name != "addons21"]
+
+    if len(anki_dirs) != 1:
+        raise Exception("Found more than one Anki user: {}".format(anki_dirs))
+
+    else:
+        anki_dir = anki_dirs[0]
+
     # Copy the source files into the anki collections directory
-    anki_collections = Path.home() / normpath(
-        ".local/share/Anki2/User\ 1/collection.media"
-    )
+    anki_collections = anki_dir / "collection.media"
 
     copy_command = "sudo cp {} {}".format(str(args.path) + "/*.png", anki_collections)
 
