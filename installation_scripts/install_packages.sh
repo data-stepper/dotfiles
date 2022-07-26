@@ -8,5 +8,4 @@ sudo pacman --noconfirm -Sy - <./pkg_lists/pacman.txt
 yay --noconfirm --nodiffmenu -S $(cat ./pkg_lists/yay.txt)
 
 # Install some packages with npm
-npm install pyright
-npm install lua-fmt
+npm --prefix=~/.npm_packages install pyright lua-fmt

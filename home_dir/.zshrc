@@ -67,3 +67,5 @@ unset __conda_setup
 
 # Do start in the base environment because of pynvim and pythonx (for snippets)
 
+# And add the npm packages to the PATH
+export PATH="/home/bent/.npm_packages/node_modules/.bin:$PATH"
