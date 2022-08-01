@@ -107,6 +107,24 @@ return require("packer").startup(
 
     use "mhartington/formatter.nvim"
 
+    -- Todo comments search inside code
+    use {
+      "folke/todo-comments.nvim",
+      requires = "nvim-lua/plenary.nvim",
+      config = function()
+        require("todo-comments").setup {}
+      end
+    }
+
+    -- For searching diagnostics
+    use {
+      "folke/trouble.nvim",
+      requires = "kyazdani42/nvim-web-devicons",
+      config = function()
+        require("trouble").setup {}
+      end
+    }
+
     -- use "honza/vim-snippets"
 
     use {
