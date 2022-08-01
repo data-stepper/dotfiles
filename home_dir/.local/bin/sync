@@ -66,7 +66,7 @@ def update():
 
     # Update the npm modules
     # Don't run npm with sudo this leads to problems
-    run_command("npm update")
+    run_command("npm update; rm package-lock.json")
 
 
 def sync_repositories(repos: list = ["dotfiles", "notes"]):
