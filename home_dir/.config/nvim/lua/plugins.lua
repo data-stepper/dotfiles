@@ -96,6 +96,32 @@ return require("packer").startup(
 
     use "nvim-lua/plenary.nvim"
 
+    -- Debug adapter protocol integration
+    -- TODO: Add neotest support
+    use "mfussenegger/nvim-dap"
+    -- TODO: Map the standard keymappings correctly
+    use {
+      "theHamsta/nvim-dap-virtual-text",
+      config = function()
+        require("nvim-dap-virtual-text").setup()
+      end,
+      requires = {"mfussenegger/nvim-dap"}
+    }
+    use {
+      "rcarriga/nvim-dap-ui",
+      requires = {"mfussenegger/nvim-dap"},
+      config = function()
+        require("dapui").setup()
+      end
+    }
+    use {
+      "mfussenegger/nvim-dap-python",
+      requires = {"mfussenegger/nvim-dap"},
+      config = function()
+        require("dap-python").setup("~/miniconda3/envs/debugpy/bin/python")
+      end
+    }
+
     use {
       "quangnguyen30192/cmp-nvim-ultisnips",
       config = function()
