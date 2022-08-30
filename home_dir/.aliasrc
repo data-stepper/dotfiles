@@ -1,5 +1,6 @@
 # Git stuff
 alias gs="git status"
+alias gp="git pull"
 
 # Always use neovim, bye bye gui neovim
 alias v="nvim -S ~/.persistent_session"
