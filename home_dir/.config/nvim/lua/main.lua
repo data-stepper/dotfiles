@@ -53,7 +53,7 @@ require("config")
 -- Load file tree
 require("file-tree")
 require("code-formatting")
-require("neorg-config")
+-- require("neorg-config")
 require("lualine-config")
 require("persistent_sessions")
 

@@ -209,13 +209,15 @@ return require("packer").startup(
       end
     }
 
-    use {
-      "nvim-neorg/neorg",
-      run = ":NeorgStart silent=true"
-    }
-
-    use "nvim-neorg/neorg-telescope"
-    use "max397574/neorg-kanban"
+   -- use {
+      -- "nvim-neorg/neorg",
+      -- run = ":NeorgStart silent=true"
+      --requires = {
+--	"nvim-neorg/neorg-telescope",
+--	"max397574/neorg-kanban"
+--	},
+ --     ft = {"norg"},
+  --  }
 
     use {
       "junegunn/goyo.vim",
