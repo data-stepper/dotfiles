@@ -13,6 +13,7 @@ fakeroot
 xdotool
 ripgrep
 redshift
+pycharm-community-edition
 file
 findutils
 firefox
