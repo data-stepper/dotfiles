@@ -49,9 +49,9 @@ yes | pacstrap /mnt base base-devel linux linux-firmware dhcpcd nano vim iwd vi 
 yes | pacman --root /mnt -S intel-ucode
 # yes | pacman --root /mnt -S amd-ucode
 
-echo $HOSTNAME's-linux-box' > /mnt/etc/hostname
+echo $HOSTNAME's-linux-box' >/mnt/etc/hostname
 
-cat <<EOF > /mnt/inside_chroot.sh
+cat <<EOF >/mnt/inside_chroot.sh
 # This is the part of the install script that needs to be run inside
 # the arch-chroot
 
@@ -65,6 +65,7 @@ locale-gen
 ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime
 hwclock --systohc
 
+# TODO: Add usb and usbinput to the HOOKS at /etc/mkinitcpio.conf
 # Create initramfs
 mkinitcpio -p linux
 
@@ -134,13 +135,13 @@ arch-chroot /mnt sh ./inside_chroot.sh
 # For some reason it doesn't work when it is done before
 
 # TODO: UUID changes after install
-# Then when trying to boot the system waits to load the drive 
+# Then when trying to boot the system waits to load the drive
 
 # This is why we are now using the fstab with drive labels and not UUIDs
-genfstab -L /mnt > /mnt/etc/fstab
+genfstab -L /mnt >/mnt/etc/fstab
 
 # Allow wheel users to use sudo without command
-echo "%wheel ALL=(ALL:ALL) NOPASSWD: ALL" >> /mnt/etc/sudoers
+echo "%wheel ALL=(ALL:ALL) NOPASSWD: ALL" >>/mnt/etc/sudoers
 
 # And remove the script after installation
 rm /mnt/inside_chroot.sh
@@ -150,4 +151,3 @@ umount /mnt/boot
 umount /mnt
 
 reboot
-
