@@ -1,0 +1,7 @@
+{
+    "editor.minimap.enabled": false,
+    "texlab.build.onSave": true,
+    "window.titleBarStyle": "custom",
+    "editor.fontLigatures": false,
+    "editor.fontFamily": "'Fira Code', 'monospace', monospace"
+}
