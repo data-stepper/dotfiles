@@ -3,6 +3,8 @@
     "texlab.build.onSave": true,
     "window.titleBarStyle": "custom",
     "editor.fontLigatures": false,
-    "editor.fontFamily": "'Fira Code', 'monospace', monospace",
+    "editor.fontFamily": "IBM Plex Mono",
     "editor.lineNumbers": "off",
+    "editor.fontWeight": "600",
+    "workbench.colorTheme": "Better Solarized Dark Italics",
 }
