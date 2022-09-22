@@ -209,15 +209,15 @@ return require("packer").startup(
       end
     }
 
-   -- use {
-      -- "nvim-neorg/neorg",
-      -- run = ":NeorgStart silent=true"
-      --requires = {
---	"nvim-neorg/neorg-telescope",
---	"max397574/neorg-kanban"
---	},
- --     ft = {"norg"},
-  --  }
+    -- use {
+    -- "nvim-neorg/neorg",
+    -- run = ":NeorgStart silent=true"
+    --requires = {
+    --	"nvim-neorg/neorg-telescope",
+    --	"max397574/neorg-kanban"
+    --	},
+    --     ft = {"norg"},
+    --  }
 
     use {
       "junegunn/goyo.vim",
@@ -246,10 +246,7 @@ return require("packer").startup(
     -- use "data-stepper/ai-text-assist"
 
     -- Vim and latex combination
-    use {
-      "lervag/vimtex",
-      ft = "tex"
-    }
+    use "lervag/vimtex"
     -- let g:tex_flavor="latex"
     -- let g:vimtex_view_method="zathura"
     -- let g:vimtex_quickfix_mode=0
