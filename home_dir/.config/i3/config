@@ -143,7 +143,7 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 
 # Hide title bars
-# for_window [class="^.*"] border pixel 0
+for_window [class="^.*"] border pixel 0
 # new_window 1pixel
 
 default_border none
