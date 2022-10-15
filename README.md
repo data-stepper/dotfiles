@@ -15,27 +15,27 @@ consistent and easy-to-use as well as easy to install Full Disk Encryption (FDE)
 
 On a fresh install of arch linux, install curl and run the following command:
 
-```
-	curl -sSL https://raw.githubusercontent.com/data-stepper/dotfiles/installation_scripts/arch_bootstrap.bash | bash
+```bash
+ curl -sSL https://raw.githubusercontent.com/data-stepper/dotfiles/installation_scripts/arch_bootstrap.bash | bash
 ```
 
 After that reboot your system and run
 
-```
-	sudo bash ~/git/dotfiles/installation_scripts/post_install.sh
+```bash
+ sudo bash ~/git/dotfiles/installation_scripts/post_install.sh
 ```
 
 Then everything should be install properly. Basics after that:
 
-```
-	Mod + Enter: Open terminal (alacrity in our case)
-	Mod + Shift + Enter: Open browser (brave)
+```bash
+ Mod + Enter: Open terminal (alacrity in our case)
+ Mod + Shift + Enter: Open browser (brave)
 ```
 
 In the termincal you should already have neovim-nightly installed and you can start it by running
 
-```
-	v <some_file>
+```bash
+ v <some_file>
 ```
 
 Note that at first it will throw an error since there is now `~/.persistent_session` file.
@@ -60,13 +60,13 @@ file for lr called .lfrc.
 Unfortunately, it is not yet available as an ubuntu package and thus needs to be installed manually by downloading from the following link.
 
 ```
-	https://github.com/gokcehan/lf/releases/download/r24/lf-linux-amd64.tar.gz
+ https://github.com/gokcehan/lf/releases/download/r24/lf-linux-amd64.tar.gz
 ```
 
 After this you will need to unpack the binary and then move it with the following command:
 
 ```
-	sudo mv Downloads/lf /bin
+ sudo mv Downloads/lf /bin
 ```
 
 ### Zathura PDF viewer
@@ -86,7 +86,7 @@ I use neovim, also installed as an ubuntu package. With neovim I use mainly the 
 My way to crop pdf files.
 
 ```
-	pdfcrop --margins 5 --clip <infile>.pdf <outfile>.pdf
+ pdfcrop --margins 5 --clip <infile>.pdf <outfile>.pdf
 ```
 
 # TODO List
@@ -95,4 +95,3 @@ My way to crop pdf files.
 - [x] Installation script installs vim-plug
 - [ ] Finish README.MD
 - [ ] Find a way to do full disk encryption on arch linux
-
