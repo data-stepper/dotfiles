@@ -14,6 +14,7 @@ wget https://alphacephei.com/kaldi/models/vosk-model-small-en-us-0.15.zip # Smal
 wget https://alphacephei.com/vosk/models/vosk-model-en-us-0.22.zip # Large model
 
 unzip vosk-model-small-en-us-0.15.zip
+cp vosk-model-small-en-us-0.15 model
 mv vosk-model-small-en-us-0.15 small_model
 
 unzip vosk-model-en-us-0.22.zip
