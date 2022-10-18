@@ -14,6 +14,7 @@ dmenu
 entr
 fakeroot
 brave-bin
+pycharm-professional
 file
 findutils
 firefox
