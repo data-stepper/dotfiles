@@ -71,9 +71,12 @@ bindsym $mod+i exec "python3 /bin/screenshot-anki-card-trigger.py I"
 bindsym $mod+c exec "python3 /bin/screenshot-anki-card-trigger.py C"
 bindsym $mod+x exec "python3 /bin/screenshot-anki-card-trigger.py D"
 
-# Dictation mode Doesn't work for some reason
-bindsym $mod+F1 exec "/bin/nerd-dictation begin &"
-bindsym $mod+F2 exec "/bin/nerd-dictation end"
+# Dictation mode finally works now, consider mapping it to a different key yeah
+bindsym $mod+F1 exec "~/miniconda3/bin/conda run nerd-dictation begin &"
+bindsym $mod+F2 exec "~/miniconda3/bin/conda run nerd-dictation end"
+
+bindsym Insert exec "~/miniconda3/bin/conda run nerd-dictation begin &"
+bindsym Delete exec "~/miniconda3/bin/conda run nerd-dictation end" # This doesn't work for some reason ?
 
 # start todo list
 # bindsym $mod+t exec ~/dotfiles/scripts/start_todo.sh

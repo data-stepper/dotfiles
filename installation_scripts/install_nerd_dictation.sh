@@ -2,6 +2,7 @@
 # Also it will install the small and large english language model for dictation
 
 cd ~
+conda activate
 
 pip3 install vosk
 git clone https://github.com/ideasman42/nerd-dictation.git
