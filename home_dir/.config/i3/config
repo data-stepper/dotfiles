@@ -72,11 +72,14 @@ bindsym $mod+c exec "python3 /bin/screenshot-anki-card-trigger.py C"
 bindsym $mod+x exec "python3 /bin/screenshot-anki-card-trigger.py D"
 
 # Dictation mode finally works now, consider mapping it to a different key yeah
-bindsym $mod+F1 exec "~/miniconda3/bin/conda run nerd-dictation begin &"
-bindsym $mod+F2 exec "~/miniconda3/bin/conda run nerd-dictation end"
+# bindsym $mod+F1 exec "~/miniconda3/bin/conda run nerd-dictation begin --timeout 2 &"
+# Not using anaconda for this anymore since it is a little too slow.
+# Maybe think about fully packaging the program into an own python env (venv?)
+bindsym $mod+F1 exec "nerd-dictation begin --timeout 3 --idle-time 0.3 --numbers-as-digits --full-sentence --numbers-use-separator &"
+bindsym $mod+F2 exec "nerd-dictation end"
 
-bindsym Insert exec "~/miniconda3/bin/conda run nerd-dictation begin &"
-bindsym Delete exec "~/miniconda3/bin/conda run nerd-dictation end" # This doesn't work for some reason ?
+bindsym Insert exec "nerd-dictation begin --timeout 3 --idle-time 0.3 --numbers-as-digits --full-sentence --numbers-use-separator &"
+bindsym Delete exec "nerd-dictation end" # This doesn't work for some reason ?
 
 # start todo list
 # bindsym $mod+t exec ~/dotfiles/scripts/start_todo.sh

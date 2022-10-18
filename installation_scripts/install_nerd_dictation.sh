@@ -2,7 +2,9 @@
 # Also it will install the small and large english language model for dictation
 
 cd ~
-conda activate
+# conda activate # Not using conda for this stuff
+conda deactivate
+sudo pacman -S python-pip python
 
 pip3 install vosk
 git clone https://github.com/ideasman42/nerd-dictation.git
