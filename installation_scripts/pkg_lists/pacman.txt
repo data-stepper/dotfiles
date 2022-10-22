@@ -2,6 +2,7 @@ alacritty
 autoconf
 automake
 base
+obsidian
 code
 base-devel
 binutils
