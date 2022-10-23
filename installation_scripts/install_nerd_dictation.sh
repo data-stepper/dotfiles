@@ -3,7 +3,7 @@
 
 cd ~
 # conda activate # Not using conda for this stuff
-conda deactivate
+conda deactivate > /dev/null
 sudo pacman -S python-pip python
 
 pip3 install vosk

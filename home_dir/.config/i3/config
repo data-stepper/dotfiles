@@ -78,7 +78,7 @@ bindsym $mod+x exec "python3 /bin/screenshot-anki-card-trigger.py D"
 bindsym $mod+F1 exec "nerd-dictation begin --timeout 3 --idle-time 0.3 --numbers-as-digits --full-sentence --numbers-use-separator &"
 bindsym $mod+F2 exec "nerd-dictation end"
 
-bindsym Insert exec "nerd-dictation begin --timeout 3 --idle-time 0.3 --numbers-as-digits --full-sentence --numbers-use-separator &"
+bindsym Insert exec "nerd-dictation begin --timeout 1 --idle-time 0.3 --numbers-as-digits --full-sentence --numbers-use-separator &"
 bindsym Delete exec "nerd-dictation end" # This doesn't work for some reason ?
 
 # start todo list
