@@ -78,4 +78,3 @@ Compton is a tool I use to make my windows transparent, it is installed by the i
 - [x] Installation script installs lf file manager
 - [x] Installation script installs vim-plug
 - [ ] Finish README.MD
-- [ ] Find a way to do full disk encryption on arch linux
