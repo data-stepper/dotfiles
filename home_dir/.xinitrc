@@ -36,7 +36,9 @@ fi
 sudo dhcpcd # Launch dynamic ip address DHCP
 sudo systemctl start iwd # Start the wireless interface
 rm -rf ~/Downloads/* # Remove all contents of the Download folder to keep it clean
-nitrogen --set-zoom-fill ~/git/dotfiles/Wallpapers/pexels-mirco-violent-blur-4072840.jpg
+autorandr --load home # Try to load the standard xrandr settings
+nitrogen --head=0 --set-zoom-fill ~/Documents/Wallpapers/Wallpaper
+nitrogen --head=1 --set-zoom-fill ~/Documents/Wallpapers/Wallpaper
 
 # Start compton with some additional arguments to prevent screen tearing
 compton --backend glx --vsync &
