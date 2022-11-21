@@ -48,3 +48,11 @@ ssh-server () {
 	echo "SSH server daemon killed"
 }
 
+
+# And a function to set the wallpapers on multiple monitors
+set-wallpaper () {
+	nitrogen --head=0 --set-zoom-fill ~/Documents/Wallpapers/Wallpaper
+	nitrogen --head=1 --set-zoom-fill ~/Documents/Wallpapers/Wallpaper
+	nitrogen --head=2 --set-zoom-fill ~/Documents/Wallpapers/Wallpaper
+	# Supports up to three monitors
+}
