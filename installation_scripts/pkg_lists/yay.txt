@@ -65,6 +65,7 @@ sed
 signal-desktop
 snapd
 sudo
+st-git
 sxiv
 termdown
 texinfo
