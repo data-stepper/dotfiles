@@ -5,6 +5,9 @@ alias gp="git pull"
 # Always use neovim, bye bye gui neovim
 alias v="nvim -S ~/.persistent_session"
 
+# Use neovim without any vimrc configuration file
+alias vn="nvim -u /dev/null"
+
 # Ls aliases
 alias l="ls -l"
 alias la="ls -la"
