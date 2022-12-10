@@ -40,7 +40,7 @@ autorandr --load home # Try to load the standard xrandr settings
 nitrogen --head=0 --set-zoom-fill ~/Documents/Wallpapers/Wallpaper
 nitrogen --head=1 --set-zoom-fill ~/Documents/Wallpapers/Wallpaper
 
-# Start compton with some additional arguments to prevent screen tearing
-compton --backend glx --vsync &
+# Not using compton anymore
+# compton --backend glx --vsync &
 xset r rate 220 80
 exec i3
