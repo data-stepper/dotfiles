@@ -9,3 +9,6 @@ yay --noconfirm --nodiffmenu -S $(cat ./pkg_lists/yay.txt)
 
 # Install some packages with npm
 npm --prefix=~/.npm_packages install pyright lua-fmt
+
+# And install st terminal emulator
+. ./install_st.sh
