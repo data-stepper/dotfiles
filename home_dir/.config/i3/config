@@ -132,21 +132,51 @@ bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+bindsym $mod+t layout tabbed
+bindsym $mod+e layout toggle split stacking
 
-# toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
-
-# change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+# Using scratchpad and floating windows
+# Make the currently focused window a scratchpad
+bindsym $mod+Shift+minus floating toggle
+bindsym $mod+minus focus mode_toggle
+bindsym $mod+Shift+space move scratchpad
+bindsym $mod+space scratchpad show
 
 # focus the parent container
 bindsym $mod+a focus parent
 
+# [ = "bracketleft" and { = "braceleft" (and right for the closing ones)
+# toggle through open pdfs quickly
+bindsym $mod+n [class="Zathura"] focus
+# bindsym $mod+bracketleft [class="Zathura"] focus
+# bindsym $mod+] [class="st"] focus next
+# bindsym $mod+[ [class="st"] focus prev
+
+# Fix this, I want mod+; cycle through marked windows
+bindsym $mod+semicolon [con_mark=".*"]
+bindsym $mod+Shift+semicolon [con_mark=".*"] focus
+
+# Marked windows appear in red
+# for_window [all] title_format "<span>[%instance: %class]: %title</span>"
+for_window [con_mark=".*"] title_format "<span foreground='red'>[%class]: %title</span>"
+
+bindsym $mod+bracketleft focus prev
+bindsym $mod+bracketright focus next
+bindsym $mod+Shift+bracketleft focus parent focus prev
+bindsym $mod+Shift+bracketright focus parent focus next
+
 # Hide title bars
-for_window [class="^.*"] border pixel 0
+for_window [all] border normal 2
+# for_window [all] window_title_icon on
+# for_window [class="st"] border normal 2
 # new_window 1pixel
+
+# Use the vim-like marks
+# read 1 character and mark the current window with this character
+bindsym $mod+m exec i3-input -F 'mark %s' -l 1 -P 'Mark: '
+
+# read 1 character and go to the window with the character
+bindsym $mod+g exec i3-input -F '[con_mark="%s"] focus' -l 1 -P 'Goto: '
 
 default_border none
 
