@@ -18,7 +18,7 @@ vim.cmd [[
 	map <C-P> :Copilot panel<CR>
 	noremap <silent> <c-c> :Commentary<CR>
 
-	" Doesn't work for some reason
+	" Doesn't work since it gets remapped to "^_" in my terminal
 	noremap <silent> <c-/> :Commentary<CR>
 	nmap <leader>rn :Lspsaga rename<CR>
 
