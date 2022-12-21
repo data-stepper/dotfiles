@@ -12,7 +12,7 @@ vim.api.nvim_set_keymap(
 
 -- Setup lspconfig.
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-local capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+local capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
 -- Use navic for the statusline info
 local navic = require("nvim-navic")

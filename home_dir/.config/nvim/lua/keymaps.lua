@@ -17,9 +17,13 @@ vim.cmd [[
 	nmap <silent> <C-N> :NvimTreeToggle<CR>
 	map <C-P> :Copilot panel<CR>
 	noremap <silent> <c-c> :Commentary<CR>
+
+	" Doesn't work for some reason
+	noremap <silent> <c-/> :Commentary<CR>
 	nmap <leader>rn :Lspsaga rename<CR>
 
 	nmap <leader>w :w!<CR>
+	nmap <c-s> :w!<CR>
 	nnoremap <space> za
 	tnoremap <C-X> clear<CR>
 	tnoremap <C-Q> exit<CR>
