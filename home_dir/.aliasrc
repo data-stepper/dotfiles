@@ -59,3 +59,8 @@ set-wallpaper () {
 	nitrogen --head=2 --set-zoom-fill ~/Documents/Wallpapers/Wallpaper
 	# Supports up to three monitors
 }
+
+set-time () {
+	timedatectl set-ntp true 
+}
+
