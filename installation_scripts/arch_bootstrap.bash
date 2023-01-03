@@ -93,6 +93,13 @@ printf "linux\t/vmlinuz-linux\n" >> /boot/loader/entries/arch-uefi.conf
 printf "initrd\t/initramfs-linux.img\n" >> /boot/loader/entries/arch-uefi.conf
 printf "options\troot=LABEL=ROOT rw lang=de init=/usr/lib/systemd/systemd locale=en_US.UTF-8\n" >> /boot/loader/entries/arch-uefi.conf
 
+# Create the LTS (stable kernel) boot loader config
+printf "" > /boot/loader/entries/arch-uefi-lts.conf
+printf "title\tArch Linux LTS Kernel\n" >> /boot/loader/entries/arch-uefi-lts.conf
+printf "linux\t/vmlinuz-linux-lts\n" >> /boot/loader/entries/arch-uefi-lts.conf
+printf "initrd\t/initramfs-linux-lts.img\n" >> /boot/loader/entries/arch-uefi-lts.conf
+printf "options\troot=LABEL=ROOT rw lang=en init=/usr/lib/systemd/systemd locale=en_US.UTF-8\n" >> /boot/loader/entries/arch-uefi-lts.conf
+
 # And create the fallback config file
 printf "" > /boot/loader/entries/arch-uefi-fallback.conf
 printf "title\tArch Linux Fallback\n" >> /boot/loader/entries/arch-uefi-fallback.conf

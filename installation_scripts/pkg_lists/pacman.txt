@@ -36,6 +36,7 @@ intel-ucode
 iwd
 libtool
 linux
+linux-lts
 linux-firmware
 lua-language-server
 m4
