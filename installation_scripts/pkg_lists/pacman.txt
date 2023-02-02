@@ -3,6 +3,7 @@ autoconf
 automake
 base
 obsidian
+redshift
 code
 base-devel
 binutils
