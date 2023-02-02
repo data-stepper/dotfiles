@@ -26,6 +26,8 @@ echo "Installing Arch Linux additional packages to $HOME_DIR"
 echo "Select which video driver to install"
 echo "  1) nvidia for modern nvidia gpus"
 echo "  2) intel for integrated graphics"
+echo "  3) amd for integrated graphics"
+echo "  4) install no video driver"
 
 # Inform the user which video driver will be installed
 read n
@@ -37,6 +39,10 @@ case $n in
 2)
     echo "Installing intel drivers"
     sudo pacman -S xf86-video-intel mesa
+    ;;
+3)
+    echo "Installing amd drivers"
+    sudo pacman -S xf86-video-amdgpu mesa
     ;;
 *) echo "invalid option, not installing video drivers" ;;
 esac
