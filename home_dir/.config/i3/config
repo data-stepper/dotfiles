@@ -63,6 +63,8 @@ bindsym $mod+Return exec st
 # start a browser - switched standard browser to brave
 # bindsym $mod+Shift+Return exec google-chrome-beta
 bindsym $mod+Shift+Return exec brave
+# And still use chrome as a secondary browser
+bindsym $mod+b exec google-chrome-stable
 
 # Take a screenshot 
 bindsym Print exec scrot -s $HOME/screenshots/`date +%Y-%m-%d_%H:%M:%S`.png
