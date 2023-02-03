@@ -44,7 +44,7 @@ battery all {
 }
 
 disk "/" {
-        format = "💾 %percentage_avail"
+        format = "💾 %percentage_avail Free"
 }
 
 load {
