@@ -7,7 +7,8 @@ so nobody ever has to go through this stuff again ;)
 2. Convert the rootcert.crt to rootcert.pem format (I don't know if this
 	is really necessary, but for me it works) using this command:
 	openssl x509 -inform der -in rootcert.crt -out rootcert.pem
-3. Then copy the converted rootercert.pem to /var/lib/iwd
+3. Then copy the converted rootercert.pem to /var/lib/iwd/.rootcert.pem
+	copy to .rootcert.pem !!! DO NOT FORGET THE DOT!!!
 4. In the other configuration file in this folder (eduroam.8021x)
 	fill in your university identification code and password
 5. Copy the file (WITHOUTH CHANGING THE NAME) to /var/lib/iwd
