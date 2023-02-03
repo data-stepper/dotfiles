@@ -65,6 +65,7 @@ bindsym $mod+Return exec st
 bindsym $mod+Shift+Return exec brave
 # And still use chrome as a secondary browser
 bindsym $mod+b exec google-chrome-stable
+bindsym $mod+p exec rofi -show window
 
 # Take a screenshot 
 bindsym Print exec scrot -s $HOME/screenshots/`date +%Y-%m-%d_%H:%M:%S`.png
