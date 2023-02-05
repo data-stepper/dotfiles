@@ -40,7 +40,7 @@ ssh-server () {
 	sudo sshd -t
 	echo "If the above command printed something then your ssh config is wrong"
 	ip addr
-	echo "Above you can find your local ip address, something like 192.168...."
+	echo "Above you can find your local ip address, something like <int>.<int>.<int>.<int>"
 	echo "Starting ssh server daemon now..."
 	sudo systemctl start sshd.service
 	echo "SSH server started now, connect to it via: [ssh|sftp] USER@IP-ADDRESS"
