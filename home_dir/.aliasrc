@@ -51,6 +51,10 @@ ssh-server () {
 	echo "SSH server daemon killed"
 }
 
+# Add a function for cropping pdfs so I can nicely read them on my ereader
+pdf-CROPPER-ALIAS () {
+	pdfcrop -margins 10 --clip $1 $2
+}
 
 # And a function to set the wallpapers on multiple monitors
 set-wallpaper () {

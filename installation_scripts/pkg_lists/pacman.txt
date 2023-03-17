@@ -78,5 +78,6 @@ xorg-server
 xterm
 zathura
 zathura-pdf-mupdf
+pdfcropmargins
 zip
 zsh
