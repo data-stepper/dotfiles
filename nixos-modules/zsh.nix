@@ -48,5 +48,20 @@ in
 
     # Load zsh autosuggestions
     source ${zshAutosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+		# lfcd command and keybinding
+		lfcd () {
+				tmp="$(mktemp)"
+				lf -last-dir-path="$tmp" "$@"
+				if [ -f "$tmp" ]; then
+						dir="$(cat "$tmp")"
+						rm -f "$tmp"
+						[ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
+				fi
+		}
+
+		# Bind Ctrl-o to file manager
+		bindkey -s '^o' 'lfcd\n'
+
   '';
 }

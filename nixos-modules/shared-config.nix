@@ -31,13 +31,24 @@
     ibm-plex
     python311
     python311Packages.pip
+		google-fonts
+		noto-fonts-emoji
   ];
+
+	environment.shellAliases = {
+		r = "rm -Rf";
+    ll = "ls -l";
+    la = "ls -A";
+    l = "ls -CF";
+	};
 
   # Shared settings, e.g., for shell
   programs.bash.promptInit = ''
     PS1="[\u@\h \W]\$ "
   '';
 
+	# Set sound and other stuff I will forget otherwise
+	hardware.pulseaudio.enable = true;
   sound.enable = true;
   security.sudo.wheelNeedsPassword = false; 
 
