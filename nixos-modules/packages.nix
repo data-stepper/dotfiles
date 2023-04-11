@@ -12,14 +12,16 @@
     emacs
     vscode
     jetbrains.pycharm-professional
-    # ##### BROWSERS #####
+    # ##### BROWSERS AND OTHER PROGRAMS #####
     google-chrome
     brave
     opera
     firefox
-    # ##### UTILITIES #####
     obsidian
     anki-bin
+    thunderbird
+    ungoogled-chromium
+    # ##### UTILITIES #####
     pciutils
     htop
     st
@@ -28,6 +30,8 @@
     python311Packages.pip
     lf
     zsh
+    ripgrep
+    coreutils
     # ##### FONTS #####
     fira-code
     ibm-plex
