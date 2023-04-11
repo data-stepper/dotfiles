@@ -21,6 +21,7 @@
     anki-bin
     thunderbird
     ungoogled-chromium
+    signal-desktop
     # ##### UTILITIES #####
     pciutils
     htop
