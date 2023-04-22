@@ -33,7 +33,7 @@
     zsh
     ripgrep
     coreutils
-		xbacklight
+    # xbacklight
     # ##### FONTS #####
     fira-code
     ibm-plex

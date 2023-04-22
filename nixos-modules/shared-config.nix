@@ -9,6 +9,7 @@
     ll = "ls -l";
     la = "ls -A";
     l = "ls -CF";
+		sdn = "sudo shutdown now";
   };
 
   # Shared settings, e.g., for shell
