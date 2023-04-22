@@ -33,6 +33,7 @@
     zsh
     ripgrep
     coreutils
+    rofi
     # xbacklight
     # ##### FONTS #####
     fira-code
