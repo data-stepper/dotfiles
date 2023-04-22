@@ -14,11 +14,6 @@
       "sudo nixos-rebuild switch --upgrade && cp -R ~/git/dotfiles/home_dir/. ~";
   };
 
-  # Shared settings, e.g., for shell
-  programs.bash.promptInit = ''
-    PS1="[\u@\h \W]\$ "
-  '';
-
   # Set sound and other stuff I will forget otherwise
   hardware.pulseaudio.enable = true;
   sound.enable = true;
@@ -42,5 +37,9 @@
       enable = true;
       extraPackages = with pkgs; [ dmenu i3lock i3status ];
     };
+
+    # Key repeat rate and delay
+    autoRepeatDelay = 250;
+    autoRepeatInterval = 50;
   };
 }
