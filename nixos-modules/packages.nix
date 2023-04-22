@@ -22,6 +22,8 @@
     thunderbird
     ungoogled-chromium
     signal-desktop
+    sxiv
+    zathura
     # ##### UTILITIES #####
     pciutils
     htop
