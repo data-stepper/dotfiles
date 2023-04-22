@@ -1,5 +1,0 @@
-# Shell script to run python tests automatically
-
-c="$@"
-ls *.py **/*.py|entr sh -c "clear;pytest $c"
-

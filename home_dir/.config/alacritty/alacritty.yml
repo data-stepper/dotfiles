@@ -1,31 +1,31 @@
 # Font configuration (changes require restart)
-font:
-    # Normal (roman) font face
-    normal:
-        family: Blex Mono Nerd Font
-        style: Regular
-        antialias: true
+# font:
+#     # Normal (roman) font face
+#     normal:
+#         family: Blex Mono Nerd Font
+#         style: Regular
+#         antialias: true
 
-    # Bold font face
-    bold:
-        family: Blex Mono Nerd Font
-        style: Bold
-        antialias: true
+#     # Bold font face
+#     bold:
+#         family: Blex Mono Nerd Font
+#         style: Bold
+#         antialias: true
 
-    # Italic font face
-    italic:
-        family: Blex Mono Nerd Font
-        style: Italic
-        antialias: true
+#     # Italic font face
+#     italic:
+#         family: Blex Mono Nerd Font
+#         style: Italic
+#         antialias: true
 
-    # Bold italic font face
-    bold_italic:
-        family: Blex Mono Nerd Font
-        style: Bold Italic
-        antialias: true
+#     # Bold italic font face
+#     bold_italic:
+#         family: Blex Mono Nerd Font
+#         style: Bold Italic
+#         antialias: true
 
-    # Point size
-    size: 8.0
+#     # Point size
+#     size: 8.0
 
 
 window:

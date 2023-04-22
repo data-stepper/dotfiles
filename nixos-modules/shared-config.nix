@@ -2,14 +2,16 @@
 
 {
   # Import the other config files in this folder
-  imports = [ ./zsh.nix ./st.nix ./packages.nix ];
+  imports = [ ./zsh.nix ./packages.nix ];
 
   environment.shellAliases = {
     r = "rm -Rf";
     ll = "ls -l";
     la = "ls -A";
     l = "ls -CF";
-		sdn = "sudo shutdown now";
+    sdn = "sudo shutdown now";
+    update =
+      "sudo nixos-rebuild switch --upgrade && cp -R ~/git/dotfiles/home_dir/. ~";
   };
 
   # Shared settings, e.g., for shell
