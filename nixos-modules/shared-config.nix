@@ -12,6 +12,7 @@
     sdn = "sudo shutdown now";
     update =
       "sudo nixos-rebuild switch --upgrade && cp -R ~/git/dotfiles/home_dir/. ~";
+    sync-homedir = "cp -R ~/git/dotfiles/home_dir/. ~";
   };
 
   # Set sound and other stuff I will forget otherwise
