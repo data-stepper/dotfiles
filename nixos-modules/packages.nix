@@ -36,6 +36,7 @@
     ripgrep
     coreutils
     rofi
+    tree
     # xbacklight
     # ##### FONTS #####
     fira-code
