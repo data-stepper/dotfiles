@@ -20,6 +20,9 @@
   sound.enable = true;
   security.sudo.wheelNeedsPassword = false;
 
+	# And enable gnome keyring
+	services.gnome.gnome-keyring.enable = true;
+
   # And set up the xserver
   services.xserver = {
     enable = true;
