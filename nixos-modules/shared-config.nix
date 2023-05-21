@@ -10,6 +10,7 @@
     la = "ls -A";
     l = "ls -CF";
     sdn = "sudo shutdown now";
+    py = "python3";
     update =
       "sudo nixos-rebuild switch --upgrade && cp -R ~/git/dotfiles/home_dir/. ~";
     sync-homedir = "cp -R ~/git/dotfiles/home_dir/. ~";
@@ -20,8 +21,8 @@
   sound.enable = true;
   security.sudo.wheelNeedsPassword = false;
 
-	# And enable gnome keyring
-	services.gnome.gnome-keyring.enable = true;
+  # And enable gnome keyring
+  services.gnome.gnome-keyring.enable = true;
 
   # And set up the xserver
   services.xserver = {

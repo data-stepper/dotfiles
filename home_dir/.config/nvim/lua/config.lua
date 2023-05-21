@@ -148,7 +148,7 @@ lspconfig.sumneko_lua.setup {
 -- -------------------- LANGUAGE SERVER STUFF --------------------
 
 local saga = require "lspsaga"
-saga.init_lsp_saga {}
+-- saga.init_lsp_saga {}
 
 -- -------------------- TREE SITTER STUFF --------------------
 

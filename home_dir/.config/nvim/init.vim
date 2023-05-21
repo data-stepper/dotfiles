@@ -25,7 +25,7 @@ set termguicolors
 
 " Set default colorscheme and dark background
 " set background=light
-" colorscheme NeoSolarized
+colorscheme NeoSolarized
 " colorscheme melange
 
 " Unicode encoding for everything
