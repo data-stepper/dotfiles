@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   # Import the other config files in this folder
@@ -46,5 +46,14 @@
     # Key repeat rate and delay
     autoRepeatDelay = 250;
     autoRepeatInterval = 50;
+  };
+
+	# And use nix-ld
+  programs.nix-ld.enable = true;
+  environment.variables = {
+      NIX_LD_LIBRARY_PATH = lib.makeLibraryPath [
+        pkgs.stdenv.cc.cc
+      ];
+      NIX_LD = lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker";
   };
 }
