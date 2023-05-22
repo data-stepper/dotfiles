@@ -55,5 +55,6 @@
         pkgs.stdenv.cc.cc
       ];
       NIX_LD = lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker";
+			EDITOR = "vim";
   };
 }
