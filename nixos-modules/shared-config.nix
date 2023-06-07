@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, nixpkgs, ... }:
 
 {
   # Import the other config files in this folder
@@ -48,13 +48,11 @@
     autoRepeatInterval = 50;
   };
 
-	# And use nix-ld
+  # And use nix-ld
   programs.nix-ld.enable = true;
   environment.variables = {
-      NIX_LD_LIBRARY_PATH = lib.makeLibraryPath [
-        pkgs.stdenv.cc.cc
-      ];
-      NIX_LD = lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker";
-			EDITOR = "vim";
+    EDITOR = "vim";
   };
+
+  nixpkgs.config.allowUnfree = true;
 }

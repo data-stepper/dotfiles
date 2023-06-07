@@ -31,8 +31,11 @@
     alacritty
     python311
     python311Packages.pip
+    python311Packages.black
+		ruff
     lf
     zsh
+		cz-cli
     ripgrep
     coreutils
     rofi
