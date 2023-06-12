@@ -40,6 +40,7 @@
     coreutils
     rofi
     tree
+		texlive.combined.scheme-basic
     # xbacklight
     # ##### FONTS #####
     fira-code
