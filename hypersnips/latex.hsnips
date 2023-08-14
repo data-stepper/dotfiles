@@ -1,19 +1,59 @@
 
-# Checks math context (in javascript)
 global
 function math(context) {
     return context.scopes.some(s => s.startsWith("meta.math"));
 }
 endglobal
 
+# Symbols
+
+context math(context)
+snippet aa "For all" Ai
+\forall
+endsnippet
+
+context math(context)
+snippet ee "Exists" Ai
+\exists
+endsnippet
+
 context math(context)
 snippet inv "Inverse" Ai
-^{-1}
+^{-1} 
+endsnippet
+
+context math(context)
+snippet sq "Square" Ai
+^{2} 
+endsnippet
+
+context math(context)
+snippet rd "Superscript" Ai
+^{($1)} $2
+endsnippet
+
+context math(context)
+snippet TT "Transpose" Ai
+^{T} 
 endsnippet
 
 context math(context)
 snippet RR "Real Numbers" Ai
 \R
+endsnippet
+
+context math(context)
+snippet II "Implies" Ai
+\implies
+endsnippet
+
+context math(context)
+snippet iff "If and only if" Ai
+\iff
+endsnippet
+
+snippet iff "Implies" Ai
+\$\iff\$
 endsnippet
 
 snippet mk "Inline math" Ai
@@ -26,3 +66,81 @@ snippet dm "Display math" Ai
 \]
 $2
 endsnippet
+
+context math(context)
+snippet // "Fraction simple" A
+\frac{$1}{$2}$0
+endsnippet
+
+context math(context)
+snippet `((\d+)|(\d*)(\\)?([A-Za-z]+)((\^|_)(\{\d+\}|\d))*)/` "Fraction no ()" A
+\frac{``rv = m[1]``}{$1} $0
+endsnippet
+
+snippet EE "Emphasize" Ai
+\emph{$1} $2
+endsnippet
+
+snippet QQ "Question" A
+\question{$1} 
+
+$2
+endsnippet
+
+snippet EN "Enumerate" A
+\begin{enumerate}[label=(\roman*)]
+    \item $1
+    \item $2
+\end{enumerate}
+endsnippet
+
+# Hats, curls, etc
+
+context math(context)
+snippet hh "Hat" Ai
+\hat{$1} $2
+endsnippet
+
+context math(context)
+snippet bb "Bar" Ai
+\bar{$1} $2
+endsnippet
+
+context math(context)
+snippet tt "Tilde" Ai
+\tilde{$1} $2
+endsnippet
+
+# Some brackets
+
+context math(context)
+snippet BB "Brackets" Ai
+\left(
+    $1
+\right) $2
+endsnippet
+
+context math(context)
+snippet SB "Brackets" Ai
+\left[
+    $1
+\right] $2 
+endsnippet
+
+context math(context)
+snippet CB "Brackets" Ai
+\left\{
+    $1
+\right\} $2
+endsnippet
+
+# Some math environments
+
+snippet AL "Align" Ai
+\begin{align*}
+    $1 &= $2 \\
+    $3 &= $4
+\end{align*}
+endsnippet
+
+

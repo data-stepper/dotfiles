@@ -1,0 +1,14 @@
+snippet ms "Math Snippet" Ai
+context math(context)
+snippet $1 "$2" Ai
+$3
+\endsnippet
+$4
+endsnippet
+
+snippet sn "Snippet" Ai
+snippet $1 "$2" Ai
+$3
+{endsnippet}
+$4
+endsnippet
