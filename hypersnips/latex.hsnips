@@ -1,0 +1,28 @@
+
+# Checks math context (in javascript)
+global
+function math(context) {
+    return context.scopes.some(s => s.startsWith("meta.math"));
+}
+endglobal
+
+context math(context)
+snippet inv "Inverse" Ai
+^{-1}
+endsnippet
+
+context math(context)
+snippet RR "Real Numbers" Ai
+\R
+endsnippet
+
+snippet mk "Inline math" Ai
+\$ $1 \$ $2
+endsnippet
+
+snippet dm "Display math" Ai
+\[
+    $1
+\]
+$2
+endsnippet
